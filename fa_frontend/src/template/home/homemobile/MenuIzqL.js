@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../css/home/menuizql.module.scss"
+import styles from "../../../css/home/homemobile/menuizql.module.scss"
 class MenuIzqL extends React.Component{
     render(){
         return(
