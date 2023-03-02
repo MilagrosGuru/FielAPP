@@ -2,9 +2,9 @@ import React from 'react';
 
 import MediaQuery from 'react-responsive';
 
-import HomeDesktop from './home/HomeDesktop';
-import HomeMobile from './home/HomeMobile';
-import HomeMobileL from './home/HomeMobileL';
+import HomeDesktop from './HomeDesktop';
+import HomeMobile from './HomeMobile';
+import HomeMobileL from './HomeMobileL';
 
 class MyMediaQuery extends React.Component {
     render() {
@@ -20,6 +20,9 @@ class MyMediaQuery extends React.Component {
                     <MediaQuery orientation='landscape'>
                         <HomeMobileL></HomeMobileL>
                     </MediaQuery>
+                </MediaQuery>
+                <MediaQuery minWidth={1824}>
+                    <p>Diseno para una gran pantalla</p>
                 </MediaQuery>
             </React.Fragment>
         );

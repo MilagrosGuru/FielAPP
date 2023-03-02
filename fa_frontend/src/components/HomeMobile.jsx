@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Header from '../template/home/Header'
-import CentroMobile from '../template/home/CentroMobile'
-import MenuMobile from '../template/home/MenuMobile'
-import styles from '../assets/css/general.module.scss'
+import Header from '../template/Header'
+import CentroMobile from '../template/CentroMobile'
+import MenuMobile from '../template/MenuMobile'
+import styles from '../css/home/general.module.scss'
 class HomeMobile extends React.Component{
     render(){
         return(

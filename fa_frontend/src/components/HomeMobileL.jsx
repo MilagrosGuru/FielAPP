@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Header from '../template/home/Header'
-import MenuDerL from '../template/home/MenuDerL'
-import CentroL from '../template/home/CentroL'
-import MenuIzqL from '../template/home/MenuIzqL'
-import styles from '../assets/css/general.module.scss'
+import Header from '../template/Header'
+import MenuDerL from '../template/MenuDerL'
+import CentroL from '../template/CentroL'
+import MenuIzqL from '../template/MenuIzqL'
+import styles from '../css/home/general.module.scss'
 class HomeDesktopL extends React.Component{
     render(){
         return(
