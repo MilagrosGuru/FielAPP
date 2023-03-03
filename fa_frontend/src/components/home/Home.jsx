@@ -2,9 +2,9 @@ import React from 'react';
 
 import MediaQuery from 'react-responsive';
 
-import HomeDesktop from './HomeDesktop';
-import HomeMobile from './HomeMobile';
-import HomeMobileL from './HomeMobileL';
+import HomeDesktop from '../home/homedesktop/HomeDesktop';
+import HomeMobile from '../home/homemobile/HomeMobile';
+import HomeMobileL from '../home/homemobile/HomeMobileL';
 
 class MyMediaQuery extends React.Component {
     render() {
