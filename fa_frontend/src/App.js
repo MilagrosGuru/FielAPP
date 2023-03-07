@@ -4,7 +4,7 @@ import Home from './components/home/Home';
 
 function App() {
   return(
-      <div className='container_personalizado'>
+      <div>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />}></Route>
