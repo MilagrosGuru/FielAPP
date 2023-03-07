@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Seymour+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 :root{
     --color_text-primary:#111;
     --color_text-secundary:#6EE;
@@ -11,7 +13,13 @@
     --text_size_subtitle:24px;
     --text_size:20px;
     --text_paragraph:16px;
-    --text_blue_font-family:'Seymour One', sans-serif;
+    --text_blue_font-family:'HitandRun', sans-serif;
+    --text_font-family1: 'Poppins', sans-serif;
+    --text_font-family2: 'Open Sans', sans-serif;;
+}
+@font-face {
+    font-family: Hit and Run;
+    src: url(../../fonts/TextFonts.net_hit-and-run-font/HitandRun.otf);
 }
 .container_personalizado{
     max-width: 1200px;

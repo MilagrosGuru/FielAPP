@@ -4,7 +4,7 @@ import Header from '../../../template/home/homedesktop/Header'
 import MenuDer from '../../../template/home/homedesktop/MenuDer'
 import Centro from '../../../template/home/homedesktop/Centro'
 import MenuIzq from '../../../template/home/homedesktop/MenuIzq'
-import styles from '../../../css/home/general.module.scss'
+import styles from '../../../Assests/css/home/general.module.scss'
 class HomeDesktop extends React.Component{
     render(){
         return(

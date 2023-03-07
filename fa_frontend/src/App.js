@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/home/Home';
-import styles from '../../fa_frontend/src/css/home/general.module.scss'
+import styles from '../../fa_frontend/src/Assests/css/home/general.module.scss'
 
 function App() {
   return(

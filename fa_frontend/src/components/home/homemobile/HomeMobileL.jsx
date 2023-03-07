@@ -4,7 +4,7 @@ import Header from '../../../template/home/homemobile/HeaderMobile'
 import MenuDerL from '../../../template/home/homemobile/MenuDerL'
 import CentroL from '../../../template/home/homemobile/CentroL'
 import MenuIzqL from '../../../template/home/homemobile/MenuIzqL'
-import styles from '../../../css/home/general.module.scss'
+import styles from '../../../Assests/css/home/general.module.scss'
 class HomeDesktopL extends React.Component{
     render(){
         return(

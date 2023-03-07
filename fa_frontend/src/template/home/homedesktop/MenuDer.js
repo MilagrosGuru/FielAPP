@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../../css/home/homedesktop/menuder.module.scss"
+import styles from "../../../Assests/css/home/homedesktop/menuder.module.scss"
 class MenuDer extends React.Component{
     render(){
         return(
