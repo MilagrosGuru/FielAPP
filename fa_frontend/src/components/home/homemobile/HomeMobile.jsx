@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from '../../../template/home/Header'
+import HeaderMobile from '../../../template/home/homemobile/HeaderMobile'
 import CentroMobile from '../../../template/home/homemobile/CentroMobile'
 import MenuMobile from '../../../template/home/homemobile/MenuMobile'
 import styles from '../../../css/home/general.module.scss'
@@ -10,7 +10,7 @@ class HomeMobile extends React.Component{
             <React.Fragment>
                 <div className={styles.contenedorGeneral}>
                     <div className={styles.contenedorGeneralMobile}>
-                        <Header></Header>
+                        <HeaderMobile></HeaderMobile>
                         <CentroMobile></CentroMobile>
                         <MenuMobile></MenuMobile>
                     </div>

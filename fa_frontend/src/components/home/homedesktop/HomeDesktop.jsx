@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from '../../../template/home/Header'
+import Header from '../../../template/home/homedesktop/Header'
 import MenuDer from '../../../template/home/homedesktop/MenuDer'
 import Centro from '../../../template/home/homedesktop/Centro'
 import MenuIzq from '../../../template/home/homedesktop/MenuIzq'

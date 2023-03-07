@@ -1,9 +1,10 @@
 import React from 'react';
-import styles from "../../css/home/header.module.scss"
+import styles from "../../../css/home/homedesktop/header.module.scss"
 class Header extends React.Component{
     render(){
         return(
-            <div className={styles.estiloHeader}>        
+            <div className={styles.estiloHeader}>    
+
             </div>
         );
     
