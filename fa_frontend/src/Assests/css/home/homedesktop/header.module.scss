@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Seymour+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+:root{
+    --color_text-primary:#111;
+    --color_text-secundary:#6EE;
+    --color_text-tertiary:#fff;
+    --background-color: #fefdfd;
+    --head-backgroud-color:#b330d4;
+    --laterales_backgound-color:#efefef;
+    --lowText_font_size:14px;
+    --text_size_title:40px;
+    --text_size_subtitle:24px;
+    --text_size:20px;
+    --text_paragraph:16px;
+    --text_blue_font-family:'HitandRun', sans-serif;
+    --text_font-family1: 'Poppins', sans-serif;
+    --text_font-family2: 'Open Sans', sans-serif;;
+}
+@font-face {
+    font-family: Hit and Run;
+    src: url(./../../../../Assests/fonts/TextFonts.net_hit-and-run-font/HitandRun.otf);
+}
 .estiloHeader{
     width: 100%;
     height: 15%;
@@ -8,13 +31,14 @@
 .contenedorLogo{
     width: 10%;
     height: 100%;
-    border: 1px solid greenyellow;
     position: relative;
 }
 .contenedorBuscador{
     width: 20%;
     height: 100%;
-    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 .contenedorBotonera{
     width: 30%;
@@ -24,36 +48,79 @@
     right: 0;
 }
 .logo{
-    width: 83%;
-    height: 83%;
+    width: 100%;
+    height: 100%;
     position: absolute;
     z-index: 1;
-    margin: 10px;
     img{
         width: 100%;
         height: 100%;
+        object-fit: contain;
     }
 }
 
 .search input[type=text]{
-    width:300px;
-    height:25px;
-    border-radius:25px;
+    width: 100%;
+    height: 35px;
+    border-radius: 20px;
     border: none;
+    font-family: var(--text_font-family1);
+    font-size:small;
+    @media (max-width: 980px) {
+        font-size: x-small;
+    }
+    @media (max-width: 780px) {
+        font-size: 8px;
+    }
+    @media (max-width: 655px) {
+        font-size: 5px;
+    }
 }
-     
+
+form{
+    position: relative;
+}    
 .search{
-    float:right;
-    margin:7px;
-}
-     
-.search button{
-    background-color: #0074D9;
-    color: #f2f2f2;
     float: right;
-    padding: 5px 10px;
-    margin-right: 16px;
-    font-size: 12px;
+    width: 98%;
+}
+::placeholder {
+    text-align: center; 
+ }
+ 
+ /* or, for legacy browsers */
+ 
+ ::-webkit-input-placeholder {
+    text-align: center; 
+ }
+ :-moz-placeholder { /* Firefox 18- */
+    text-align: center; 
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+ }
+ 
+ :-ms-input-placeholder {  
+    text-align: center; 
+ }
+.search button{
+    background-color: var(--background-color);
+    color: grey;
+    font-size: 20px;
     border: none;
     cursor: pointer;
+    position: absolute;
+    left: 5%;
+    top: 0;
+    margin-top: 3%;
+    @media (max-width: 980px) {
+        font-size: 16px;
+        top: 10%;
+    }
+    @media (max-width: 780px) {
+        font-size: 12px;
+        top: 17%;
+    }
 }
+

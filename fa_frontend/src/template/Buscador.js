@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaSistrix } from "react-icons/fa";
 import styles from "../Assests/css/home/homedesktop/header.module.scss";
 
 
@@ -9,7 +10,7 @@ class Logo extends React.Component{
                 <form action="#">
                     <input type="text" placeholder="Buscar en FielAPP" name="search"/>
                     <button>
-                        es un boton
+                        <FaSistrix></FaSistrix>
                     </button>
                 </form>
             </div>
