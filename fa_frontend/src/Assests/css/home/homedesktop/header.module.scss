@@ -44,10 +44,10 @@
     position: relative;
 }
 .contenedorBotonera{
-    width: 30%;
-    height: 100%;
+    width: 25%;
+    height: 15%;
     position: absolute;
-    border: 1px solid blue;
+    display: flex;
     right: 0;
 }
 
@@ -126,6 +126,23 @@ form{
     @media (max-width: 780px) {
         font-size: 12px;
         top: 17%;
+    }
+}
+.centrar{
+    text-align: center;
+}
+.contboton{
+    width: 25%;
+    height: 100%;
+    z-index: 1;
+}
+.botonheader{
+    width: 100%;
+    height:100%;
+    img{
+        width: 80%;
+        height: 100%;
+        object-fit: contain;
     }
 }
 
