@@ -1,6 +1,7 @@
 import React from 'react';
 
-import Header from '../../../template/home/homemobile/HeaderMobile'
+/*import Header from '../../../template/home/homemobile/HeaderMobile'*/
+import Header from '../../../template/home/homedesktop/Header'
 import MenuDerL from '../../../template/home/homemobile/MenuDerL'
 import CentroL from '../../../template/home/homemobile/CentroL'
 import MenuIzqL from '../../../template/home/homemobile/MenuIzqL'
