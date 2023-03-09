@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6!2juc#bcj9f6udrbnebp7vth4&k_#hg9@mh7oq^l#cw19dd7n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,9 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    # Tipo Documento application Deciree
+    'Tipo_Documento.apps.TipoDocumentoConfig',
+    # CORS Deciree
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    # CORS deciree
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    #otro
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -74,10 +83,14 @@ WSGI_APPLICATION = 'fielappbackend.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'BDFielAPP',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://FielAPP:7i3lApp.23SDDM@fielapp.a0ouz1x.mongodb.net/test'
+            }  
+        }
 }
 
 
@@ -98,6 +111,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+#deciree
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8081',
+    'http://localhost:3000',
+    'http://fielapp.com',
+)
 
 
 # Internationalization
