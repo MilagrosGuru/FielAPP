@@ -22,7 +22,9 @@
     src: url(./../../../../Assests/fonts/TextFonts.net_hit-and-run-font/HitandRun.otf);
 }
 
-/* ESTILO DE LOS CONTENEDORES*/
+/**************HEADER DESKTOP**************/
+
+/*CONTENEDORES*/
 
 .estiloHeader{
     width: 100%;
@@ -44,14 +46,14 @@
     position: relative;
 }
 .contenedorBotonera{
-    width: 30%;
-    height: 100%;
+    width: 20%;
+    height: 15%;
     position: absolute;
-    border: 1px solid blue;
+    display: flex;
     right: 0;
 }
 
-/*ESTILOS DEL LOGO*/
+/*LOGO*/
 
 .logo{
     width: 100%;
@@ -65,7 +67,7 @@
     }
 }
 
-/*ESTILOS DEL BUSCADOR*/
+/*BUSCADOR*/
 
 .search input[type=text]{
     width: 100%;
@@ -127,5 +129,68 @@ form{
         font-size: 12px;
         top: 17%;
     }
+}
+.centrar{
+    text-align: center;
+}
+
+/*BOTONES*/
+.contboton{
+    width: 25%;
+    height: 100%;
+    z-index: 1;
+}
+.botonheader{
+    width: 100%;
+    height:100%;
+    img{
+        width: 90%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+/**************HEADER MOBILE**************/
+
+/*CONTENEDORES*/
+
+.estiloHeaderMobile{
+    width: 100%;
+    height: 20%;
+    background: var(--head-backgroud-color);
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+.contenedorEspacio{
+    width: 100%;
+    height: 25%;
+}
+.contenedorBotonesMobile{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+}
+.contenedorTitulo{
+    width: 100%;
+    height: 35%;
+    line-height: 40px;
+}
+
+/*BOTONES*/
+.contbotonMobile{
+    width: 33.33%;
+    height: 100%;
+    z-index: 1;
+}
+
+/*TITULO*/
+.titulo{
+    font-size: var(--text_size);
+    font-family: var(--text_font-family2);
+    color: var(--color_text-tertiary);
+    text-align: center;
+    font-weight: 700;
 }
 

@@ -8,7 +8,7 @@ class Logo extends React.Component{
         return(
             <div className={styles.search}>
                 <form action="#">
-                    <input type="text" placeholder="Buscar en FielAPP" name="search"/>
+                    <input type="text" placeholder="Buscar en FielAPP" name="search" className={styles.centrar} maxLength="20"/>
                     <button>
                         <FaSistrix></FaSistrix>
                     </button>
