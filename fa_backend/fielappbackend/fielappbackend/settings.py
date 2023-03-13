@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6!2juc#bcj9f6udrbnebp7vth4&k_#hg9@mh7oq^l#cw19dd7n'
+SECRET_KEY = 'django-insecure-co+!umc2o7v2d=!4bu(!u)#9cj1qvaeslh6g7fu2xnqpguymqa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,14 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    # Tipo Documento application Deciree
+    # Tipo Documento application DS
     'Tipo_Documento.apps.TipoDocumentoConfig',
-    # CORS Deciree
+    # CORS DS
     'corsheaders',
+    
 ]
 
 MIDDLEWARE = [
-    # CORS deciree
+     # CORS DS
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     #otro
@@ -83,13 +84,13 @@ WSGI_APPLICATION = 'fielappbackend.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-        'default': {
+      'default': {
             'ENGINE': 'djongo',
             'NAME': 'BDFielAPP',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
                 'host': 'mongodb+srv://FielAPP:7i3lApp.23SDDM@fielapp.a0ouz1x.mongodb.net/test'
-            }  
+            } 
         }
 }
 
