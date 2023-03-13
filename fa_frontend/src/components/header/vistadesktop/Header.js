@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Logo from '../../../components/Logo'
-import Buscador from '../../../components/Buscador'
-import BotonHeader from '../../../components/BotonHeader'
+import Logo from './Logo'
+import Buscador from './Buscador'
+import BotonHeader from '../BotonHeader'
 
 import imglogo from "../../../Assests/imagenes/Logo.png";
 import btn1 from "../../../Assests/imagenes/btn1.png";
@@ -36,7 +36,6 @@ class Header extends React.Component{
                         <BotonHeader src={btn4}></BotonHeader>
                     </div>
                 </div>
-
             </div>
         );
     

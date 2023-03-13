@@ -1,10 +1,9 @@
 import React from 'react';
 
 /*import Header from '../../../template/home/homemobile/HeaderMobile'*/
-import Header from '../../../template/home/homedesktop/Header'
-import MenuDerL from '../../../template/home/homemobile/MenuDerL'
-import CentroL from '../../../template/home/homemobile/CentroL'
-import MenuIzqL from '../../../template/home/homemobile/MenuIzqL'
+import Header from '../../header/vistadesktop/Header'
+import Laterales from '../../laterales/Laterales'
+import Centro from '../../centro/Centro'
 import styles from '../../../Assests/css/home/general.module.scss'
 class HomeDesktopL extends React.Component{
     render(){
@@ -13,9 +12,9 @@ class HomeDesktopL extends React.Component{
                 <div className={styles.contenedorGeneral}>
                     <Header></Header>
                     <div className={styles.contenedorCentral}>
-                        <MenuIzqL></MenuIzqL>
-                        <CentroL></CentroL>
-                        <MenuDerL></MenuDerL>
+                        <Laterales/>
+                        <Centro/>
+                        <Laterales/>
                     </div>
                 </div>
             </React.Fragment>

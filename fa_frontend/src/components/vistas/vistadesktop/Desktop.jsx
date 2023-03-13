@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Header from '../../../template/home/homedesktop/Header'
-import Centro from '../../../template/home/homedesktop/Centro'
-import Laterales from '../../../template/home/homedesktop/Laterales'
+import Header from '../../header/vistadesktop/Header'
+import Centro from '../../centro/Centro'
+import Laterales from '../../laterales/Laterales'
 import styles from '../../../Assests/css/home/general.module.scss'
 class HomeDesktop extends React.Component{
     render(){

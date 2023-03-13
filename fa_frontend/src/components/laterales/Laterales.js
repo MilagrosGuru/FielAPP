@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../../Assests/css/home/homedesktop/laterales.module.scss"
+import styles from "../../Assests/css/home/homedesktop/laterales.module.scss"
 class Laterales extends React.Component{
     render(){
         return(

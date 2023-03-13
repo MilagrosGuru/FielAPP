@@ -2,9 +2,9 @@ import React from 'react';
 
 import MediaQuery from 'react-responsive';
 
-import Desktop from './templates/vistas/vistadesktop/Desktop';
-import Mobile from './templates/vistas/vistamobile/Mobile';
-import Landscape from './templates/vistas/vistamobile/Landscape';
+import Desktop from './components/vistas/vistadesktop/Desktop';
+import Mobile from './components/vistas/vistamobile/Mobile';
+import Landscape from './components/vistas/vistamobile/Landscape';
 
 function App() {
   return(

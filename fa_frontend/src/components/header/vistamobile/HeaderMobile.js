@@ -1,13 +1,13 @@
 import React from 'react';
 
-import BotonHeader from '../../../components/BotonHeader'
+import BotonHeader from '../BotonHeader'
 
 import btn2 from "../../../Assests/imagenes/btn2.png";
 import btn3 from "../../../Assests/imagenes/btn3.png";
 import btn4 from "../../../Assests/imagenes/btn4.png";
 /*import styles from "../../../Assests/css/home/homemobile/headermobile.module.scss"*/
 import styles from "../../../Assests/css/home/homedesktop/header.module.scss";
-import Titulo from '../../../components/Titulo';
+import Titulo from './Titulo';
 class Header extends React.Component{
     render(){
         return(
