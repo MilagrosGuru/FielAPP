@@ -6,7 +6,7 @@ class Titulo extends React.Component{
     render(){
         return(
             <div className={styles.titulo}>  
-                Seccion seleccionada
+                {this.props.tit}
             </div>
         );
     }

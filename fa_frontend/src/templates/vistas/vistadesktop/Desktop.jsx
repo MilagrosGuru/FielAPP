@@ -7,16 +7,16 @@ import styles from '../../../Assests/css/home/general.module.scss'
 class HomeDesktop extends React.Component{
     render(){
         return(
-            <React.Fragment>
+            <>
                 <div className={styles.contenedorGeneral}>
-                    <Header></Header>
+                    <Header/>
                     <div className={styles.contenedorCentral}>
-                        <Laterales></Laterales>
-                        <Centro></Centro>
-                        <Laterales></Laterales>
+                        <Laterales/>
+                        <Centro/>
+                        <Laterales/>
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         );
     }
 }

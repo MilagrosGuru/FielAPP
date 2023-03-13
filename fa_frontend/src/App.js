@@ -1,17 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/home/Home';
-import styles from '../../fa_frontend/src/Assests/css/home/general.module.scss'
+
+import MediaQuery from 'react-responsive';
+
+import Desktop from './templates/vistas/vistadesktop/Desktop';
+import Mobile from './templates/vistas/vistamobile/Mobile';
+import Landscape from './templates/vistas/vistamobile/Landscape';
 
 function App() {
   return(
-      <div className={styles.container_personalizado}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
+      <React.Fragment>
+        <MediaQuery minDeviceWidth={1224}>
+          <Desktop/>
+        </MediaQuery>
+        <MediaQuery maxDeviceWidth={1224}>
+          <MediaQuery orientation='portrait'>
+              <Mobile/>
+          </MediaQuery>
+          <MediaQuery orientation='landscape'>
+              <Landscape/>
+          </MediaQuery>
+        </MediaQuery>
+      </React.Fragment>
   );
 }
 export default App;
