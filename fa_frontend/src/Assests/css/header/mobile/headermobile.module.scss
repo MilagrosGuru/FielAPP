@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Seymour+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+:root{
+    --color_text-primary:#111;
+    --color_text-secundary:#6EE;
+    --color_text-tertiary:#fff;
+    --background-color: #fefdfd;
+    --head-backgroud-color:#b330d4;
+    --laterales_backgound-color:#efefef;
+    --lowText_font_size:14px;
+    --text_size_title:40px;
+    --text_size_subtitle:24px;
+    --text_size:20px;
+    --text_paragraph:16px;
+    --text_blue_font-family:'HitandRun', sans-serif;
+    --text_font-family1: 'Poppins', sans-serif;
+    --text_font-family2: 'Open Sans', sans-serif;;
+}
+@font-face {
+    font-family: Hit and Run;
+    src: url(./../../../../Assests/fonts/TextFonts.net_hit-and-run-font/HitandRun.otf);
+}
+
+/*CONTENEDORES*/
+
+.estiloHeaderMobile{
+    width: 100%;
+    height: 20%;
+    background: var(--head-backgroud-color);
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+.contenedorEspacio{
+    width: 100%;
+    height: 25%;
+}
+.contenedorBotonesMobile{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+}
+.contenedorTitulo{
+    width: 100%;
+    height: 35%;
+    line-height: 40px;
+}
+
+/*BOTONES*/
+.contbotonMobile{
+    width: 33.33%;
+    height: 100%;
+    z-index: 1;
+}
+
