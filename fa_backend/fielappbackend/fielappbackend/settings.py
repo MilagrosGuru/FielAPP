@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-co+!umc2o7v2d=!4bu(!u)#9cj1qvaeslh6g7fu2xnqpguymqa'
+SECRET_KEY = 'django-insecure-&k1%2o!3riu)3ve*mv12!a0i%iz8&1!ab#34cikws4zp9zdw=3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,15 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    # Tipo Documento application DS
+    # Tipo Documento application Deciree
     'Tipo_Documento.apps.TipoDocumentoConfig',
-    # CORS DS
+    # CORS Deciree
     'corsheaders',
-    
 ]
 
 MIDDLEWARE = [
-     # CORS DS
+     # CORS deciree
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     #otro
@@ -84,13 +83,13 @@ WSGI_APPLICATION = 'fielappbackend.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-      'default': {
+        'default': {
             'ENGINE': 'djongo',
             'NAME': 'BDFielAPP',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
                 'host': 'mongodb+srv://FielAPP:7i3lApp.23SDDM@fielapp.a0ouz1x.mongodb.net/test'
-            } 
+            }  
         }
 }
 
@@ -121,7 +120,6 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://fielapp.com',
 )
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
