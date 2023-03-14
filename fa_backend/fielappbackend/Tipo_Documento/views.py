@@ -86,5 +86,5 @@ def Tipo_Documento_list_published(request):
         tipo_Documento_serializer = Tipo_DocumentoSerializer(tipo_Documento, many=True)
         return JsonResponse(tipo_Documento_serializer.data, safe=False)
 
-
+# Prueba de todos 
 # Create your views here.
