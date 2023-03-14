@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaSistrix } from "react-icons/fa";
-import styles from "../../../Assests/css/home/homedesktop/header.module.scss";
+import styles from "../../../Assests/css/header/desktop/buscador.module.scss";
 
 
 class Logo extends React.Component{

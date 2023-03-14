@@ -10,7 +10,7 @@ import btn2 from "../../../Assests/imagenes/btn2.png";
 import btn3 from "../../../Assests/imagenes/btn3.png";
 import btn4 from "../../../Assests/imagenes/btn4.png";
 
-import styles from "../../../Assests/css/home/homedesktop/header.module.scss";
+import styles from "../../../Assests/css/header/desktop/header.module.scss";
 
 class Header extends React.Component{
     render(){

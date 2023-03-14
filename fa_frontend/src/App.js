@@ -4,7 +4,6 @@ import MediaQuery from 'react-responsive';
 
 import Desktop from './components/vistas/vistadesktop/Desktop';
 import Mobile from './components/vistas/vistamobile/Mobile';
-import Landscape from './components/vistas/vistamobile/Landscape';
 
 function App() {
   return(
@@ -17,7 +16,7 @@ function App() {
               <Mobile/>
           </MediaQuery>
           <MediaQuery orientation='landscape'>
-              <Landscape/>
+            <Desktop/>
           </MediaQuery>
         </MediaQuery>
       </React.Fragment>

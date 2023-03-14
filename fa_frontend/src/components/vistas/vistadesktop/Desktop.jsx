@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../../header/vistadesktop/Header'
 import Centro from '../../centro/Centro'
 import Laterales from '../../laterales/Laterales'
-import styles from '../../../Assests/css/home/general.module.scss'
+import styles from '../../../Assests/css/vistas/desktop.module.scss'
 class HomeDesktop extends React.Component{
     render(){
         return(

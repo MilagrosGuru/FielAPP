@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../../Assests/css/home/homemobile/centromobile.module.scss"
+import styles from "../../../Assests/css/centro/mobile/centromobile.module.scss"
 class CentroMobile extends React.Component{
     render(){
         return(
