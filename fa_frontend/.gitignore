@@ -22,5 +22,5 @@ yarn-error.log*
 #carpetas personales
 /imagenes
 
-#.env
+#.env nuevo
 .env
