@@ -21,3 +21,6 @@ yarn-error.log*
 
 #carpetas personales
 /imagenes
+
+#.env
+.env
