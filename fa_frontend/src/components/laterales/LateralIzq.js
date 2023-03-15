@@ -8,7 +8,7 @@ import img3 from "../../Assests/imagenes/Redimir.png";
 import img4 from "../../Assests/imagenes/estadísticas.png";
 
 import styles from "../../Assests/css/laterales/lateralIzq.module.scss"
-import TextosMenu from './TextosMenu';
+import TextosMenuIzq from './TextosMenuIzq';
 class LateralIzq extends React.Component{
     render(){
         return(
@@ -19,7 +19,7 @@ class LateralIzq extends React.Component{
                             <IconoMenu src={img4}/>
                         </div>
                         <div className={styles.conttexto}>
-                            <TextosMenu txt="Estadísticas"/>
+                            <TextosMenuIzq txt="Estadísticas"/>
                         </div>
                     </div>
                     <div className={styles.linea}>
@@ -27,7 +27,7 @@ class LateralIzq extends React.Component{
                             <IconoMenu src={img3}/>
                         </div>
                         <div className={styles.conttexto}>
-                            <TextosMenu txt="Redimir"/>
+                            <TextosMenuIzq txt="Redimir"/>
                         </div>
                     </div>
                     <div className={styles.linea}>
@@ -35,7 +35,7 @@ class LateralIzq extends React.Component{
                             <IconoMenu src={img2}/>
                         </div>
                         <div className={styles.conttexto}>
-                            <TextosMenu txt="Premios FIEL"/>
+                            <TextosMenuIzq txt="Premios FIEL"/>
                         </div>
                     </div>
                     <div className={styles.linea}>
@@ -43,7 +43,7 @@ class LateralIzq extends React.Component{
                             <IconoMenu src={img1}/>
                         </div>
                         <div className={styles.conttexto}>
-                            <TextosMenu txt="Mi Plan"/>
+                            <TextosMenuIzq txt="Mi Plan"/>
                         </div>
                     </div>
                   

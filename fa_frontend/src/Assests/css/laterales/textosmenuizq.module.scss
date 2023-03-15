@@ -1,8 +1,8 @@
-.textosmenu{
+.textosmenuizq{
     color: var(--color_text-primary);
     text-align: left;
     font-family: var(--text_font-family1);
-    font-size: smaller;
+    font-size: medium;
     width: 100%;
     cursor: pointer;
     p{
@@ -10,8 +10,5 @@
     }
     @media (max-width: 844px) {
         font-size: x-small;
-    }
-    @media (max-width: 740px) {
-        font-size: 6.5px;
     }
 }
