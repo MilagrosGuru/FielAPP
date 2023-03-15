@@ -1,0 +1,33 @@
+.estiloLaterales{
+    width: 20%;
+    background: var(--laterales_backgound-color);
+    height: 100%;
+    position: relative;
+}
+.contmenu{
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    margin: 0 10%;
+    display: flex;
+    flex-direction: column;
+}
+.conticono{
+    width: 35%;
+    height: 100%;
+    display: flex;
+}
+.conttexto{
+    width: 65%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.linea{
+    width: 100%;
+    height: 10%;
+    margin-top: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
