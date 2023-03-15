@@ -1,0 +1,10 @@
+.textosmenu{
+    color: var(--color_text-primary);
+    text-align: left;
+    font-family: var(--text_font-family1);
+    font-size: medium;
+    width: 100%;
+    @media (max-width: 844px) {
+        font-size: x-small;
+    }
+}
