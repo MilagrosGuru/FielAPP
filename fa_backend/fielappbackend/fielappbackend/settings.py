@@ -88,7 +88,7 @@ DATABASES = {
             'NAME': config("DB_NAME"),
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'HOST': config("DB_HOST"),
+                'host': config("DB_HOST"),
             }  
         }
 }
