@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&k1%2o!3riu)3ve*mv12!a0i%iz8&1!ab#34cikws4zp9zdw=3'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", cast=bool)
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'fielappbackend.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'djongo',
-            'NAME': 'BDFielAPP',
+            'NAME': config("DB_NAME"),
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'host': 'mongodb+srv://FielAPP:7i3lApp.23SDDM@fielapp.a0ouz1x.mongodb.net/test'
+                'HOST': config("DB_HOST"),
             }  
         }
 }
