@@ -8,7 +8,10 @@
     p{
         margin: 0;
     }
-    @media (max-width: 844px) {
+    @media (max-width: 852px) {
         font-size: x-small;
+    }
+    @media (min-width: 1281px){
+        font-size: x-large;
     }
 }
