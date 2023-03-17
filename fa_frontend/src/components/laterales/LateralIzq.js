@@ -19,7 +19,7 @@ class LateralIzq extends React.Component{
                             <IconoMenu src={img4}/>
                         </div>
                         <div className={styles.conttexto}>
-                            <TextosMenuIzq txt="Estadísticas"/>
+                            <TextosMenuIzq txt="Estadísticas" id="estadistica"/>
                         </div>
                     </div>
                     <div className={styles.linea}>
@@ -27,23 +27,23 @@ class LateralIzq extends React.Component{
                             <IconoMenu src={img3}/>
                         </div>
                         <div className={styles.conttexto}>
-                            <TextosMenuIzq txt="Redimir"/>
+                            <TextosMenuIzq txt="Redimir" id="redimir"/>
                         </div>
                     </div>
                     <div className={styles.linea}>
-                        <div className={styles.conticono}>
+                        <div id="Pemios" className={styles.conticono}>
                             <IconoMenu src={img2}/>
                         </div>
                         <div className={styles.conttexto}>
-                            <TextosMenuIzq txt="Premios FIEL"/>
+                            <TextosMenuIzq txt="Premios FIEL" id="premios"/>
                         </div>
                     </div>
                     <div className={styles.linea}>
                         <div className={styles.conticono}>
                             <IconoMenu src={img1}/>
                         </div>
-                        <div className={styles.conttexto}>
-                            <TextosMenuIzq txt="Mi Plan"/>
+                        <div id="Plan" className={styles.conttexto}>
+                            <TextosMenuIzq txt="Mi Plan" id="plan"/>
                         </div>
                     </div>
                   

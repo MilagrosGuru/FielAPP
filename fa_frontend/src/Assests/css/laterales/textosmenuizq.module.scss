@@ -4,6 +4,7 @@
     font-family: var(--text_font-family1);
     font-size: medium;
     width: 100%;
+   
     cursor: pointer;
     p{
         margin: 0;
@@ -14,4 +15,9 @@
     @media (min-width: 1281px){
         font-size: x-large;
     }
+}
+.textosmenuizq p:hover{
+    background:#cce3f8;
+    box-shadow: 1px 5px 5px grey;
+    border-radius: 10px;
 }

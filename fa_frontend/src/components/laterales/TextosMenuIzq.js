@@ -6,7 +6,7 @@ class TextosMenuIzq extends React.Component{
     render(){
         return(
             <>
-                <div className={styles.textosmenuizq}>
+                <div id={this.props.id} className={styles.textosmenuizq}>
                     <p>{this.props.txt}</p>
                 </div>
             </>
