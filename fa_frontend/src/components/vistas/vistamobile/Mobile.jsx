@@ -2,7 +2,7 @@ import React from 'react';
 
 import HeaderMobile from '../../header/vistamobile/HeaderMobile'
 import CentroMobile from '../../centro/vistamobile/CentroMobile'
-import MenuMobile from '../../MenuMobile'
+import MenuMobile from '../../menumobile/MenuMobile'
 import styles from '../../../Assests/css/vistas/mobil.module.scss'
 class HomeMobile extends React.Component{
     render(){
