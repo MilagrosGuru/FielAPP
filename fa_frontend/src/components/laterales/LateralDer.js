@@ -10,6 +10,8 @@ import img3 from "../../Assests/imagenes/cerrar.png";
 import img4 from "../../Assests/imagenes/Icono.png";
 import img5 from "../../Assests/imagenes/Siguenos.png";
 import img6 from "../../Assests/imagenes/Usuario.png";
+import img7 from "../../Assests/imagenes/MiPlan.png";
+import img8 from "../../Assests/imagenes/Puntos.png";
 
 import styles from "../../Assests/css/laterales/lateralDer.module.scss"
 
@@ -48,7 +50,16 @@ class LateralDer extends React.Component{
                                 <TextosMenu txt="Clientes FIEL"/>
                             </div>
                         </div>
+                        <div className={styles.linea}>
+                            <div className={styles.conticono}>
+                                <IconoMenu src={img7}/>
+                            </div>
+                            <div className={styles.conttexto}>
+                                <TextosMenu txt="Mi Plan"/>
+                            </div>
+                        </div>
                     </div>
+                    <hr />
                     <div className={styles.bloques}>
                         <div className={styles.linea}>
                             <div className={styles.contsubtitulo}>
@@ -80,6 +91,23 @@ class LateralDer extends React.Component{
                             </div>
                         </div>
                     </div>
+                    <hr/>
+                    <div className={styles.bloques}>
+                        <div className={styles.linea}>
+                            <div className={styles.contsubtitulo}>
+                                <Subtitulo txt="Puntos FIEL"/>
+                            </div>
+                        </div>
+                        <div className={styles.linea}>
+                            <div className={styles.conticono}>
+                                <IconoMenu src={img8}/>
+                            </div>
+                            <div className={styles.conttexto}>
+                                <TextosMenu txt="Otorgar puntos FIEL"/>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
                     <div className={styles.bloques}>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
