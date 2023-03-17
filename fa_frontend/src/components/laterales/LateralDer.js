@@ -87,7 +87,7 @@ class LateralDer extends React.Component{
                                 <IconoMenu src={img2}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <TextosMenu txt="Beneficios de usar FielAPP"/>
+                                <TextosMenu txt="Beneficios de FielAPP"/>
                             </div>
                         </div>
                     </div>
