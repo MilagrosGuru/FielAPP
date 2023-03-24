@@ -7,7 +7,7 @@ class TextosMenuIzq extends React.Component{
         return(
             <>
                 <div id={this.props.id} className={styles.textosmenuizq}>
-                    <p>{this.props.txt}</p>
+                    <p onClick={this.quien}>{this.props.txt}</p>
                 </div>
             </>
         );
