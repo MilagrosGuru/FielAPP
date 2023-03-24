@@ -1,0 +1,30 @@
+.container{
+    width: 100%;
+    height: 30%;
+}
+.topContainer{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    margin: 0 auto;
+}
+.partnerlogo{
+    width: 30%;
+}
+.partneridentity{
+    width: 70%;
+}
+.partnername{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.username{
+    width: 100%;
+    height: 50%;
+    border: 1px solid orangered;
+    display: flex;
+    align-items:center;
+}
