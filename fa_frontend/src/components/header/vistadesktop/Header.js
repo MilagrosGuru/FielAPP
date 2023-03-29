@@ -1,5 +1,6 @@
 import React from 'react';
-/*import {Link} from 'react-router-dom';*/
+
+import {Link} from "react-router-dom";
 
 import Logo from './Logo'
 import Buscador from './Buscador'
@@ -25,16 +26,16 @@ class Header extends React.Component{
                 </div>
                 <div className={styles.contenedorBotonera}>
                     <div className={styles.contboton}>
-                        <BotonHeader src={btn1}></BotonHeader>
+                        <Link to="menu"><BotonHeader src={btn1}/></Link>
                     </div>
                     <div className={styles.contboton}>
-                        <BotonHeader src={btn2}></BotonHeader>
+                        <Link to="redes"><BotonHeader src={btn2}/></Link>
                     </div>
                     <div className={styles.contboton}>
-                        <BotonHeader src={btn3}></BotonHeader>
+                        <Link to="notificaciones"><BotonHeader src={btn3}/></Link>
                     </div>
                     <div className={styles.contboton}>
-                        <BotonHeader src={btn4}></BotonHeader>
+                        <Link to="perfil"><BotonHeader src={btn4}/></Link>
                     </div>
                 </div>
             </div>
