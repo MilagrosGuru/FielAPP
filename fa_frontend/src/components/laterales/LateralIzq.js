@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {Link} from "react-router-dom";
+
 import IconoMenu from './IconoMenu'
 
 import img1 from "../../Assests/imagenes/Plan.png";
@@ -19,7 +21,7 @@ class LateralIzq extends React.Component{
                             <IconoMenu src={img4}/>
                         </div>
                         <div className={styles.conttexto}>
-                            <TextosMenuIzq txt="Estadísticas"/>
+                            <Link to="estadisticas" style={{ textDecoration: 'none' }}><TextosMenuIzq txt="Estadísticas" id="estadistica"/></Link>
                         </div>
                     </div>
                     <div className={styles.linea}>
@@ -27,27 +29,25 @@ class LateralIzq extends React.Component{
                             <IconoMenu src={img3}/>
                         </div>
                         <div className={styles.conttexto}>
-                            <TextosMenuIzq txt="Redimir"/>
+                            <Link to="redimir" style={{ textDecoration: 'none' }}><TextosMenuIzq txt="Redimir" id="redimir"/></Link>
                         </div>
                     </div>
                     <div className={styles.linea}>
-                        <div className={styles.conticono}>
+                        <div id="Pemios" className={styles.conticono}>
                             <IconoMenu src={img2}/>
                         </div>
                         <div className={styles.conttexto}>
-                            <TextosMenuIzq txt="Premios FIEL"/>
+                            <Link to="premios" style={{ textDecoration: 'none' }}><TextosMenuIzq txt="Premios FIEL" id="premios"/></Link>
                         </div>
                     </div>
                     <div className={styles.linea}>
                         <div className={styles.conticono}>
                             <IconoMenu src={img1}/>
                         </div>
-                        <div className={styles.conttexto}>
-                            <TextosMenuIzq txt="Mi Plan"/>
+                        <div id="Plan" className={styles.conttexto}>
+                            <Link to="miplan" style={{ textDecoration: 'none' }}><TextosMenuIzq txt="Mi Plan" id="plan"/></Link>
                         </div>
                     </div>
-                  
-                   
                 </div>    
             </div>
         );

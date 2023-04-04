@@ -1,12 +1,12 @@
 .estiloLaterales{
-    width: 20%;
+    width: 100%;
     background: var(--laterales_backgound-color);
     height: 100%;
     position: relative;
 }
 .contmenu{
     width: 80%;
-    height: 100%;
+    height: 96%;
     position: absolute;
     margin: 0 10%;
     display: flex;
@@ -37,12 +37,18 @@
     p{
         margin: 0.3rem;
     }
+    @media(max-width:940px){
+        font-size: 10px;
+    }
 }
 .bloques{
     width: 100%;
     height: 22%;
     /*border-bottom: 1px solid grey;*/
     margin-bottom: 0.5rem;
+    @media(max-width:660px) {
+        height: 17%;
+    }
 }
 .linea{
     width: 100%;
