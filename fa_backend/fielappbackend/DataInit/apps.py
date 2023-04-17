@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TipoDocumentoConfig(AppConfig):
+class DatainitConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'Tipo_Documento'
+    name = 'DataInit'

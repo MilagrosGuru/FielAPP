@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", cast=bool)
+DEBUG = False#config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    # Tipo Documento application Deciree
-    'Tipo_Documento.apps.TipoDocumentoConfig',
+    'DataInit',
     # CORS Deciree
     'corsheaders',
 ]
@@ -82,16 +81,21 @@ WSGI_APPLICATION = 'fielappbackend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
         'default': {
             'ENGINE': 'djongo',
-            'NAME': config("DB_NAME"),
+            'NAME': 'BDFielAPP',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'host': config("DB_HOST"),
-            }  
+                'host': 'mongodb+srv://FielAPP:7i3lApp.23SDDM@fielapp.a0ouz1x.mongodb.net/test'
+            }
         }
 }
+
+MONGODB_HOST = 'mongodb+srv://FielAPP:7i3lApp.23SDDM@fielapp.a0ouz1x.mongodb.net/test'
+MONGODB_DB = 'BDFielAPP'
+
 
 
 # Password validation
