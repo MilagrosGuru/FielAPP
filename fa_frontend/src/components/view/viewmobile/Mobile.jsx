@@ -1,9 +1,9 @@
 import React from 'react';
 
 import HeaderMobile from '../../header/vistamobile/HeaderMobile'
-import CentroMobile from '../../centro/mobile/CentroMobile'
+import CenterMobile from '../../centro/mobile/CenterMobile'
 import MenuMobile from '../../menumobile/MenuMobile'
-import styles from '../../../Assests/css/vistas/mobil.module.scss'
+import styles from '../../../Assests/css/views/mobile/mobil.module.scss'
 class HomeMobile extends React.Component{
     render(){
         return(
@@ -11,7 +11,7 @@ class HomeMobile extends React.Component{
                 <div className={styles.contenedorGeneral}>
                     <div className={styles.contenedorGeneralMobile}>
                         <HeaderMobile></HeaderMobile>
-                        <CentroMobile></CentroMobile>
+                        <CenterMobile></CenterMobile>
                         <MenuMobile></MenuMobile>
                     </div>
                 </div>

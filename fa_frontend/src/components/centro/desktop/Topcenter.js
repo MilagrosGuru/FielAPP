@@ -4,7 +4,7 @@ import Partnerlogo from './Partnerlogo';
 import Partnername from './Partnername';
 import Customername from './Customername';
 
-import img from '../../../Assests/imagenes/partnerlogo.png'
+import img from '../../../Assests/images/partnerlogo.png'
 import styles from "../../../Assests/css/centro/desktop/topcenter.module.scss"
 
 class TopCenter extends React.Component{

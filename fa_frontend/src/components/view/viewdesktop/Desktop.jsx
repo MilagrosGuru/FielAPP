@@ -21,9 +21,9 @@ import CenterFollow from '../../centro/desktop/Centerfollow'
 import CenterProceeds from '../../centro/desktop/Centerproceeds'
 import CenterAwardPoints from '../../centro/desktop/Centerawardpoints'
 
-import LateralIzq from '../../laterales/LateralIzq'
-import LateralDer from '../../laterales/LateralDer'
-import styles from '../../../Assests/css/vistas/desktop.module.scss'
+import LeftSide from '../../laterals/leftSide'
+import RightSide from '../../laterals/rightSide'
+import styles from '../../../Assests/css/views/desktop/desktop.module.scss'
 class Desktop extends React.Component{
     render(){
         return(
@@ -33,7 +33,7 @@ class Desktop extends React.Component{
                     <Header/>
                     <div className={styles.contenedorCentral}>
                         <div className={styles.leftcontainer}>
-                            <LateralIzq/>
+                            <LeftSide/>
                         </div>
                         <div className={styles.centercontainer}>
                                 <Routes>
@@ -57,7 +57,7 @@ class Desktop extends React.Component{
                                 </Routes>
                         </div>
                         <div className={styles.rightcontainer}>
-                            <LateralDer/>
+                            <RightSide/>
                         </div>
                     </div>
                 </div>
