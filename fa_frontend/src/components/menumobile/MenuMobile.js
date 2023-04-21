@@ -1,11 +1,11 @@
 import React from 'react';
 
-import IconoMenuMobile from '../menumobile/IconoMenumobile';
+import IconMenuMobile from '../menumobile/IconMenumobile';
 
-import img1 from "../../Assests/imagenes/Plan.png";
-import img2 from "../../Assests/imagenes/Premios.png";
-import img3 from "../../Assests/imagenes/Redimir.png";
-import img4 from "../../Assests/imagenes/estadísticas.png";
+import img1 from "../../Assests/images/Plan.png";
+import img2 from "../../Assests/images/Awards.png";
+import img3 from "../../Assests/images/Redeem.png";
+import img4 from "../../Assests/images/Statistics.png";
 
 import styles from "../../Assests/css/menumobile/menumobile.module.scss"
 
@@ -14,16 +14,16 @@ class MenuMobile extends React.Component{
         return(
             <div className={styles.estiloMenuMobile}>     
                 <div className={styles.contbotonesmobile}>
-                    <IconoMenuMobile src={img1}/>
+                    <IconMenuMobile src={img1}/>
                 </div>   
                 <div className={styles.contbotonesmobile}>
-                    <IconoMenuMobile src={img2}/>
+                    <IconMenuMobile src={img2}/>
                 </div> 
                 <div className={styles.contbotonesmobile}>
-                    <IconoMenuMobile src={img3}/>
+                    <IconMenuMobile src={img3}/>
                 </div> 
                 <div className={styles.contbotonesmobile}>
-                    <IconoMenuMobile src={img4}/>
+                    <IconMenuMobile src={img4}/>
                 </div> 
             </div>
         );

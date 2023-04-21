@@ -2,22 +2,22 @@ import React from 'react';
 
 import {Link} from "react-router-dom";
 
-import IconoMenu from './IconoMenu'
-import TextosMenu from './TextosMenu';
-import Subtitulo from './Subtitulo';
+import IconMenu from './IconMenu'
+import TextsMenu from './TextsMenu';
+import Subtitle from './Subtitle';
 
-import img1 from "../../Assests/imagenes/Ayuda.png";
-import img2 from "../../Assests/imagenes/Beneficios.png";
-import img3 from "../../Assests/imagenes/cerrar.png";
-import img4 from "../../Assests/imagenes/Icono.png";
-import img5 from "../../Assests/imagenes/Siguenos.png";
-import img6 from "../../Assests/imagenes/Usuario.png";
-import img7 from "../../Assests/imagenes/MiPlan.png";
-import img8 from "../../Assests/imagenes/Puntos.png";
+import img1 from "../../Assests/images/Help.png";
+import img2 from "../../Assests/images/Proceeds.png";
+import img3 from "../../Assests/images/Closed.png";
+import img4 from "../../Assests/images/Icon.png";
+import img5 from "../../Assests/images/Follow.png";
+import img6 from "../../Assests/images/User.png";
+import img7 from "../../Assests/images/MyPlan.png";
+import img8 from "../../Assests/images/Points.png";
 
-import styles from "../../Assests/css/laterales/lateralDer.module.scss"
+import styles from "../../Assests/css/laterals/rightside.module.scss"
 
-class LateralDer extends React.Component{
+class RightSide extends React.Component{
     render(){
         return(
             <div className={styles.estiloLaterales}>  
@@ -25,39 +25,39 @@ class LateralDer extends React.Component{
                     <div className={styles.bloques}>
                         <div className={styles.linea}>
                             <div className={styles.contsubtitulo}>
-                                <Subtitulo txt="Usuarios y Perfiles"/>
+                                <Subtitle txt="Usuarios y Perfiles"/>
                             </div>
                         </div>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
-                                <IconoMenu src={img4}/>
+                                <IconMenu src={img4}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="perfilempresa" style={{ textDecoration: 'none' }}><TextosMenu txt="Perfil de empresa"/></Link>
+                                <Link to="perfilempresa" style={{ textDecoration: 'none' }}><TextsMenu txt="Perfil de empresa"/></Link>
                             </div>
                         </div>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
-                                <IconoMenu src={img6}/>
+                                <IconMenu src={img6}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="usuariosFIEL" style={{ textDecoration: 'none' }}><TextosMenu txt="Usuarios FIEL"/></Link>
+                                <Link to="usuariosFIEL" style={{ textDecoration: 'none' }}><TextsMenu txt="Usuarios FIEL"/></Link>
                             </div>
                         </div>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
-                                <IconoMenu src={img6}/>
+                                <IconMenu src={img6}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="clientesFIEL" style={{ textDecoration: 'none' }}><TextosMenu txt="Clientes FIEL"/></Link>
+                                <Link to="clientesFIEL" style={{ textDecoration: 'none' }}><TextsMenu txt="Clientes FIEL"/></Link>
                             </div>
                         </div>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
-                                <IconoMenu src={img7}/>
+                                <IconMenu src={img7}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="miplan" style={{ textDecoration: 'none' }}><TextosMenu txt="Mi Plan"/></Link>
+                                <Link to="miplan" style={{ textDecoration: 'none' }}><TextsMenu txt="Mi Plan"/></Link>
                             </div>
                         </div>
                     </div>
@@ -65,31 +65,31 @@ class LateralDer extends React.Component{
                     <div className={styles.bloques}>
                         <div className={styles.linea}>
                             <div className={styles.contsubtitulo}>
-                                <Subtitulo txt="Enlaces de interés"/>
+                                <Subtitle txt="Enlaces de interés"/>
                             </div>
                         </div>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
-                                <IconoMenu src={img1}/>
+                                <IconMenu src={img1}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="ayuda" style={{ textDecoration: 'none' }}><TextosMenu txt="Ayuda"/></Link>
+                                <Link to="ayuda" style={{ textDecoration: 'none' }}><TextsMenu txt="Ayuda"/></Link>
                             </div>
                         </div>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
-                                <IconoMenu src={img5}/>
+                                <IconMenu src={img5}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="siguenos" style={{ textDecoration: 'none' }}><TextosMenu txt="Siguenos!! FielAPP"/></Link>
+                                <Link to="siguenos" style={{ textDecoration: 'none' }}><TextsMenu txt="Siguenos!! FielAPP"/></Link>
                             </div>
                         </div>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
-                                <IconoMenu src={img2}/>
+                                <IconMenu src={img2}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="beneficios" style={{ textDecoration: 'none' }}><TextosMenu txt="Beneficios de FielAPP"/></Link>
+                                <Link to="beneficios" style={{ textDecoration: 'none' }}><TextsMenu txt="Beneficios de FielAPP"/></Link>
                             </div>
                         </div>
                     </div>
@@ -97,15 +97,15 @@ class LateralDer extends React.Component{
                     <div className={styles.bloques}>
                         <div className={styles.linea}>
                             <div className={styles.contsubtitulo}>
-                                <Subtitulo txt="Puntos FIEL"/>
+                                <Subtitle txt="Puntos FIEL"/>
                             </div>
                         </div>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
-                                <IconoMenu src={img8}/>
+                                <IconMenu src={img8}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="otorgarpuntos" style={{ textDecoration: 'none' }}><TextosMenu txt="Otorgar puntos FIEL"/></Link>
+                                <Link to="otorgarpuntos" style={{ textDecoration: 'none' }}><TextsMenu txt="Otorgar puntos FIEL"/></Link>
                             </div>
                         </div>
                     </div>
@@ -113,10 +113,10 @@ class LateralDer extends React.Component{
                     <div className={styles.bloques}>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
-                                <IconoMenu src={img3}/>
+                                <IconMenu src={img3}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <TextosMenu txt="Cerrar Sesión"/>
+                                <TextsMenu txt="Cerrar Sesión"/>
                             </div>
                         </div>
                     </div>
@@ -126,4 +126,4 @@ class LateralDer extends React.Component{
     
     }
 }
-export default LateralDer;
+export default RightSide;

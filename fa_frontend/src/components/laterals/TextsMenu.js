@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../Assests/css/laterales/textosmenu.module.scss";
+import styles from "../../Assests/css/laterals/textsmenu.module.scss";
 
 
 class TextosMenu extends React.Component{
