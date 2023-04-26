@@ -8,32 +8,16 @@ from .models import Country, Department, City, DocumentType, Gender
 from .serializers import CountrySerializer, DocumentTypeSerializer, GenderSerializer
 from rest_framework import status
 from rest_framework.decorators import api_view
+from bson.objectid import ObjectId
+from rest_framework.parsers import JSONParser
+from django.http.response import JsonResponse
 
 client = MongoClient(settings.MONGODB_HOST)
 db = client[settings.MONGODB_DB]
 
 class CountryView(APIView):
     def post(self, request):
-        countries = [
-            {
-                'name': 'Argentina',
-                'code': 'ARG',
-                'departments': [
-                    {
-                        'name': 'Buenos Aires', 
-                        'code': 'BA'
-                     },
-                    {
-                        'name': 'Córdoba', 
-                        'code': 'COR'
-                    },
-                    {
-                        'name': 'Santa Fe', 
-                        'code': 'SF'
-                    },
-                ]
-            },    
-        ]
+        countries = [JSONParser().parse(request)]
         
         for country in countries:
             department_data = country.pop('departments')
@@ -80,6 +64,16 @@ class DepartmentList(APIView):
             department_list.append(department)
         return Response(department_list, status=status.HTTP_200_OK)
 
+class DepartmentViewId(APIView):
+    def get(self, request, department_id): # Método GET para la búsqueda
+        try:
+            department = Department.objects.get(id=department_id) # Busca el departamento por ID
+            # Aquí puedes realizar cualquier otra lógica necesaria con el estado encontrado
+            # ...
+            return Response({'id': department_id, 'nombre': department.name}, status=status.HTTP_200_OK)
+        except Department.DoesNotExist:
+            return Response({'error': 'Departamento no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+        
 '''class StateList(APIView):
     @api_view(['GET', 'PUT', 'DELETE'])
     def get(self, request):
@@ -99,18 +93,7 @@ class DepartmentList(APIView):
 
 class DocumentTypeView(APIView):
     def post(self, request):
-        documentTypes = [
-            {
-                'name': 'Cedula de Identidad',
-                'code': 'CC',
-                
-            },  
-            {
-                'name': 'Cedula de Extranjeria',
-                'code': 'CE',
-                
-            }    
-        ]
+        documentTypes = [JSONParser().parse(request)]
         
         for documents in documentTypes:
             document_obj = DocumentType.objects.create(**documents)
@@ -135,22 +118,27 @@ class DocumentTypeList(APIView):
             document_list.append(document)
         return Response(document_list, status=status.HTTP_200_OK)
     
+class DocumentTypeViewId(APIView):
+    def get(self, request, document_id): # Método GET para la búsqueda
+        try:
+            document = DocumentType.objects.get(id=document_id) # Busca el estado por ID
+            # Aquí puedes realizar cualquier otra lógica necesaria con el estado encontrado
+            # ...
+            return Response({'id': document_id, 'nombre': document.name}, status=status.HTTP_200_OK)
+        except DocumentType.DoesNotExist:
+            return Response({'error': 'Tipo de Documento no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+        
+
+
+      
+
+
+    
 ######GENDER#######################33
 
 class GenderView(APIView):
     def post(self, request):
-        gender = [
-            {
-                'name': 'Masculino',
-                'code': 'MA',
-                
-            },  
-            {
-                'name': 'Femenino',
-                'code': 'FE',
-                
-            }    
-        ]
+        gender = [JSONParser().parse(request)]
         
         for genders in gender:
             gender_obj = Gender.objects.create(**genders)
@@ -174,4 +162,16 @@ class GenderList(APIView):
         for gender in genders:
             gender_list.append(gender)
         return Response(gender_list, status=status.HTTP_200_OK)
+    
+
+class GenderViewId(APIView):
+    def get(self, request, gender_id): # Método GET para la búsqueda
+        try:
+            gender = Gender.objects.get(id=gender_id) # Busca el genero por ID
+            # Aquí puedes realizar cualquier otra lógica necesaria con el estado encontrado
+            # ...
+            return Response({'id': gender_id, 'nombre': gender.name}, status=status.HTTP_200_OK)
+        except Gender.DoesNotExist:
+            return Response({'error': 'Género no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+        
     

@@ -19,10 +19,17 @@ from django.urls import re_path as url, include
 #urlpatterns = [
  #   path('admin/', admin.site.urls),
 #]
-
 urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^', include('DataInit.urls')),
+    url(r'^', include('User.urls')),
     #url('api/', include(router_posts.urls)),
     #path('api/instances/', post.api.views.InstanceList.as_view(), name="instances"),
 ]
+
+#from django.conf.urls import url, include 
+ 
+#urlpatterns = [ 
+   # url('admin/', admin.site.urls),
+ #   url(r'^', include('tutorials.urls')),
+#]
