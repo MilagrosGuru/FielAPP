@@ -19,20 +19,18 @@ db = client[settings.MONGODB_DB]
 class UserView(APIView):
     def post(self, request):
 
-        #data = request.POST.get('_content')
-        #elementos = data.split()
+        data = request.data
+        name_array = data['full_name'].split()
+        name = name_array[0]
+        last_name = name_array[1]
+        
+        request.data['name'] = name
+        request.data['last_name'] = last_name
 
-        #if len(elementos) >= 3:
-         #   name = elementos[2]
-        #if len(elementos) >= 4:
-         #   last_name = elementos[3]
+        #users = JSONParser().parse(request)
 
-        #print("name: ", name)
-        #print("last_nama: ", last_name)
-
-        users = JSONParser().parse(request)
-
-        user_serializer = UserSerializer(data=users)
+        #user_serializer = UserSerializer(data=users)
+        user_serializer = UserSerializer(data=request.data)
        
         #db.countries.insert_one(users) # Insertar datos en MongoDB
         if user_serializer.is_valid():
