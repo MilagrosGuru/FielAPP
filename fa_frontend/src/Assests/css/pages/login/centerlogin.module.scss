@@ -1,9 +1,10 @@
 
 .contLogin{
-    width: 100%;
+    width: 250px;
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .contLogin h3{
@@ -126,6 +127,9 @@ input:focus{
     font-size: var(--text_paragraph);
     color: #BDC3C7;
     margin-top: 20%;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 12px;
 }
 .contterms p{
     margin: 0 auto;
