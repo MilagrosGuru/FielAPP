@@ -1,0 +1,21 @@
+.contenedorGeneral{
+    width: 60%;
+    margin: 0 auto;
+    padding: 0;
+    height: 100vh;
+    background: var(--background-color);
+    position: relative;
+}
+.contenedorCentral{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 85%;
+    position: absolute;
+    box-shadow: -1px 5px 15px #888888;
+}
+.centercontainer{
+    width: 250px;
+    height: 100%;
+    margin: 0 auto;
+}
