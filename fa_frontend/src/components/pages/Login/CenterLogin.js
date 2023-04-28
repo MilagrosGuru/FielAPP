@@ -1,25 +1,27 @@
 import React, {useState} from 'react';
 import firebase from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, sendEmailVerification, createUserWithEmailAndPassword } from "firebase/auth";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
 import imggoogle from "../../../Assests/images/google.png";
 import imgfacebook from "../../../Assests/images/facebook.png";
-import ButtonGoogle from '../../pages/Login/ButtonGoogle'
-import ButtonFacebook from '../../pages/Login/ButtonFacebook'
+import ButtonGoogle from './ButtonGoogle'
+import ButtonFacebook from './ButtonFacebook'
 
-import styles from "../../../Assests/css/centro/desktop/centerlogin.module.scss"
+import styles from "../../../Assests/css/pages/login/centerlogin.module.scss"
 
 function Login(){
     const [password, setPassword] = useState('');
     const [showPwd, setshowPwd] = useState(false);
+    const [emailuser, setEmailUser] = useState('');
     const [user, setUser] = useState(null);
     const [photo, setPhoto] = useState(null);
     const [displayname, setDisplayName] =  useState(null);
     const [email, setEmail] =  useState(null);
     const [phoneNumber, setphoneNumber] =  useState(null);
+    const [emailVerified, setemailVerified] =  useState(null);
     const [accessToken, setaccessToken] =  useState(null);
     const [uid, setuid] =  useState(null);
     const provider = new GoogleAuthProvider();
@@ -29,11 +31,26 @@ function Login(){
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
-      };
-    
-      const handleShowPasswordToggle = () => {
+    };
+    const handleEmailUserChange = (event) => {
+        setEmailUser(event.target.value);
+    };
+
+    const handleShowPasswordToggle = () => {
         setshowPwd(!showPwd);
-      };
+    };
+
+    const llamarApi = () =>{
+            
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({full_name: "Graciela Pérez", name: "", last_name: "", document_type: "", document_number: "", telephone: "", born_date: "", email: 'dayana@prueba.com', department: "", city: "", address: "", gender: "", password: '1234123', photo: "" })
+            };
+            fetch('http://127.0.0.1:8000/user/create', requestOptions)
+                .then(response => response.json())
+                .then(result => console.log(result) );
+    }
 
     const loginGoogle = () => {
         
@@ -46,10 +63,20 @@ function Login(){
                 setphoneNumber(respuesta.user.phoneNumber)
                 setaccessToken(respuesta.user.accessToken)
                 setuid(respuesta.user.uid)
-                
+                setemailVerified(respuesta.user.emailVerified)
                 localStorage.setItem('tokengoogle', respuesta.user.accessToken)
-                navigate('/Bienvenida');
-
+                if(respuesta.user.emailVerified)
+                {
+                    //llamarApi();
+                    navigate('/Bienvenida');
+                }else{
+                    sendEmailVerification(respuesta.user)
+                    .then(() => {
+                                    navigate('/VerificacionEmail'); 
+                                    console.log('envio de verificacion');
+                                })
+                    .catch(() => {console.log('La verificacion no fue enviada')});
+                }
             }).catch(err => {
                 console.log(err)
             })
@@ -58,7 +85,7 @@ function Login(){
     const loginFacebook = () => {
         signInWithPopup(auth, providerF)
             .then(respuesta => {
-                console.log(respuesta.user)
+                
                 setUser(respuesta.user)
                 setPhoto(respuesta.user.photoURL)
                 setDisplayName(respuesta.user.displayName)
@@ -67,18 +94,57 @@ function Login(){
                 setaccessToken(respuesta.user.accessToken)
 
                 localStorage.setItem('tokenfacebook', respuesta.user.accessToken)
-                navigate('/Bienvenida');
-
+                if(respuesta.user.emailVerified)
+                {
+                    navigate('/Bienvenida');
+                    console.log("hacia la pagina de bienvenida");
+                }else{
+                    sendEmailVerification(respuesta.user)
+                    .then(() => {
+                        navigate('/VerificacionEmail'); 
+                        console.log('envio de verificacion');
+                    })
+                    .catch(() => {console.log('La verificacion no fue enviada')});
+                }
             }).catch(err => {
                 console.log(err)
             })
     }
+
+    const loginEmailpassword = () => {
+        createUserWithEmailAndPassword(auth, emailuser, password)
+            .then((respuesta) => {
+                console.log(respuesta)
+                if(respuesta.user.emailVerified)
+                {
+                    navigate('/Bienvenida');
+                    console.log("hacia la pagina de bienvenida");
+                }else{
+                    sendEmailVerification(respuesta.user)
+                    .then(() => {
+                        navigate('/VerificacionEmail'); 
+                        console.log('envio de verificacion');
+                    })
+                    .catch(() => {console.log('La verificacion no fue enviada')});
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    }
+
+   
     return(
         <div className={styles.contLogin}>
             <h3>Ingresa tus datos</h3>
-            <form className={styles.contForm}>
+            <form className={styles.contForm} id='LoginForm'>
                 <label>
-                    <input type="text" placeholder="Usuario o correo"/>
+                    <input 
+                        type="text" 
+                        placeholder="Correo" 
+                        id='Email'
+                        onChange={handleEmailUserChange}
+                    />
                 </label>
                 <label>
                     <input 
@@ -96,7 +162,7 @@ function Login(){
                 </button>
                 </label>
                
-                <input className={styles.styleButton} type="submit" value="Ingresar"/>
+                <input className={styles.styleButton} type="button" value="Ingresar" onClick={loginEmailpassword}/>
                 <div className={styles.contLogout}>
                 <p>Olvidaste la contraseña?</p>
                 <p>Logout</p>
@@ -110,22 +176,6 @@ function Login(){
             <div className={styles.contterms}>
                 <p>Al registrarse en FielApp, aceptaras nuestros <span>Términos y Póliticas de privacidad</span></p>
             </div>
-            
-           
-            {
-                photo ?
-                (
-                    <div>
-                        <img height="150" src={photo} alt="photo usuario"/>
-                        <p>{displayname}</p>
-                        <p>{email}</p>
-                        <p>{phoneNumber}</p>
-                    </div>
-                ) :
-                (
-                    <span></span>
-                )
-            }
         </div>
     )
     

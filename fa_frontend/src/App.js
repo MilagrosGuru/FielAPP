@@ -2,22 +2,22 @@ import React from 'react';
 
 import MediaQuery from 'react-responsive';
 
-import LoginDesktop from './components/pages/Login/Login';
-import Mobile from './components/view/viewmobile/Mobile';
+import FirstPage from './components/pages/Firstpage/FirstPage'
+import FirstPageMobile from './components/pages/Firstpage/FirstPageMobile'
 import './Assests/css/variables.css'
 
 function App() {
   return(
       <React.Fragment>
         <MediaQuery minDeviceWidth={1224}>
-          <LoginDesktop/>
+          <FirstPage/>
         </MediaQuery>
         <MediaQuery maxDeviceWidth={1224}>
           <MediaQuery orientation='portrait'>
-              <Mobile/>
+              <FirstPageMobile/>
           </MediaQuery>
           <MediaQuery orientation='landscape'>
-            <LoginDesktop/>
+            <FirstPage/>
           </MediaQuery>
         </MediaQuery>
       </React.Fragment>

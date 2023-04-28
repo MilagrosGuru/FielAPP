@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../../Assests/css/pages/buttongoogle.module.scss";
+import styles from "../../../Assests/css/pages/login/buttongoogle.module.scss";
 
 
 class ButtonGoogle extends React.Component{
