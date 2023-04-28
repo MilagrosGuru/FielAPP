@@ -1,12 +1,12 @@
 import React from 'react';
 
-import BotonHeader from '../BotonHeader'
+import ButtonHeader from '../ButtonHeader'
 
-import btn2 from "../../../Assests/imagenes/btn2.png";
-import btn3 from "../../../Assests/imagenes/btn3.png";
-import btn4 from "../../../Assests/imagenes/btn4.png";
+import btn2 from "../../../Assests/images/btn2.png";
+import btn3 from "../../../Assests/images/btn3.png";
+import btn4 from "../../../Assests/images/btn4.png";
 import styles from "../../../Assests/css/header/mobile/headermobile.module.scss"
-import Titulo from './Titulo';
+import Title from './Title';
 class Header extends React.Component{
     render(){
         return(
@@ -14,17 +14,17 @@ class Header extends React.Component{
                 <div className={styles.contenedorEspacio}></div>
                 <div className={styles.contenedorBotonesMobile}>
                     <div className={styles.contbotonMobile}>
-                        <BotonHeader src={btn2}></BotonHeader>
+                        <ButtonHeader src={btn2}></ButtonHeader>
                     </div>
                     <div className={styles.contbotonMobile}>
-                        <BotonHeader src={btn3}></BotonHeader>
+                        <ButtonHeader src={btn3}></ButtonHeader>
                     </div>
                     <div className={styles.contbotonMobile}>
-                        <BotonHeader src={btn4}></BotonHeader>
+                        <ButtonHeader src={btn4}></ButtonHeader>
                     </div>
                 </div>  
                 <div className={styles.contenedorTitulo}>
-                    <Titulo tit={"Seccion Seleccionada"}></Titulo>
+                    <Title tit={"Seccion Seleccionada"}></Title>
                 </div>   
             </div>
         );

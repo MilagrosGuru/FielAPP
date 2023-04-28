@@ -1,0 +1,24 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Seymour+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+:root{
+    --color_text-primary:#111;
+    --color_text-secundary:#6EE;
+    --color_text-tertiary:#fff;
+    --background-color: #fefdfd;
+    --head-backgroud-color:#b330d4;
+    --laterales_backgound-color:#efefef;
+    --lowText_font_size:14px;
+    --text_size_title:26px;
+    --text_size_subtitle:24px;
+    --text_size:14px;
+    --text_paragraph:12px;
+    --text_blue_font-family:'HitandRun', sans-serif;
+    --text_font-family1: 'Poppins', sans-serif;
+    --text_font-family2: 'Open Sans', sans-serif;;
+}
+@font-face {
+    font-family: Hit and Run;
+    src: url(../../Assests/fonts/TextFonts.net_hit-and-run-font/HitandRun.otf);
+}

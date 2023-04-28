@@ -2,7 +2,7 @@ from django.urls import path,include
 from DataInit import views
 from rest_framework import routers
 
-from .views import CountryView, CountryStateList, DocumentTypeView, DocumentTypeList,GenderView, GenderList, DepartmentList
+from .views import CountryView, CountryStateList, DocumentTypeView, DocumentTypeList,GenderView, GenderList, DepartmentList, DocumentTypeViewId, GenderViewId, DepartmentViewId
 
 router = routers.DefaultRouter()
 
@@ -17,8 +17,12 @@ urlpatterns = [
     path('documentType/list', DocumentTypeList.as_view()),
     path('gender/create', GenderView.as_view()),
     path('gender/list', GenderList.as_view()),
-    #path('estados/', StateList.as_view()),
-    #path('pais/<int:pais_id>/estados/', StateList.get, name='estados_por_pais'),
+
+    #Busquedas por id
+    path('documentType/<str:document_id>/', DocumentTypeViewId.as_view(), name='document-detail'),
+    path('gender/<str:gender_id>/', GenderViewId.as_view(), name='gender-detail'),
+    path('department/<str:department_id>/', DepartmentViewId.as_view(), name='department-detail'),
+
 ]
 
 ########################################
