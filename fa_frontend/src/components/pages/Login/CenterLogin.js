@@ -40,12 +40,11 @@ function Login(){
         setshowPwd(!showPwd);
     };
 
-    const llamarApi = () =>{
-            
+    const llamarApi = (displayname, photo, email, phonenumber) =>{
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({full_name: "Graciela Pérez", name: "", last_name: "", document_type: "", document_number: "", telephone: "", born_date: "", email: 'dayana@prueba.com', department: "", city: "", address: "", gender: "", password: '1234123', photo: "" })
+                body: JSON.stringify({full_name: displayname, name: "", last_name: "", document_type: "", document_number: "", telephone: phonenumber, email: email, born_date: "1981-02-10", department: "", city: "", address: "", gender: "", password: "", photo: photo })
             };
             fetch('http://127.0.0.1:8000/user/create', requestOptions)
                 .then(response => response.json())
@@ -56,6 +55,9 @@ function Login(){
         
             signInWithPopup(auth, provider)
             .then(respuesta => {
+
+                /*asignacion de valores a variables de estado*/
+
                 setUser(respuesta.user)
                 setPhoto(respuesta.user.photoURL)
                 setDisplayName(respuesta.user.displayName)
@@ -64,10 +66,31 @@ function Login(){
                 setaccessToken(respuesta.user.accessToken)
                 setuid(respuesta.user.uid)
                 setemailVerified(respuesta.user.emailVerified)
+
+                /*se guarda en local el acces token*/
+
                 localStorage.setItem('tokengoogle', respuesta.user.accessToken)
+
+                /*validacion de campos vacios*/
+
+                if(respuesta.user.phoneNumber === null){
+                    respuesta.user.phoneNumber="000000000000"
+                }
+                if(respuesta.user.displayName === null){
+                    respuesta.user.displayName="no registra"
+                }
+                if(respuesta.user.email === null){
+                    respuesta.user.email="no@registra.com"
+                }
+                if(respuesta.user.photoURL === null){
+                    respuesta.user.photoURL="no registra"
+                }
+
+                /*llamar api y verificacion de correo*/
+
                 if(respuesta.user.emailVerified)
                 {
-                    //llamarApi();
+                    llamarApi(respuesta.user.displayName,respuesta.user.photoURL,respuesta.user.email,respuesta.user.phoneNumber );
                     navigate('/Bienvenida');
                 }else{
                     sendEmailVerification(respuesta.user)
@@ -94,6 +117,7 @@ function Login(){
                 setaccessToken(respuesta.user.accessToken)
 
                 localStorage.setItem('tokenfacebook', respuesta.user.accessToken)
+                
                 if(respuesta.user.emailVerified)
                 {
                     navigate('/Bienvenida');
