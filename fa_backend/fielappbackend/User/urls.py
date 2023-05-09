@@ -18,5 +18,6 @@ urlpatterns = [
     #path(r'^api/users/(?P<pk>[0-9]+)$', user_detail),
     path('user/create', UserView.as_view()),
     path('user/<str:user_id>/', UserUpdate.update_user, name='update_user'),
+    path('userType/<str:user_id>/', UserUpdate.client_partner_user, name='client_partner_user'),
 ]
 

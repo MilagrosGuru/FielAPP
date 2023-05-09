@@ -69,6 +69,28 @@ class UserUpdate(APIView):
             user_serializer = UserSerializer(user) 
             return JsonResponse(user_serializer.data)
         
+
+    @api_view(['PUT'])
+    def client_partner_user(request, user_id):
+    # Connect to the MongoDB database
+        collection = db.User_user
+        user = collection.find_one({'id': int(user_id)})
+            # Get the user document with the provided ID
+            #user = collection.find_one({'_id': user_id})
+        if user is not None:
+                # Update the user document with the provided data
+            data = json.loads(request.body)
+            collection.update_one({'id': int(user_id)}, {'$set': data})
+            partial_data = {
+                'id': user['id']
+            }
+
+                # Return a success response
+            return JsonResponse(partial_data, status=status.HTTP_200_OK) 
+        else:
+                # Return an error response if the user is not found
+            return JsonResponse(data.errors, status=status.HTTP_400_BAD_REQUEST)
+        
     
 
     
