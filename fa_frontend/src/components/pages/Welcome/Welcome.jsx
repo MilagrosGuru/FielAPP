@@ -7,10 +7,21 @@ import { useNavigate } from 'react-router-dom';
 import styles from "../../../Assests/css/pages/welcome/welcome.module.scss"
 
 class Welcome extends React.Component{
-    state = {
-        users: []
+    constructor(){
+        super();
+    
+        this.state = {
+            loggedIn: "no-logueado",
+            user:{},
+        };
     }
+   /* userVerification = () => {
+        if (!users) {
+            useNavigate('/Login'); 
+        }
+    };*/
     render(){
+        /*this.userVerification();*/
         return(
             <div className={styles.estiloCentro}>   
                 Página de Bienvenida

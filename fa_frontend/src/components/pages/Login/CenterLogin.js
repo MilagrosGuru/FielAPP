@@ -46,9 +46,13 @@ function Login(){
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({full_name: displayname, name: "", last_name: "", document_type: "", document_number: "", telephone: phonenumber, email: email, born_date: "1981-02-10", department: "", city: "", address: "", gender: "", password: "", photo: photo })
             };
-            fetch('http://127.0.0.1:8000/user/create', requestOptions)
+            /*http://127.0.0.1:8000/user/create*/
+            fetch('https://5tknd9yyoh.execute-api.us-east-1.amazonaws.com/dev/api/', requestOptions)
                 .then(response => response.json())
-                .then(result => console.log(result) );
+                .then(result => {
+                    console.log(result) 
+                    navigate('/Bienvenida');
+                });
     }
 
     const loginGoogle = () => {
@@ -71,6 +75,7 @@ function Login(){
 
                 localStorage.setItem('tokengoogle', respuesta.user.accessToken)
 
+
                 /*validacion de campos vacios*/
 
                 if(respuesta.user.phoneNumber === null){
@@ -91,7 +96,7 @@ function Login(){
                 if(respuesta.user.emailVerified)
                 {
                     llamarApi(respuesta.user.displayName,respuesta.user.photoURL,respuesta.user.email,respuesta.user.phoneNumber );
-                    navigate('/Bienvenida');
+                   // navigate('/Bienvenida');
                 }else{
                     sendEmailVerification(respuesta.user)
                     .then(() => {
