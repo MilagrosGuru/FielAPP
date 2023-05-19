@@ -27,6 +27,11 @@ class UserView(APIView):
         request.data['name'] = name
         request.data['last_name'] = last_name
 
+        if data['born_date'] == '':
+            request.data['born_date'] = '1900-11-11'
+
+        
+
         #users = JSONParser().parse(request)
 
         #user_serializer = UserSerializer(data=users)
