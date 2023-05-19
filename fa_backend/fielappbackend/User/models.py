@@ -8,7 +8,7 @@ class User(models.Model):
     document_number= models.CharField(max_length=15, blank=True, default='')
     telephone = models.CharField(max_length=12, blank=True, default='')
     email = models.EmailField(blank=True, default='')
-    born_date = models.DateField(blank=True)
+    born_date = models.DateField(default='1900-11-11')
     department= models.CharField(max_length=50, blank=True, default='')
     city= models.CharField(max_length=50, blank=True, default='')
     address= models.CharField(max_length=50, blank=True, default='')
