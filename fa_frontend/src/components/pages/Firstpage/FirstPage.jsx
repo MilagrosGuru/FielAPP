@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StartHeader from '../../header/vistadesktop/StartHeader'
 import CenterFirstPage from './CenterFirstPage'
 import CenterLogin from '../Login/CenterLogin'
-import Welcome from '../Welcome/Welcome'
+import CenterWelcomePage from '../Welcome/CenterWelcomePage'
 import VerifyEmail from '../VerifyEmail/VerifyEmail'
 
 import styles from "../../../Assests/css/pages/firstpage/firstpage.module.scss"
@@ -21,7 +21,7 @@ class FirstPage extends React.Component{
                             <Routes>
                                 <Route path="/" element={<CenterFirstPage />}></Route>
                                 <Route path="/Login" element={<CenterLogin />}></Route>
-                                <Route path="/Bienvenida" element={<Welcome />}></Route>
+                                <Route path="/Bienvenida" element={<CenterWelcomePage />}></Route>
                                 <Route path="/VerificacionEmail" element={<VerifyEmail />}></Route>
                             </Routes>
                         </div>

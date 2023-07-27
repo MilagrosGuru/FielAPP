@@ -47,7 +47,11 @@ function Login(){
                 body: JSON.stringify({full_name: displayname, name: "", last_name: "", document_type: "", document_number: "", telephone: phonenumber, email: email, born_date: "1981-02-10", department: "", city: "", address: "", gender: "", password: "", photo: photo })
             };
             /*http://127.0.0.1:8000/user/create*/
-            fetch('https://5tknd9yyoh.execute-api.us-east-1.amazonaws.com/dev/api/', requestOptions)
+            console.log(process.env.NODE_ENV); 
+            const baseURL = process.env.REACT_APP_BACKEND_URL+'user/create';
+            console.log(baseURL); 
+            /*fetch('https://5tknd9yyoh.execute-api.us-east-1.amazonaws.com/dev/user/create', requestOptions)*/
+            fetch(baseURL, requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     console.log(result) 
@@ -74,6 +78,7 @@ function Login(){
                 /*se guarda en local el acces token*/
 
                 localStorage.setItem('tokengoogle', respuesta.user.accessToken)
+                localStorage.setItem('username', respuesta.user.displayName)
 
 
                 /*validacion de campos vacios*/

@@ -1,4 +1,4 @@
-.contLogin{
+.contWelcome{
     width: 250px;
     height: 100%;
     display: flex;
@@ -16,9 +16,7 @@ section p{
     width: 80%;
     margin: 0 auto;
     text-align: Center;
-    font-size: var(--text_size);
-    color: black;
-    font-family: var(--text_font-family2);
+    
 }
 .contButton{
     width: 100%;
@@ -34,4 +32,19 @@ section p{
     position: absolute;
     display: flex;
     flex-direction: column;
+}
+.username{
+    margin: 0 auto;
+    font-size: var(--text_size_subtitle);
+    color: var(--head-backgroud-color);
+    font-weight: bold;
+    font-family: var(--text_font-family2);
+}
+.textWelcome{
+    text-align: left;
+    padding-top: 8%;
+    padding-bottom: 8%;
+    font-size: var(--text_size);
+    color: black;
+    font-family: var(--text_font-family2);
 }
