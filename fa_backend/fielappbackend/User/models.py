@@ -8,7 +8,7 @@ class User(models.Model):
     document_number= models.CharField(max_length=15, blank=True, default='')
     telephone = models.CharField(max_length=12, blank=True, default='')
     email = models.EmailField(blank=True, default='')
-    born_date = models.DateField(blank=True)
+    born_date = models.DateField(default='1900-11-11')
     department= models.CharField(max_length=50, blank=True, default='')
     city= models.CharField(max_length=50, blank=True, default='')
     address= models.CharField(max_length=50, blank=True, default='')
@@ -16,3 +16,8 @@ class User(models.Model):
     password = models.CharField(max_length=100, blank=True, default='')
     photo= models.CharField(max_length=100, blank=True, default='')
    # created_at = models.DateTimeField(auto_now_add=True)
+
+   #se adicionan los siguientes campos a la BD
+    partnerType= models.BooleanField(default=False)
+    clientType= models.BooleanField(default=False)
+    primaryUser = models.BooleanField(default=False)
