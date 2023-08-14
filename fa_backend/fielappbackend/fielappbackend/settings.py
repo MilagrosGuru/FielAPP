@@ -84,6 +84,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fielappbackend.wsgi.application'
 
+# Whether to append trailing slashes to URLs.
+#APPEND_SLASH = False
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

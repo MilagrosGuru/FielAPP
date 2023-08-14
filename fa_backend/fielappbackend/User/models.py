@@ -14,7 +14,7 @@ class User(models.Model):
     address= models.CharField(max_length=50, blank=True, default='')
     gender= models.CharField(max_length=15, blank=True, default='')
     password = models.CharField(max_length=100, blank=True, default='')
-    photo= models.CharField(max_length=100, blank=True, default='')
+    photo= models.CharField(max_length=50, blank=True, default='')
    # created_at = models.DateTimeField(auto_now_add=True)
 
    #se adicionan los siguientes campos a la BD
