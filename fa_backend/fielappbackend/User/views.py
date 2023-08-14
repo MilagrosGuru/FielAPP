@@ -54,12 +54,17 @@ class UserUpdate(APIView):
     # Connect to the MongoDB database
         collection = db.User_user
         user = collection.find_one({'id': int(user_id)})
-        if request.method == 'PUT': 
+        print(request.method)
+        if request.method=='PUT':
             # Get the user document with the provided ID
             #user = collection.find_one({'_id': user_id})
             if user is not None:
                 # Update the user document with the provided data
                 data = json.loads(request.body)
+                print(data)
+                data['full_name']=request.data['name']+' '+request.data['last_name']
+                print(data['full_name'])
+                
                 collection.update_one({'id': int(user_id)}, {'$set': data})
                 partial_data = {
                     'id': user['id']
