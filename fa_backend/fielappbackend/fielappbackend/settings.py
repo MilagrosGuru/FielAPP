@@ -21,10 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY")
+#LOCAL
+#SECRET_KEY = config("SECRET_KEY")
+#AWS
+SECRET_KEY = 'django-insecure-&k1%2o!3riu)3ve*mv12!a0i%iz8&1!ab#34cikws4zp9zdw=3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False#config("DEBUG", cast=bool)
+
+DEBUG = True #config("DEBUG", cast=bool)
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -124,7 +129,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8081',
     'http://localhost:3000',
-    'http://fielapp.com',
+    'https://fielapp.com',
 )
 
 # Internationalization
