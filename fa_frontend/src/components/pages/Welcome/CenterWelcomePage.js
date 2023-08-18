@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
+
+
 import BtnUpdateYourProfile from "../Welcome/BtnUpdateYourProfile"
 import BtnStartNow from"../Welcome/BtnStartNow"
 
 import styles from "../../../Assests/css/pages/welcome/centerwelcomepage.module.scss"
 
-function CenterFirstPage()
+function CenterWelcomePage()
 {
     /*const updateprofile = () =>{
         console.log("aqui en update");
@@ -25,15 +27,15 @@ function CenterFirstPage()
                 {UsuarioMayusculas} 
             </section> 
             <section className={styles.contText}>
-                <p>¡con FielApp tendrás acceso a promociones exclusivas, acumularás puntos y podrás canjearlos por premios increíbles.</p>
+                <p>¡Por ser nuestro gran SocioFIEL queremos invitarte a cumplir la gran meta de fidelizar a tus valiosos clientes! Ingresa y logremos grandes objetivos juntos!!.</p>
             </section>
             <section className={styles.contButton}>
                 <div className={styles.ContgenButton}>
-                    <Link to="Login" style={{ textDecoration: 'none' }}><BtnUpdateYourProfile /></Link>
+                    <Link to="ActualizarPerfilSocio" style={{ textDecoration: 'none' }}><BtnUpdateYourProfile /></Link>
                     <Link to="Login" style={{ textDecoration: 'none' }}><BtnStartNow /></Link>
                 </div>
             </section>
         </main>
     );
 }
-export default CenterFirstPage;
+export default CenterWelcomePage;

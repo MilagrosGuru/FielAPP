@@ -50,12 +50,13 @@ function Login(){
             console.log(process.env.NODE_ENV); 
             const baseURL = process.env.REACT_APP_BACKEND_URL+'user/create';
             console.log(baseURL); 
-            /*fetch('https://5tknd9yyoh.execute-api.us-east-1.amazonaws.com/dev/user/create', requestOptions)*/
+            
+            /*fetch('http://127.0.0.1:8000/user/create', requestOptions)*/
             fetch(baseURL, requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     console.log(result) 
-                    navigate('/Bienvenida');
+                    navigate('/Bienvenido');
                 });
     }
 
