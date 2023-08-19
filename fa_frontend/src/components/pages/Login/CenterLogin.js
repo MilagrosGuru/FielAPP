@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
+
 import firebase from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, sendEmailVerification, createUserWithEmailAndPassword } from "firebase/auth";
+
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
@@ -10,9 +12,12 @@ import imgfacebook from "../../../Assests/images/facebook.png";
 import ButtonGoogle from './ButtonGoogle'
 import ButtonFacebook from './ButtonFacebook'
 
+import Mistakes from "../Mistakes/Mistake"
+
 import styles from "../../../Assests/css/pages/login/centerlogin.module.scss"
 
 function Login(){
+    
     const [password, setPassword] = useState('');
     const [showPwd, setshowPwd] = useState(false);
     const [emailuser, setEmailUser] = useState('');
@@ -24,6 +29,8 @@ function Login(){
     const [emailVerified, setemailVerified] =  useState(null);
     const [accessToken, setaccessToken] =  useState(null);
     const [uid, setuid] =  useState(null);
+    const [errorState, setErrorState] = useState(null);
+
     const provider = new GoogleAuthProvider();
     const providerF = new FacebookAuthProvider();
     const auth = getAuth();
@@ -40,23 +47,54 @@ function Login(){
         setshowPwd(!showPwd);
     };
 
-    const llamarApi = (displayname, photo, email, phonenumber) =>{
+    const llamarApi = (displayname, email, phonenumber) =>{
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({full_name: displayname, name: "", last_name: "", document_type: "", document_number: "", telephone: phonenumber, email: email, born_date: "1981-02-10", department: "", city: "", address: "", gender: "", password: "", photo: photo })
+                body: JSON.stringify({full_name: displayname, name: "", last_name: "", document_type: "", document_number: "", telephone: phonenumber, email: email, born_date: "1981-02-10", department: "", city: "", address: "", gender: "", password: "", photo: "" })
             };
-            /*http://127.0.0.1:8000/user/create*/
             console.log(process.env.NODE_ENV); 
             const baseURL = process.env.REACT_APP_BACKEND_URL+'user/create';
             console.log(baseURL); 
             
             /*fetch('http://127.0.0.1:8000/user/create', requestOptions)*/
             fetch(baseURL, requestOptions)
-                .then(response => response.json())
+                .then(response =>{ 
+                    /*response.json()*/
+                    
+                    if (!response.ok) {
+                        if (response.status === 400) {
+                            throw new Error('Error 400: Petición incorrecta');
+                        } else if (response.status === 401) {
+                            throw new Error('Error 401: No autorizado');
+                        } else if (response.status === 500) {
+                            throw new Error('Error 500: Error interno del servidor');
+                        } else if(response.status === 201){
+                            throw new Error('Error 201: Error al analizar la respuesta del servidor como JSON');
+                        } else{
+                            throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+                        }
+                    }
+                    
+                    return response.json();
+                })
                 .then(result => {
-                    console.log(result) 
+                    console.log(result); 
                     navigate('/Bienvenido');
+                })
+                .catch(error => {
+                    console.error('Ocurrió un error:', error.message);
+                    let errorMessage = 'Error desconocido';
+                    if (error.message.includes('400')) {
+                        errorMessage = 'Error 400: Petición incorrecta';
+                    } else if (error.message.includes('401')) {
+                        errorMessage = 'Error 401: No autorizado';
+                    } else if (error.message.includes('500')) {
+                        errorMessage = 'Error 500: Error interno del servidor';
+                    }else if(error.message.includes('201')){
+                        errorMessage = 'Error 201: Ocurrió un error al procesar la respuesta';
+                    }
+                    setErrorState(errorMessage);
                 });
     }
 
@@ -101,7 +139,7 @@ function Login(){
 
                 if(respuesta.user.emailVerified)
                 {
-                    llamarApi(respuesta.user.displayName,respuesta.user.photoURL,respuesta.user.email,respuesta.user.phoneNumber );
+                    llamarApi(respuesta.user.displayName,respuesta.user.email,respuesta.user.phoneNumber );
                    // navigate('/Bienvenida');
                 }else{
                     sendEmailVerification(respuesta.user)
@@ -171,6 +209,7 @@ function Login(){
    
     return(
         <div className={styles.contLogin}>
+            {errorState && <Mistakes message={errorState} />}
             <h3>Ingresa tus datos</h3>
             <form className={styles.contForm} id='LoginForm'>
                 <label>
@@ -190,7 +229,7 @@ function Login(){
                         placeholder="Contraseña"
                         required
                     />
-                     <button className={styles.stylesIcon}
+                    <button className={styles.stylesIcon}
                     type="button" 
                     onClick={handleShowPasswordToggle}>
                     {showPwd ? <FaEyeSlash /> : <FaEye />}
