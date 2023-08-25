@@ -1,0 +1,23 @@
+.contterms{
+    width: 100%;
+    font-size: var(--text_paragraph);
+    color: #BDC3C7;
+    margin-top: 20%;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 12px;
+}
+.contterms p{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contterms p span{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #626567;
+    cursor: pointer;
+}

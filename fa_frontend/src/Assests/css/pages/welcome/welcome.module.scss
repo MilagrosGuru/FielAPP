@@ -1,26 +1,28 @@
-.estiloCentro{
+.contButton{
     width: 100%;
-    background: var(--background-color);
-    height: 100%;
-}
-.contenedorGeneral{
-    width: 60%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0 auto;
-    padding: 0;
-    height: 100vh;
-    background: var(--background-color);
     position: relative;
 }
-.contenedorCentral{
+.ContgenButton{
     width: 100%;
-    display: flex;
-    align-items: center;
-    height: 85%;
     position: absolute;
-    box-shadow: -1px 5px 15px #888888;
+    display: flex;
+    flex-direction: column;
+    padding-top: 16%;
 }
-.centercontainer{
-    width: 250px;
-    height: 100%;
+Button{
+    background: none;
+    border: none;
+}
+.username{
     margin: 0 auto;
+    font-size: var(--text_size_subtitle);
+    color: var(--head-backgroud-color);
+    font-weight: bold;
+    font-family: var(--text_font-family2);
+    margin-top: 12%;
 }

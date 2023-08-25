@@ -5,7 +5,7 @@ import styles from "../../../Assests/css/pages/welcome/btnupdateyourprofile.modu
 class BtnUpdateYourProfile extends React.Component{
     render(){
         return(
-            <input className={styles.styleButton1} type="button" value="Actualiza tu perfil" />
+            <input className="styleButtonWhite" type="button" value="Actualiza tu perfil" />
         );
     }
 }

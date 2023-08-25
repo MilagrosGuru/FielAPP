@@ -1,26 +1,30 @@
 import React from 'react';
 
 import MediaQuery from 'react-responsive';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import FirstPage from './components/pages/Firstpage/FirstPage'
-import FirstPageMobile from './components/pages/Firstpage/FirstPageMobile'
 import './Assests/css/variables.css'
+import './Assests/css/global.css'
+
+import RoutesPage from './pages/RoutesPage/RoutesPage'
+import FirstPageMobile from './pages/Firstpage/FirstPageMobile'
+
 
 function App() {
   return(
-      <React.Fragment>
+     <React.Fragment>
         <MediaQuery minDeviceWidth={1224}>
-          <FirstPage/>
+          <RoutesPage/>
         </MediaQuery>
         <MediaQuery maxDeviceWidth={1224}>
           <MediaQuery orientation='portrait'>
               <FirstPageMobile/>
           </MediaQuery>
           <MediaQuery orientation='landscape'>
-            <FirstPage/>
+            <RoutesPage/>
           </MediaQuery>
         </MediaQuery>
-      </React.Fragment>
+  </React.Fragment>
   );
 }
 export default App;
