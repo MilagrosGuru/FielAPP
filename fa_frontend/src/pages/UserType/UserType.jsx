@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
+/*import {useNavigate} from 'react-router-dom';*/
 
 import StartHeader from '../../components/common/header/StartHeader'
 
@@ -11,15 +11,15 @@ import styles from "../../Assests/css/pages/usertype/usertype.module.scss"
 
 function UserType()
 {
-    const navigate = useNavigate();
+    /*const navigate = useNavigate();
 
     const handleClick = () => {
         navigate("/CreaEmpresa"); 
     };
     const handleClick2 = () => {
-        /*navigate("/DashboardCliente"); */
+        navigate("/Login"); 
         console.log("es un cliente fiel");
-    };
+    };*/
     return(
         <div className="overallContainer">
             <div className="headerContainer">
@@ -34,8 +34,8 @@ function UserType()
                         </section>
                         <section className={styles.contButton}>
                             <div className={styles.ContgenButton}>
-                                <button className="styleButtonWhite" onClick={handleClick2}><BtnCustomer /></button>
-                                <button className="styleButtonWhite" onClick={handleClick}><BtnPartner /></button>
+                                <BtnCustomer />
+                                <BtnPartner />
                             </div>
                         </section>
                     </main>
