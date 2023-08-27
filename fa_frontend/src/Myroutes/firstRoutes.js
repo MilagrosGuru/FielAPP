@@ -26,6 +26,7 @@ function firstRoutes() {
                     <Route path="/ActualizarPerfilSocio/*" element={<ActualizarPerfilSocio />}></Route>
                     <Route path="/DashboardSocio" element={<DashboardPartner />}></Route>
                     <Route path="/TipoUsuario" element={<UserType />}></Route>
+                    <Route path="/CrearEmpresa" element={<CreateCompany />}></Route>
                 </Routes>
         </React.Fragment>
     );
