@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from "../../../Assests/css/pages/mistakes/mistake.module.scss";
+import styles from "../../../Assests/css/common/mistakes/mistake.module.scss";
 
 
 function Mistake({ message }) {

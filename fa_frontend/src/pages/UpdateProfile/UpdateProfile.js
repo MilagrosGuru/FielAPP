@@ -1,13 +1,16 @@
 import React,  {useState, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 
 import UpdateHeader from '../../components/common/header/UpdateHeader'
 import PhotoBackground from '../../components/pages/UpdateProfile/PhotoBackground'
 import Mistakes from "../../components/common/Mistakes/Mistake"
+import Success from "../../components/common/Success/success"
+
 
 import PhotoImage from '../../Assests/images/btn4.png'
 
 import styles from "../../../src/Assests/css/pages/updateprofile/updateprofile.module.scss"
+import Mistake from '../../components/common/Mistakes/Mistake';
 
 function UpdateProfile()
 {
@@ -23,10 +26,17 @@ function UpdateProfile()
     const [address, setAddress] =  useState('');
     const [phone, setPhone] =  useState('');
     const [gender, setGender] =  useState('');
+    const [photo, setPhoto] =  useState('');                             
     const [datos, setDatos] = useState('');
     const [errorState, setErrorState] = useState('');
     const [errorType, setErrorType] = useState(false);
     const [errortypemessage, setErrorTypeMessage] = useState(false);
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const [successState, setSuccessState] = useState('');
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+    /*DECLARO METODO DE NAVEGACION*/
+    const navigate = useNavigate();
 
     /*LEO LA VARIABLE ID DEL LOCAL STORAGE Y ARMO URL*/
     const UserId = localStorage.getItem('userId');
@@ -37,10 +47,39 @@ function UpdateProfile()
     const sizeButton = {
         width: '50%',
     };
+    const style2 = {
+        fontSize: '8px',  
+        fontWeight: 'bold', 
+    };
+    const style1 = {
+        fontSize: '10px',  
+    };
+
+    /*MENSAJE DE ACTUALIZACION CORRECTA*/
+    const showSuccessAndRedirect = () => {
+        const part1 = 'Actualización realizada correctamente, ';
+        const part2 = 'será redireccionado en 3 segundos...';
+        setSuccessState([part1, part2]);
+        setShowSuccessMessage(true);
+        setTimeout(() => {
+            setShowSuccessMessage(false);
+            navigate('/TipoUsuario'); 
+        }, 3000); 
+    };
+    /*MENSAJE DE ACTUALIZACION INCORRECTA*/
+    const showErrorAndRedirect = () => {
+        const part1 = 'Error en la actualización: ' + errorState;
+        const part2 = 'será redireccionado en 3 segundos...';
+        setErrorState([part1, part2]);
+        setShowErrorMessage(true);
+        setTimeout(() => {
+            setShowErrorMessage(false);
+            navigate('/Bienvenido'); 
+        }, 3000); 
+    };
 
     /*LLAMO LA API APENAS SE CARGUE LA PAGINA  Y ASIGNO A LAS VARIABLES DE ESTADO EL RETORNO DE LA API*/
     useEffect(() => {
-        console.log("entro");
         fetch(baseURL)
             .then((response) => response.json())
             .then((data) => {
@@ -55,6 +94,7 @@ function UpdateProfile()
                 setCity(data.city);
                 setAddress(data.address);
                 setGender(data.gender);
+                setPhoto(data.photo);
             })
             .catch((error) => {
                 console.error('Error al obtener datos de la API:', error);
@@ -149,9 +189,7 @@ function UpdateProfile()
                 return response.json();
             })
             .then(result => {
-                console.log(result); 
-                console.log("todo bien en la actualizacion de datos");
-                /*navigate('/Bienvenido');*/
+                showSuccessAndRedirect();
             })
             .catch(error => {
                 console.error('Ocurrió un error:', error.message);
@@ -166,6 +204,7 @@ function UpdateProfile()
                     errorMessage = 'Error 201: Ocurrió un error al procesar la respuesta';
                 }
                 setErrorState(errorMessage);
+                showErrorAndRedirect();
             });
     };
     return(
@@ -178,7 +217,11 @@ function UpdateProfile()
                 <div className="center">
                     <main className={styles.contUpdate}>   
                         <section>
-                            <PhotoBackground src={PhotoImage}></PhotoBackground>
+                            {photo ? (
+                                <PhotoBackground src={photo}></PhotoBackground>
+                            ) : (
+                                <PhotoBackground src={PhotoImage}></PhotoBackground>
+                            )}
                         </section>
                         <section className={styles.sectionStyles}>
                             <form className={styles.styleForm}>
@@ -348,6 +391,16 @@ function UpdateProfile()
                                 </div>
                                 <input className="styleButtonPurple"  type="button"  style={sizeButton} value="Actualizar" onClick={updateInformation}/>
                             </form>
+                            {showSuccessMessage && <Success message= {successState.map((part, index) => (
+                                <div key={index}>
+                                    <span style={index === 0 ? style1 : style2}>{part}</span>
+                                </div>
+                            ))} />}
+                            {showErrorMessage && <Mistake message={errorState.map((part, index) => (
+                                <div key={index}>
+                                    <span style={index === 0 ? style1 : style2}>{part}</span>
+                                </div>
+                            ))} />}
                         </section>
                     </main>
                 </div>

@@ -1,0 +1,17 @@
+.contTextButton{
+    display: flex;
+    flex-direction: column;
+}
+.textButton1{
+    font-size: 8px;
+    color: var(--head-backgroud-color);
+    padding-bottom: 0.3em;
+}
+.textButton2{
+    color: var(--head-backgroud-color);
+    font-weight: bold;
+}
+.textButton2 span{
+    color: var(--color_text-secundary);
+    font-weight: bold;
+}

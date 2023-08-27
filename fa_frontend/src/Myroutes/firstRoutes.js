@@ -7,10 +7,11 @@ import Welcome from '../pages/Welcome/Welcome'
 import VerifyEmail from '../pages/VerifyEmail/VerifyEmail'
 import ForgotPasswordPage from '../pages/ForgotPasswordPage/ForgotPasswordPage'
 import TermsConditionsPage from '../pages/TermsConditionsPage/TermsConditionsPage'
-
-
 import ActualizarPerfilSocio from '../pages/UpdateProfile/UpdateProfile'
-import DashboardSocio from '../pages/DashboardSocio/DashboardSocio'
+import UserType from '../pages/UserType/UserType'
+import CreateCompany from '../pages/CreateCompany/CreateCompany'
+import DashboardPartner from '../pages/DashboardPartner/DashboardPartner'
+
 
 function firstRoutes() {
     return (
@@ -23,7 +24,8 @@ function firstRoutes() {
                     <Route path="/OlvidasteContrasena" element={<ForgotPasswordPage />}></Route>
                     <Route path="/TerminosyCondiciones" element={<TermsConditionsPage />}></Route>
                     <Route path="/ActualizarPerfilSocio/*" element={<ActualizarPerfilSocio />}></Route>
-                    <Route path="/DashboardSocio" element={<DashboardSocio />}></Route>
+                    <Route path="/DashboardSocio" element={<DashboardPartner />}></Route>
+                    <Route path="/TipoUsuario" element={<UserType />}></Route>
                 </Routes>
         </React.Fragment>
     );

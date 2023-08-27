@@ -6,7 +6,7 @@ class PhotoBackground extends React.Component{
     render(){
         return(
             <div className={styles.photostyle}>  
-                <img src={this.props.src} alt="Photo"></img>      
+                <img src={this.props.src} alt="Photo"></img>     
             </div>
         );
     }

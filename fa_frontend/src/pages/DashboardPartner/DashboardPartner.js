@@ -1,7 +1,7 @@
 import React from 'react';
 
 /*import styles from "../../../src/Assests/css/pages/verifyemail/verifyemail.module.scss"*/
-class DashboardSocio extends React.Component{
+class DashboardPartner extends React.Component{
     render(){
         return(
             <div>   
@@ -11,4 +11,4 @@ class DashboardSocio extends React.Component{
     
     }
 }
-export default DashboardSocio; 
+export default DashboardPartner; 

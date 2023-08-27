@@ -181,7 +181,7 @@ function Login()
                 
                 if(respuesta.user.emailVerified)
                 {
-                    navigate('/Bienvenida');
+                    navigate('/Bienvenido');
                     console.log("hacia la pagina de bienvenida");
                 }else{
                     sendEmailVerification(respuesta.user)
@@ -202,7 +202,7 @@ function Login()
                 console.log(respuesta)
                 if(respuesta.user.emailVerified)
                 {
-                    navigate('/Bienvenida');
+                    navigate('/Bienvenido');
                     console.log("hacia la pagina de bienvenida");
                 }else{
                     sendEmailVerification(respuesta.user)
