@@ -5,7 +5,7 @@ import styles from "../../../Assests/css/pages/firstpage/btnhaveaccount.module.s
 class BtnHaveAccount extends React.Component{
     render(){
         return(
-            <input className={styles.styleButton2} type="button" value="Ya tengo una cuenta" />
+            <input className="styleButtonPurple" type="button" value="Ya tengo una cuenta" />
         );
     }
 }

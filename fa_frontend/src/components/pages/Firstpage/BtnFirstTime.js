@@ -5,7 +5,7 @@ import styles from "../../../Assests/css/pages/firstpage/btnfirsttime.module.scs
 class BtnFirstTime extends React.Component{
     render(){
         return(
-            <input className={styles.styleButton1} type="button" value="Mi primera vez" />
+            <input className="styleButtonWhite" type="button" value="Mi primera vez" />
         );
     }
 }
