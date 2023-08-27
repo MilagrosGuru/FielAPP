@@ -34,8 +34,8 @@ function UserType()
                         </section>
                         <section className={styles.contButton}>
                             <div className={styles.ContgenButton}>
-                                <button onClick={handleClick2}><BtnCustomer /></button>
-                                <button onClick={handleClick}><BtnPartner /></button>
+                                <button className="styleButtonWhite" onClick={handleClick2}><BtnCustomer /></button>
+                                <button className="styleButtonWhite" onClick={handleClick}><BtnPartner /></button>
                             </div>
                         </section>
                     </main>

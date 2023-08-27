@@ -6,12 +6,10 @@ class BtnPartner extends React.Component{
     render(){
         return(
             <React.Fragment>
-                <button className="styleButtonWhite">
-                    <div className={styles.contTextButton}>
-                        <span className={styles.textButton1}>ERES EMPRESA</span>
-                        <span className={styles.textButton2}>SOCIO <span>FIEL</span> </span>
-                    </div>
-                </button>
+                <div className={styles.contTextButton}>
+                    <span className={styles.textButton1}>ERES EMPRESA</span>
+                    <span className={styles.textButton2}>SOCIO <span>FIEL</span> </span>
+                </div>
             </React.Fragment>
         );
     }

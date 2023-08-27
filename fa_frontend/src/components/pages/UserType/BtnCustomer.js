@@ -6,9 +6,7 @@ class BtnCustomer extends React.Component{
     render(){
         return(
             <React.Fragment>
-                <button className="styleButtonWhite">
-                    <span className={styles.textButton}>CLIENTE <span>FIEL</span> </span>
-                </button>
+                <span className={styles.textButton}>CLIENTE <span>FIEL</span> </span>
             </React.Fragment>
         );
     }
