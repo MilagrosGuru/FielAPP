@@ -1,29 +1,17 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
 
 import StartHeader from '../../components/common/header/StartHeader'
 
 import BtnUpdateYourProfile from "../../components/pages/Welcome/BtnUpdateYourProfile"
 import BtnStartNow from"../../components/pages/Welcome/BtnStartNow"
 import WelcomeTitle from"../../components/pages/Welcome/WelcomeTitle"
-import WelcomeText from"../../components/pages/Welcome/WelcomeText"
+import UserWelcome from"../../components/pages/Welcome/UserWelcome"
+import CentralText from"../../components/common/centralText/centralText"
 
 import styles from "../../../src/Assests/css/pages/welcome/welcome.module.scss"
 
 function Welcome()
 {
-    let usuario = localStorage.getItem('username');
-    const UsuarioMayusculas = usuario.toUpperCase();
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        // Navega a la ruta deseada cuando se hace clic en el botón
-        navigate("/ActualizarPerfilSocio"); 
-    };
-    const handleClick2 = () => {
-        // Navega a la ruta deseada cuando se hace clic en el botón
-        navigate("/DashboardSocio"); 
-    };
     return(
         <div className="overallContainer">
             <div className="headerContainer">
@@ -36,16 +24,16 @@ function Welcome()
                         <section>
                             <WelcomeTitle />
                         </section>
-                        <section className={styles.username}>
-                            {UsuarioMayusculas} 
-                        </section> 
                         <section>
-                            <WelcomeText />
+                            <UserWelcome/>
+                        </section> 
+                        <section className={styles.styleText}>
+                            <CentralText text={'¡Por ser nuestro gran SocioFIEL queremos invitarte a cumplir la gran meta de fidelizar a tus valiosos clientes! Ingresa y logremos grandes objetivos juntos!!.'}/>
                         </section>
                         <section className={styles.contButton}>
                             <div className={styles.ContgenButton}>
-                                <button onClick={handleClick}><BtnUpdateYourProfile /></button>
-                                <button onClick={handleClick2}><BtnStartNow /></button>
+                                <BtnUpdateYourProfile />
+                                <BtnStartNow />
                             </div>
                         </section>
                     </main>

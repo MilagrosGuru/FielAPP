@@ -1,25 +1,15 @@
 import React from 'react';
-/*import {useNavigate} from 'react-router-dom';*/
 
 import StartHeader from '../../components/common/header/StartHeader'
 
 import BtnPartner from "../../components/pages/UserType/BtnPartner"
 import BtnCustomer from"../../components/pages/UserType/BtnCustomer"
-import UserTypeText from"../../components/pages/UserType/UserTypeText"
+import CentralText from"../../components/common/centralText/centralText"
 
 import styles from "../../Assests/css/pages/usertype/usertype.module.scss"
 
 function UserType()
 {
-    /*const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate("/CreaEmpresa"); 
-    };
-    const handleClick2 = () => {
-        navigate("/Login"); 
-        console.log("es un cliente fiel");
-    };*/
     return(
         <div className="overallContainer">
             <div className="headerContainer">
@@ -30,7 +20,7 @@ function UserType()
                 <div className="center">
                     <main className="contLogin">   
                         <section className={styles.contText}>
-                            <UserTypeText />
+                            <CentralText text={'Selecciona la opción que mejor se adapta a tu necesidad'}/>
                         </section>
                         <section className={styles.contButton}>
                             <div className={styles.ContgenButton}>

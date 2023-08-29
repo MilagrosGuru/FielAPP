@@ -2,7 +2,6 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import styles from "../../../Assests/css/pages/usertype/btncustomer.module.scss";
 
-
 function BtnCustomer(){
     const navigate = useNavigate();
     const handleClick = () => {
