@@ -89,8 +89,8 @@ function Login()
                 })
                 .then(result => {
                     console.log(result); 
-                    const idUser = result.id;                     /*tomo el id del usuario*/
-                    localStorage.setItem('userId', idUser);       /*lo guardo en el localstorage*/
+                    const idUser = result.id;                     
+                    localStorage.setItem('userId', idUser);       
                     navigate('/Bienvenido');
                 })
                 .catch(error => {
@@ -169,7 +169,7 @@ function Login()
     const loginFacebook = () => {
         signInWithPopup(auth, providerF)
             .then(respuesta => {
-                
+                console.log(respuesta);
                 setUser(respuesta.user)
                 setPhoto(respuesta.user.photoURL)
                 setDisplayName(respuesta.user.displayName)
@@ -177,13 +177,16 @@ function Login()
                 setphoneNumber(respuesta.user.phoneNumber)
                 setaccessToken(respuesta.user.accessToken)
 
-                localStorage.setItem('tokenfacebook', respuesta.user.accessToken)
+                localStorage.setItem('tokenfacebook', accessToken)
                 
                 if(respuesta.user.emailVerified)
                 {
                     navigate('/Bienvenido');
                     console.log("hacia la pagina de bienvenida");
                 }else{
+                    //const myUser = respuesta.user;
+                    //navigate(`/VerificacionEmail?dato=${encodeURIComponent(JSON.stringify(myUser))}`); 
+                    
                     sendEmailVerification(respuesta.user)
                     .then(() => {
                         navigate('/VerificacionEmail'); 
@@ -226,7 +229,6 @@ function Login()
                 <div className="leftContainer"></div>
                 <div className="center">
                     <div className="contLogin">
-                        {errorState && <Mistakes message={errorState} />}
                         <LoginTitle />
                         <form className={styles.contForm} id='LoginForm'>
                             <label>
@@ -263,6 +265,7 @@ function Login()
                             <button onClick = {loginFacebook}><div className={styles.contbutton}><ButtonFacebook src={imgfacebook}/><div className={styles.namesocial}>Facebook</div></div></button>
                         </div>
                         <Link to="/TerminosyCondiciones" style={{ textDecoration: 'none' }}><TermsText/></Link>
+                        {errorState && <Mistakes message={errorState} />}
                     </div>
                 </div>
                 <div className="rightContainer"></div>

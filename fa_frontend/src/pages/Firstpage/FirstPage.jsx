@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import BtnFirstTime from "../../components/pages/Firstpage/BtnFirstTime"
 import BtnHaveAccount from"../../components/pages/Firstpage/BtnHaveAccount"
-import FirstPageText from"../../components/pages/Firstpage/FirstPageText"
+import CentarlText from"../../components/common/centralText/centralText"
 
 import StartHeader from '../../components/common/header/StartHeader'
 
@@ -21,12 +20,12 @@ function FirstPage()
                 <div className="center">
                     <main className="contLogin">   
                         <section className={styles.contText}>
-                            <FirstPageText />
+                            <CentarlText text={'¡Con Fiel App, fideliza a tus clientes y haz crecer tu negocio de manera fácil y efectiva, a la vez que puedes ganar increibles premios!'}/>
                         </section>
                         <section className={styles.contButton}>
                             <div className={styles.ContgenButton}>
-                                <Link to="Login" style={{ textDecoration: 'none' }}><BtnFirstTime /></Link>
-                                <Link to="Login" style={{ textDecoration: 'none' }}><BtnHaveAccount /></Link>
+                                <BtnFirstTime />
+                                <BtnHaveAccount />
                             </div>
                         </section>
                     </main>

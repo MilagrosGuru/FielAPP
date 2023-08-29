@@ -251,7 +251,7 @@ function UpdateProfile()
                                             <label>*</label>
                                             <label>*</label>
                                         </div>
-                                    </div>
+                                   
                                     <div className={styles.contInformation}>
                                         <div>
                                             <input
@@ -289,9 +289,6 @@ function UpdateProfile()
                                                     required
                                                     title="Solo se permiten caracteres (A-Z, a-z)"
                                                 />
-                                                <span className="error-message">
-                                                    {errorType && <Mistakes message={errortypemessage} />}
-                                                </span>
                                             </div>
                                             <div className={styles.sizeLine}>-</div>
                                             <div className={styles.sizeNumber}>
@@ -381,12 +378,13 @@ function UpdateProfile()
                                                 placeholder="Género"
                                                 required
                                             >
-                                                <option value="">Selecciona una opción</option>
+                                                <option className={styles.colorfirstoption} value="">Selecciona una opción</option>
                                                 <option value="M">M</option>
                                                 <option value="F">F</option>
                                                 <option value="O">O</option>
                                             </select>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                                 <input className="styleButtonPurple"  type="button"  style={sizeButton} value="Actualizar" onClick={updateInformation}/>
