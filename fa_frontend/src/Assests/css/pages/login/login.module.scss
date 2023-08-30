@@ -1,22 +1,3 @@
-
-.contLogin{
-    width: 250px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-.contLogin h3{
-    margin: 0 auto;
-    padding-top: 16%;
-    padding-bottom: 5%;
-    color: var(--color_text-secundary);
-    font-family: var(--text_blue_font-family);
-    font-size: var(--text_size_title);
-    font-weight: bold;
-    letter-spacing: -1px;
-}
 .contForm{
     display: flex;
     flex-direction: column;
@@ -66,10 +47,10 @@ input:focus{
     font-size: x-large;
 }
 
-.styleButton{
+/*.styleButton{
     border-radius: 10px;
     height: 35px;
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
     border: none;
     background: var(--head-backgroud-color);
@@ -80,7 +61,7 @@ input:focus{
     0 2px 2px 0 rgba(0, 0, 0, 0.14),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
     cursor: pointer;
-}
+}*/
 .contLogout{
     width: 90%;
     display: flex;
@@ -94,7 +75,7 @@ input:focus{
     color: black;
     cursor: pointer;
     margin-top: 5px;
-} 
+}
 .contsocialbutton{
     width: 100%;
     height: 45px;
@@ -121,27 +102,4 @@ input:focus{
 .namesocial{
     margin: 0 auto;
     font-size: 14px;
-}
-.contterms{
-    width: 100%;
-    font-size: var(--text_paragraph);
-    color: #BDC3C7;
-    margin-top: 20%;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 12px;
-}
-.contterms p{
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.contterms p span{
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #626567;
-    cursor: pointer;
 }
