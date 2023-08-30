@@ -4,16 +4,16 @@ import { useNavigate, Link} from 'react-router-dom';
 import UpdateHeader from '../../components/common/header/UpdateHeader'
 import PhotoBackground from '../../components/pages/UpdateProfile/PhotoBackground'
 import Success from "../../components/common/Success/success"
-
+import Mistake from '../../components/common/Mistakes/Mistake';
 
 import PhotoImage from '../../Assests/images/btn4.png'
 
 import styles from "../../../src/Assests/css/pages/updateprofile/updateprofile.module.scss"
-import Mistake from '../../components/common/Mistakes/Mistake';
+
 
 function UpdateProfile()
 {
-    /*DECLARO VARIABLES DE ESTADO DONDE GUARDO LA INFORMACION QUE VIENE DE LA API ORIGINAL*/
+    /*DECLARO VARIABLES DE ESTADO DONDE GUARDO LA INFORMACION QUE VIENE DE LA API ORIGINAL Y MANEJO DE ERRORES*/
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [documenttype, setDocumentType] = useState('');
@@ -56,7 +56,7 @@ function UpdateProfile()
         fontSize: '10px',  
     };
 
-    /*MENSAJE DE ACTUALIZACION CORRECTA*/
+    /*FUNCION PARA HABILITAR MENSAJE DE ACTUALIZACION CORRECTA*/
     const showSuccessAndRedirect = () => {
         const part1 = 'Actualización realizada correctamente, ';      
         const part2 = 'será redireccionado en 3 segundos...';
@@ -67,7 +67,7 @@ function UpdateProfile()
             navigate('/TipoUsuario'); 
         }, 3000); 
     };
-    /*MENSAJE DE ACTUALIZACION INCORRECTA*/
+    /*FUNCION PARA HABILITAR MENSAJE DE ACTUALIZACION INCORRECTA*/
     const showErrorAndRedirect = () => {
         if(errorstate){
             setShowErrorMessage(true);
@@ -152,6 +152,8 @@ function UpdateProfile()
 
     /*FUNCION DE ACTUALIZACION DE DATOS*/
     const updateInformation = () => {
+
+        /*OBJETO QUE TENDRA TODOS LOS DATOS PARA ENVIAR A LA ACTUALIZACION*/
         const datosModificados = {
             name: name, 
             last_name: lastName, 
@@ -165,6 +167,7 @@ function UpdateProfile()
             address: address, 
             gender: gender
         };
+
         /*VALIDACION DE CAMPOS VACIOS*/
         const requiredFields = ['name', 'last_name', 'document_type', 'document_number', 'telephone', 'email', 'born_date', 'department', 'city', 'address', 'gender'];
         const missingFields = requiredFields.filter(field => !datosModificados[field]);
@@ -183,7 +186,6 @@ function UpdateProfile()
             if (address === '') emptyFieldsArray.push('direccion');
             if (gender === '') emptyFieldsArray.push('genero');
             setEmptyFields(emptyFieldsArray);
-
             console.log('error de campos vacios');
             const errorMessage = `${missingFields.join(', ')}`;
             const part1 = 'Faltan campos obligatorios ';
@@ -192,6 +194,8 @@ function UpdateProfile()
             setErrorState([part1, part2, part3]);
             return;
         }
+        
+        /*ACTUALIZACION DE DATOS*/
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
