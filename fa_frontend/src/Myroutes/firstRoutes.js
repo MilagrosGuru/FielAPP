@@ -8,8 +8,8 @@ import VerifyEmail from '../pages/VerifyEmail/VerifyEmail'
 import ForgotPasswordPage from '../pages/ForgotPasswordPage/ForgotPasswordPage'
 import TermsConditionsPage from '../pages/TermsConditionsPage/TermsConditionsPage'
 import ActualizarPerfilSocio from '../pages/UpdateProfile/UpdateProfile'
+import Probando from '../pages/UpdateProfile/Probando'
 import UserType from '../pages/UserType/UserType'
-import CreateCompany from '../pages/CreateCompany/CreateCompany'
 import DashboardPartner from '../pages/DashboardPartner/DashboardPartner'
 
 
@@ -24,9 +24,9 @@ function firstRoutes() {
                     <Route path="/OlvidasteContrasena" element={<ForgotPasswordPage />}></Route>
                     <Route path="/TerminosyCondiciones" element={<TermsConditionsPage />}></Route>
                     <Route path="/ActualizarPerfilSocio/*" element={<ActualizarPerfilSocio />}></Route>
+                    <Route path="/Probando/*" element={<Probando />}></Route>
                     <Route path="/DashboardSocio" element={<DashboardPartner />}></Route>
                     <Route path="/TipoUsuario" element={<UserType />}></Route>
-                    <Route path="/CrearEmpresa" element={<CreateCompany />}></Route>
                 </Routes>
         </React.Fragment>
     );

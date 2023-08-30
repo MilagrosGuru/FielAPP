@@ -1,13 +1,18 @@
 .errorcontainer {
-    background-color:#f7bfbe;
+    background-color: #f7bfbe;
     border: 1px solid #ff0000;
     border-radius: 10px;
     padding: 10px;
     margin-top: 10px;
+    position: absolute;
+    top: 535px;
+    left: -75px;
+    width: 140px;
+    height: 45px;
 }
 
 .errormessage {
     color: #ff0000;
-    font-weight: bold;
     text-align: center;
+    line-height: 12px;
 }
