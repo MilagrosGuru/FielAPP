@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom';
 function  BtnUpdateYourProfile(){
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate("/ActualizarPerfilSocio"); 
+        navigate("/ActualizarPerfilSocio");
     };
     return(
         <button className="styleButtonWhite" onClick={handleClick}>
