@@ -5,6 +5,7 @@ import UpdateHeader from '../../components/common/header/UpdateHeader'
 import PhotoBackground from '../../components/pages/UpdateProfile/PhotoBackground'
 import Success from "../../components/common/Success/success"
 import Mistake from '../../components/common/Mistakes/Mistake';
+import MistakeValidation from '../../components/common/Mistakes/MistakeValidation';
 
 import PhotoImage from '../../Assests/images/btn4.png'
 
@@ -28,6 +29,10 @@ function UpdateProfile()
     const [photo, setPhoto] =  useState('');  
     const [errorstate, setErrorState] = useState('');
     const [errorType, setErrorType] = useState(false);
+    const [errorNumber, setErrorNumber] = useState(false);
+    const [errorEmail, setErrorEmail] = useState(false);
+    const [errorPhone, setErrorPhone] = useState(false);
+    const [errorBirthdate, setErrorBirthdate] = useState(false);
     const [errortypemessage, setErrorTypeMessage] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const [successState, setSuccessState] = useState('');
@@ -116,23 +121,40 @@ function UpdateProfile()
     const handleDocumentTypeChange = (event) => {
         
         const inputValue = event.target.value;
-        // Utiliza una expresión regular para permitir solo letras
         if (/^[A-Za-z]*$/.test(inputValue) && inputValue.length <= 2) {
             setDocumentType(inputValue);
             setErrorType(false);
-            setErrorTypeMessage('Ingrese solo caracteres válidos (A-Z, a-z)');
+            
         } else {
+            setErrorTypeMessage('Ingrese solo caracteres válidos (A-Z, a-z)');
             setErrorType(true);
         }
     };
     const handleDocumentNumberChange = (event) => {
-        setDocumentNumber(event.target.value);
+        const inputValue = event.target.value;
+        if (/^[0-9]*$/.test(inputValue) && inputValue.length <=10) {
+            setDocumentNumber(inputValue);
+            setErrorNumber(false);
+            
+        } else {
+            setErrorTypeMessage('Ingrese solo números');
+            setErrorNumber(true);
+        }
     };
     const handleEmailChange = (event) => {
-        setEmail(event.target.value);
+        const inputValue = event.target.value;
+        if (/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(inputValue)) {
+            setEmail(inputValue);
+            setErrorEmail(false);
+            
+        } else {
+            setErrorTypeMessage('Ingrese una dirección de Email valida');
+            setErrorEmail(true);
+        }
     };
     const handleBirthdateChange = (event) => {
-        setBirthdate(event.target.value);
+        const inputValue = event.target.value;
+        setBirthdate(inputValue);
     };
     const handleDepartmentChange = (event) => {                                 
         setDepartment(event.target.value);
@@ -144,10 +166,28 @@ function UpdateProfile()
         setAddress(event.target.value);
     };
     const handlePhoneChange = (event) => {
-        setPhone(event.target.value);
+        const inputValue = event.target.value;
+        if (/^[0-9]*$/.test(inputValue) && inputValue.length <=12) {
+            setPhone(inputValue);
+            setErrorPhone(false);
+            
+        } else {
+            setErrorTypeMessage('Ingrese solo números');
+            setErrorPhone(true);
+        }
     };
     const handleGenderChange = (event) => {
         setGender(event.target.value);
+    };
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setPhoto(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     /*FUNCION DE ACTUALIZACION DE DATOS*/
@@ -194,7 +234,7 @@ function UpdateProfile()
             setErrorState([part1, part2, part3]);
             return;
         }
-        
+
         /*ACTUALIZACION DE DATOS*/
         const requestOptions = {
             method: 'PUT',
@@ -258,6 +298,8 @@ function UpdateProfile()
                             ) : (
                                 <PhotoBackground src={PhotoImage}></PhotoBackground>
                             )}
+                            <input type="file" id="inputImagen" style={{ display: 'none' }} onChange={handleImageChange} />
+                            <label className={styles.changePhoto} htmlFor="inputImagen">Cambiar Imagen</label>
                         </section>
                         <section className={styles.sectionStyles}>
                             <form className={styles.styleForm}>
@@ -327,6 +369,7 @@ function UpdateProfile()
                                                     className={emptyFields.includes('documenttype') ? styles.redBorder : ''}
                                                     title="Solo se permiten caracteres (A-Z, a-z)"
                                                 />
+                                                {errorType && <MistakeValidation message={errortypemessage} />}
                                             </div>
                                             <div className={styles.sizeLine}>-</div>
                                             <div className={styles.sizeNumber}>
@@ -340,6 +383,7 @@ function UpdateProfile()
                                                     required
                                                     className={emptyFields.includes('documentnumber') ? styles.redBorder : ''}
                                                 />
+                                                {errorNumber && <MistakeValidation message={errortypemessage} />}
                                             </div>
                                         </div>
                                         <div>
@@ -353,6 +397,7 @@ function UpdateProfile()
                                                 required
                                                 className={emptyFields.includes('correo') ? styles.redBorder : ''}
                                             />
+                                            {errorEmail && <MistakeValidation message={errortypemessage} />}
                                         </div>
                                         <div>
                                             <input
@@ -365,6 +410,7 @@ function UpdateProfile()
                                                 required
                                                 className={emptyFields.includes('fechaNacimiento') ? styles.redBorder : ''}
                                             />
+                                            {errorBirthdate && <MistakeValidation message={errortypemessage} />}
                                         </div>
                                         <div>
                                             <input
@@ -413,6 +459,7 @@ function UpdateProfile()
                                                 required
                                                 className={emptyFields.includes('telefono') ? styles.redBorder : ''}
                                             />
+                                            {errorPhone && <MistakeValidation message={errortypemessage} />}
                                         </div>
                                         <div>
                                             <select
