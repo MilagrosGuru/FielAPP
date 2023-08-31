@@ -123,3 +123,10 @@
 .redBorder{
     border: 1px solid #ff0000 !important;
 }
+.changePhoto{
+    position: absolute;
+    top: 80px;
+    left: 286px;
+    color: var(--head-backgroud-color);
+    font-size: var(--text_size);
+}
