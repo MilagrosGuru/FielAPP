@@ -14,5 +14,5 @@ class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
         '''fields = ['logo', 'NIT','companyName', 'categories', 'timetable','countries' ,'departments',
-                  'users','address','telephone']'''
+                  'user_id','address','telephone']'''
         fields = '__all__'

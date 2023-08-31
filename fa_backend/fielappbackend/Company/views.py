@@ -72,12 +72,65 @@ class CategoryList(APIView):
         except Exception as e:
             print(e)'''
 
-class CompaniaListCreateView(generics.ListCreateAPIView):
+class CompaniaListCreateView(generics.ListCreateAPIView): #creo compañia
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    collection = db.User_user
+
+    def updateUser(self, serializer):
+        user_id = self.kwargs['user_id']  # Obtener el ID del documento de la URL
+        print(user_id)
+
+
+class CompanyAPIView(APIView):   #otra forma de crear compañia
+    def post(self, request, format=None):
+        serializer = CompanySerializer(data=request.data)
+        try:
+            if serializer.is_valid():
+                company = serializer.save()  # Guarda el objeto en la base de datos
+                company_id = company.id  # Accede al ID del objeto creado
+                print(company_id)
+                company2 = {
+                    'id_company': company.id,
+                    'company_name': company.companyName,
+                    'logo': company.logo
+                }
+                collection = db.User_user
+                print(company)
+                print(company.user_id)
+                user = collection.find_one({'id': int(company.user_id)})
+                print(user['object_company'])
+
+                collection.update_one({'id': company.user_id}, {'$set': {'object_company':company2}})
+
+
+                return Response({"message": "Company created", "company_id": company_id}, status=status.HTTP_201_CREATED)
+            
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            print("Error:", str(e))
+
+
+
+
+
+
     
 
-class CompanyList(APIView):
+    #print(queryset)
+    '''company = {
+        'id_company': Company.id,
+        'company_name': Company.companyName,
+        'logo': Company.logo
+    }
+    print(company)
+    #Utilizando $push para agregar el nuevo objeto al campo 'objetos
+    collection.update_one({'id': Company.user_id}, {'$push': {'object_company':company}})
+    #print("coleccion"+collection)'''
+
+    
+
+class CompanyList(APIView): #crear compañia y agrego al objeto usuario los datos de la misma
     def get(self, request):
         # Conexión a la base de datos MongoDB
         client = MongoClient(settings.MONGODB_HOST)
@@ -90,12 +143,16 @@ class CompanyList(APIView):
         company_list = []
         for company in companies:
             company_list.append(company)
+
         return Response(company_list, status=status.HTTP_200_OK)
     
-class CompanybyContact(APIView):
+class CompanybyContact(APIView): #cuando el usuario retorna para una sola compañia
     def get(self, request, user_id): # Método GET para la búsqueda
         try:
-            company = Company.objects.get(user_com_id=int(user_id)) # Busca el departamento por ID
+            company = Company.objects.get(user_com_id=int(user_id)) # Busca el departamento por ID de usuario
+            user = User.objects.get(id=int(user_id)) # Busca el departamento por ID de usuario
+
+            print("usuario",user)
             # Aquí puedes realizar cualquier otra lógica necesaria con el estado encontrado
             # ...
             return Response({'logo': company.logo, 'empresa': company.companyName, 'contacto':company.user_com.full_name}, status=status.HTTP_200_OK)
@@ -104,7 +161,7 @@ class CompanybyContact(APIView):
         
 
 
-class CompanyGetByContact(APIView):
+class CompanyGetByContact(APIView): #cuando un usuario esta en mas de una compañia
     @api_view(['GET'])
     def list_company(request, user_id):
     # Connect to the MongoDB database

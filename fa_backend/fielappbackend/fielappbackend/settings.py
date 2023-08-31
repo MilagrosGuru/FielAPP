@@ -119,6 +119,25 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 #deciree
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',  # Opcionalmente, puedes establecer el nivel de registro aquí
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',  # Nombre del archivo de registro
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',  # Opcionalmente, puedes establecer el nivel de registro aquí
+            'propagate': True,
+        },
+    },
+}
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
