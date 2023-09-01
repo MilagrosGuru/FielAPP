@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../Assests/css/laterals/iconmenu.module.scss";
+import styles from "../../../Assests/css/common/laterals/iconmenu.module.scss";
 
 
 class IconoMenu extends React.Component{

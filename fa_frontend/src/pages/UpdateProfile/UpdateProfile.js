@@ -1,5 +1,7 @@
 import React,  {useState, useEffect} from 'react';
-import { useNavigate, Link} from 'react-router-dom';                               
+import { useNavigate, Link} from 'react-router-dom';    
+
+import { update } from '../../functions/api/Api';
 
 import UpdateHeader from '../../components/common/header/UpdateHeader'
 import PhotoBackground from '../../components/pages/UpdateProfile/PhotoBackground'
@@ -192,7 +194,8 @@ function UpdateProfile()
 
     /*FUNCION DE ACTUALIZACION DE DATOS*/
     const updateInformation = () => {
-
+        const acction = "actualizar perfil socio";
+        let url =  `user/${UserId}`+'/';
         /*OBJETO QUE TENDRA TODOS LOS DATOS PARA ENVIAR A LA ACTUALIZACION*/
         const datosModificados = {
             name: name, 
@@ -234,52 +237,16 @@ function UpdateProfile()
             setErrorState([part1, part2, part3]);
             return;
         }
-
-        /*ACTUALIZACION DE DATOS*/
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(datosModificados)
-        };
-        const baseURL = process.env.REACT_APP_BACKEND_URL+ `user/${UserId}`+'/';
-        console.log(baseURL); 
-        
-        fetch(baseURL, requestOptions)
-            .then(response =>{ 
-                console.log(response);
-                if (!response.ok) {
-                    if (response.status === 400) {
-                        throw new Error('Error 400: Petición incorrecta');
-                    } else if (response.status === 401) {
-                        throw new Error('Error 401: No autorizado');
-                    } else if (response.status === 500) {
-                        throw new Error('Error 500: Error interno del servidor');
-                    } else if(response.status === 201){
-                        throw new Error('Error 201: Error al analizar la respuesta del servidor como JSON');
-                    } else{
-                        throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
-                    }
-                }
-                return response.json();
-            })
+        update(url, datosModificados, acction)
             .then(result => {
+                console.log('Actualización exitosa:', result);
                 showSuccessAndRedirect();
             })
             .catch(error => {
-                console.error('Ocurrió un error:', error.message);
-                let errorMessage = 'Error desconocido';
-                if (error.message.includes('400')) {
-                    errorMessage = 'Error 400: Petición incorrecta';
-                } else if (error.message.includes('401')) {
-                    errorMessage = 'Error 401: No autorizado';
-                } else if (error.message.includes('500')) {
-                    errorMessage = 'Error 500: Error interno del servidor';
-                }else if(error.message.includes('201')){
-                    errorMessage = 'Error 201: Ocurrió un error al procesar la respuesta';
-                }
-                const part1 = 'Falló la actualización: ';
-                const part2 =  errorMessage;
-                const part3 = 'será redireccionado en 3 segundos...';
+                console.error('Error durante la actualización:', error);
+                const part1 = 'Se ha generado un error.';
+                const part2 =  'Por favor consulte al';
+                const part3 = 'administrador.';
                 setErrorState([part1, part2, part3]);
             });
     };
@@ -299,7 +266,7 @@ function UpdateProfile()
                                 <PhotoBackground src={PhotoImage}></PhotoBackground>
                             )}
                             <input type="file" id="inputImagen" style={{ display: 'none' }} onChange={handleImageChange} />
-                            <label className={styles.changePhoto} htmlFor="inputImagen">Cambiar Imagen</label>
+                            <label className={styles.changePhoto} htmlFor="inputImagen">CAMBIAR FOTO</label>
                         </section>
                         <section className={styles.sectionStyles}>
                             <form className={styles.styleForm}>
@@ -483,7 +450,7 @@ function UpdateProfile()
                                 <input className="styleButtonPurple"  type="button"  style={sizeButton} value="Actualizar" onClick={updateInformation}/>
                                 {showErrorMessage && <Mistake message={errorstate.map((part, index) => (
                                     <div key={index}>
-                                        <span style={index === 0 ? style1 : index === 1 ? style2 : style3}>{part}</span>
+                                        <span style={index === 0 ? style1 : index === 1 ? style1 : style1}>{part}</span>
                                     </div>
                                 ))} />}
                                 {showSuccessMessage && <Success message= {successState.map((part, index) => (
