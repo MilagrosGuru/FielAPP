@@ -7,6 +7,7 @@ section {
     margin: 0 auto;
     padding: 0;
     height: 100vh;
+    min-width: 1224px;
     /*border: 1px solid grey;*/
     position: relative;
   }

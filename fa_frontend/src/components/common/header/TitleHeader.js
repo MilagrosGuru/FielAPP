@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../../Assests/css/header/desktop/titleheader.module.scss";
+import styles from "../../../Assests/css/common/header/titleheader.module.scss";
 
 
 function TitleHeader(props)

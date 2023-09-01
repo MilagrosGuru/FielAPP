@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+
+import { create } from '../../functions/api/Api';
 
 import firebase from '../../firebase';
 import { useNavigate, Link} from 'react-router-dom';
@@ -35,6 +37,9 @@ function Login()
     const [accessToken, setaccessToken] =  useState(null);
     const [uid, setuid] =  useState(null);
     const [errorState, setErrorState] = useState(null);
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const [successState, setSuccessState] = useState('');
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     /*DECLARO LOS PROVEEDORES DE AUTENTICACION CON FIREBASE*/
     const provider = new GoogleAuthProvider();
@@ -43,6 +48,33 @@ function Login()
 
     /*DECLARO METODO DE NAVEGACION*/
     const navigate = useNavigate();
+
+    /*FUNCION PARA HABILITAR MENSAJE DE REGISTRO CORRECTA*/
+    const showSuccessAndRedirect = () => {
+        const part1 = 'Registro realizado correctamente, ';      
+        const part2 = 'será redireccionado en 3 segundos...';
+        setSuccessState([part1, part2]);
+        setShowSuccessMessage(true);
+        setTimeout(() => {
+            setShowSuccessMessage(false);
+            navigate('/Bienvenido');
+        }, 3000); 
+    };
+    /*FUNCION PARA HABILITAR MENSAJE DE REGISTRO INCORRECTO*/
+    const showErrorAndRedirect = () => {
+        if(errorState){
+            setShowErrorMessage(true);
+            setTimeout(() => {
+                setShowErrorMessage(false);
+                navigate('/');                                    
+            }, 3000);
+        } 
+    };
+
+    /*RENDERIZACION DEL ESTADO ERRORSTATE*/
+    useEffect(() => {
+        showErrorAndRedirect();
+    }, [errorState]);
 
     /*DEFINO LOS HANDLER PARA LA CAPTURA DE DATOS DEL FORMULARIO*/
     const handlePasswordChange = (event) => {
@@ -57,66 +89,49 @@ function Login()
 
     /*LLAMADO A LA API DE REGISTRO DE USUARIO*/
     const llamarApi = (displayname, email, phonenumber) =>{
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({full_name: displayname, name: "", last_name: "", document_type: "", document_number: "", telephone: phonenumber, email: email, born_date: "1981-02-10", department: "", city: "", address: "", gender: "", password: "", photo: "" })
+            console.log("Ambiente: "+process.env.NODE_ENV); 
+            const acction = "crear registro";
+            let url = 'user/create';
+            /*OBJETO QUE TENDRA TODOS LOS DATOS PARA ENVIAR A LA ACTUALIZACION*/
+            const datosCrear = {
+                full_name:displayname,
+                name: "", 
+                last_name: "", 
+                document_type: "", 
+                document_number: "", 
+                telephone: phonenumber, 
+                email: email, 
+                born_date:  "1981-02-10", 
+                department: "", 
+                city: "", 
+                address: "", 
+                gender: "",
+                password: "", 
+                photo: ""
             };
-            console.log(process.env.NODE_ENV); 
-            const baseURL = process.env.REACT_APP_BACKEND_URL+'user/create';
-            console.log(baseURL); 
-            
-            /*fetch('http://127.0.0.1:8000/user/create', requestOptions)*/
-            fetch(baseURL, requestOptions)
-                .then(response =>{ 
-                    /*response.json()*/
-                    
-                    if (!response.ok) {
-                        if (response.status === 400) {
-                            throw new Error('Error 400: Petición incorrecta');
-                        } else if (response.status === 401) {
-                            throw new Error('Error 401: No autorizado');
-                        } else if (response.status === 500) {
-                            throw new Error('Error 500: Error interno del servidor');
-                        } else if(response.status === 201){
-                            throw new Error('Error 201: Error al analizar la respuesta del servidor como JSON');
-                        } else{
-                            throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
-                        }
-                    }
-                    
-                    return response.json();
-                })
-                .then(result => {
-                    console.log(result); 
-                    const idUser = result.id;                     
-                    localStorage.setItem('userId', idUser);       
-                    navigate('/Bienvenido');
-                })
-                .catch(error => {
-                    console.error('Ocurrió un error:', error.message);
-                    let errorMessage = 'Error desconocido';
-                    if (error.message.includes('400')) {
-                        errorMessage = 'Error 400: Petición incorrecta';
-                    } else if (error.message.includes('401')) {
-                        errorMessage = 'Error 401: No autorizado';
-                    } else if (error.message.includes('500')) {
-                        errorMessage = 'Error 500: Error interno del servidor';
-                    }else if(error.message.includes('201')){
-                        errorMessage = 'Error 201: Ocurrió un error al procesar la respuesta';
-                    }
-                    setErrorState(errorMessage);
-                });
+
+            create(url, datosCrear, acction)
+            .then(result => {
+                console.log('Registro exitoso:', result);
+                const idUser = result.id; 
+                localStorage.setItem('userId', idUser);       
+                showSuccessAndRedirect();
+            })
+            .catch(error => {
+                console.error('Error durante el registro:', error);
+                const part1 = 'Se ha generado un error.';
+                const part2 =  'Por favor consulte al';
+                const part3 = 'administrador.';
+                setErrorState([part1, part2, part3]);
+            });
     }
 
     /*FUNCIONES DE AUTENTICACION CON FIREBASE*/
     const loginGoogle = () => {
-        
+            console.log("inicio de registro con google");
             signInWithPopup(auth, provider)
             .then(respuesta => {
-
-                /*asignacion de valores a variables de estado*/
-
+                console.log("Actualizacion de variables de estado con data devuelta por google");
                 setUser(respuesta.user)
                 setPhoto(respuesta.user.photoURL)
                 setDisplayName(respuesta.user.displayName)
@@ -125,15 +140,10 @@ function Login()
                 setaccessToken(respuesta.user.accessToken)
                 setuid(respuesta.user.uid)
                 setemailVerified(respuesta.user.emailVerified)
-
-                /*se guarda en local el acces token*/
-
+                console.log("guardado de token y username en localstorage");
                 localStorage.setItem('tokengoogle', respuesta.user.accessToken)
                 localStorage.setItem('username', respuesta.user.displayName)
-
-
-                /*validacion de campos vacios*/
-
+                console.log("inicializacion de variables obligatorias para el serializador");
                 if(respuesta.user.phoneNumber === null){
                     respuesta.user.phoneNumber="000000000000"
                 }
@@ -146,12 +156,10 @@ function Login()
                 if(respuesta.user.photoURL === null){
                     respuesta.user.photoURL="no registra"
                 }
-
-                /*llamar api y verificacion de correo*/
-
+                console.log("inicio de verificacion de correo");
                 if(respuesta.user.emailVerified)
                 {
-                    /*AQUI DEBE HACERSE UN LLAMADO A OTRA API QUE ME VERIFIQUE SI ESTE USUARIO YA ESTA REGISTRADO*/
+                    console.log("correo verificado, registro en firebase exitoso, llamada a API de registro en BD");
                     llamarApi(respuesta.user.displayName,respuesta.user.email,respuesta.user.phoneNumber );
                 }else{
                     sendEmailVerification(respuesta.user)
@@ -162,7 +170,7 @@ function Login()
                     .catch(() => {console.log('La verificacion no fue enviada')});
                 }
             }).catch(err => {
-                console.log(err)
+                console.log("error en registro de firebase" + err)
             })
     }
     

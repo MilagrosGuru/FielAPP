@@ -28,7 +28,7 @@ function Welcome()
                             <UserWelcome/>
                         </section> 
                         <section className={styles.styleText}>
-                            <CentralText text={'¡Por ser nuestro gran SocioFIEL queremos invitarte a cumplir la gran meta de fidelizar a tus valiosos clientes! Ingresa y logremos grandes objetivos juntos!!.'}/>
+                            <CentralText text={'¡Gracias por preferirnos! Estamos listos para acompañarte en esta nueva aventura'}/>
                         </section>
                         <section className={styles.contButton}>
                             <div className={styles.ContgenButton}>
