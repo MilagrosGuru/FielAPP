@@ -6,18 +6,18 @@ import IconMenu from './IconMenu'
 import TextsMenu from './TextsMenu';
 import Subtitle from './Subtitle';
 
-import img1 from "../../Assests/images/Help.png";
-import img2 from "../../Assests/images/Proceeds.png";
-import img3 from "../../Assests/images/Closed.png";
-import img4 from "../../Assests/images/Icon.png";
-import img5 from "../../Assests/images/Follow.png";
-import img6 from "../../Assests/images/User.png";
-import img7 from "../../Assests/images/MyPlan.png";
-import img8 from "../../Assests/images/Points.png";
+import img1 from "../../../Assests/images/Help.png";
+import img2 from "../../../Assests/images/Proceeds.png";
+import img3 from "../../../Assests/images/Closed.png";
+import img4 from "../../../Assests/images/Icon.png";
+import img5 from "../../../Assests/images/Follow.png";
+import img6 from "../../../Assests/images/User.png";
+import img7 from "../../../Assests/images/MyPlan.png";
+import img8 from "../../../Assests/images/Points.png";
 
-import styles from "../../Assests/css/laterals/rightside.module.scss"
+import styles from "../../../Assests/css/common/laterals/rightpartner.module.scss"
 
-class RightSide extends React.Component{
+class RightPartner extends React.Component{
     render(){
         return(
             <div className={styles.estiloLaterales}>  
@@ -126,4 +126,4 @@ class RightSide extends React.Component{
     
     }
 }
-export default RightSide;
+export default RightPartner;

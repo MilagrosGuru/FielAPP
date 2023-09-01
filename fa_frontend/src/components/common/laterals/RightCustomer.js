@@ -1,8 +1,8 @@
 import React from 'react';
 
-import styles from "../../Assests/css/laterals/rightsideempty.module.scss"
+import styles from "../../../Assests/css/common/laterals/rightcustomer.module.scss"
 
-class RightSideEmpty extends React.Component{
+class RightCustomer extends React.Component{
     render(){
         return(
             <div className={styles.estiloLaterales}>  
@@ -12,4 +12,4 @@ class RightSideEmpty extends React.Component{
     
     }
 }
-export default RightSideEmpty;
+export default RightCustomer;
