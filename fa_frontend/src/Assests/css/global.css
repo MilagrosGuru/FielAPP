@@ -1,6 +1,10 @@
 section {
   padding-top: 8%;
 }
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  text-align: left;
+}
 /*ESTILOS DE LA PLNATILLA*/
 .overallContainer{
     width: 90%;

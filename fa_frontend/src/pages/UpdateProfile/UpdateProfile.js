@@ -40,6 +40,7 @@ function UpdateProfile()
     const [successState, setSuccessState] = useState('');
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [emptyFields, setEmptyFields] = useState([]);
+    const [isvalid, setIsValid] = useState(true);
     
     /*DECLARO METODO DE NAVEGACION  */                                              
     const navigate = useNavigate();                                                            
@@ -145,14 +146,23 @@ function UpdateProfile()
     };
     const handleEmailChange = (event) => {
         const inputValue = event.target.value;
-        if (/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(inputValue)) {
+        setEmail(inputValue);
+        if (inputValue.trim() === '') {
+            setIsValid(true);
+        } else {
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            setIsValid(emailPattern.test(inputValue));
+            setErrorTypeMessage('Ingrese una dirección de Email valida');
+            setErrorEmail(true);
+        }
+        /*if (/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(inputValue)) {
             setEmail(inputValue);
             setErrorEmail(false);
             
         } else {
             setErrorTypeMessage('Ingrese una dirección de Email valida');
             setErrorEmail(true);
-        }
+        }*/
     };
     const handleBirthdateChange = (event) => {
         const inputValue = event.target.value;
@@ -362,9 +372,10 @@ function UpdateProfile()
                                                 id="Correo" 
                                                 placeholder="Email"
                                                 required
+                                                style={{ borderColor: isvalid ? 'initial' : 'red' }}
                                                 className={emptyFields.includes('correo') ? styles.redBorder : ''}
                                             />
-                                            {errorEmail && <MistakeValidation message={errortypemessage} />}
+                                            {!isvalid && <MistakeValidation message={errortypemessage} />}
                                         </div>
                                         <div>
                                             <input
