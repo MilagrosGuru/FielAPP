@@ -25,3 +25,5 @@ yarn-error.log*
 #.env nuevo
 /.env
 /.env.local
+
+*.pyc

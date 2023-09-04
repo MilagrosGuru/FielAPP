@@ -1,12 +1,17 @@
 import React from 'react';
 import styles from "../../../Assests/css/pages/welcome/btnupdateyourprofile.module.scss";
+import {useNavigate} from 'react-router-dom';
 
 
-class BtnUpdateYourProfile extends React.Component{
-    render(){
-        return(
-            <input className={styles.styleButton1} type="button" value="Actualiza tu perfil" />
-        );
-    }
+function  BtnUpdateYourProfile(){
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate("/ActualizarPerfilSocio");
+    };
+    return(
+        <button className="styleButtonWhite" onClick={handleClick}>
+            <span className={styles.textButton}>Actualiza tu perfil</span>
+        </button>
+    );
 }
-export default BtnUpdateYourProfile;
+export default  BtnUpdateYourProfile;

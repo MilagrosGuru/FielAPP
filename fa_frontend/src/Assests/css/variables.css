@@ -6,17 +6,20 @@
     --color_text-primary:#111;
     --color_text-secundary:#6EE;
     --color_text-tertiary:#fff;
+    --color_text-grey:#737373;
     --background-color: #fefdfd;
     --head-backgroud-color:#b330d4;
     --laterales_backgound-color:#efefef;
     --lowText_font_size:14px;
     --text_size_title:26px;
     --text_size_subtitle:24px;
+    --text_header:18px;
     --text_size:14px;
     --text_paragraph:12px;
     --text_blue_font-family:'HitandRun', sans-serif;
     --text_font-family1: 'Poppins', sans-serif;
-    --text_font-family2: 'Open Sans', sans-serif;;
+    --text_font-family2: 'Open Sans', sans-serif;
+    --text_font-header: 'sans-serif';
 }
 @font-face {
     font-family: Hit and Run;
