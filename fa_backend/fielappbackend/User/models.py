@@ -19,9 +19,7 @@ class User(models.Model):
     object_company = models.JSONField(null=True, blank=True)
 
 
-
-    #object_company = ArrayField(models.CharField(max_length=150), blank=True, default='')
-    # created_at = models.DateTimeField(auto_now_add=True)
+   # created_at = models.DateTimeField(auto_now_add=True)
 
    #se adicionan los siguientes campos a la BD
     clientType= models.BooleanField(default=False, blank=True)
