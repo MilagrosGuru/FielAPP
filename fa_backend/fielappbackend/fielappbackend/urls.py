@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^', include('DataInit.urls')),
     url(r'^', include('User.urls')),
     url(r'^', include('Company.urls')),
+    url(r'^', include('Reward.urls'))
     #url('api/', include(router_posts.urls)),
     #path('api/instances/', post.api.views.InstanceList.as_view(), name="instances"),
 ]
