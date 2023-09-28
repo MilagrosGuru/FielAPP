@@ -101,7 +101,10 @@ class CompanyAPIView(APIView):   #otra forma de crear compañia
                 user = collection.find_one({'id': int(company.user_id)})
                 print(user['object_company'])
 
-                collection.update_one({'id': company.user_id}, {'$set': {'object_company':company2}})
+                collection.update_one({'id': company.user_id}, {'$set': {'object_company':company2,
+                                                                         'partnerType':True,
+                                                                         'primaryUser':True
+                                                                         }})
 
 
                 return Response({"message": "Company created", "company_id": company_id}, status=status.HTTP_201_CREATED)

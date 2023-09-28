@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'DataInit',
     'User',
     'Company',
+    'Reward', #premio fiel
     # CORS Deciree
     'corsheaders',
 ]
