@@ -46,22 +46,6 @@ input:focus{
     color: var(--color_text-secundary);
     font-size: x-large;
 }
-
-/*.styleButton{
-    border-radius: 10px;
-    height: 35px;
-    width: 100%;
-    margin: 0 auto;
-    border: none;
-    background: var(--head-backgroud-color);
-    color: var(--color_text-tertiary);
-    font-size: var(--text_paragraph);
-    margin-top: 8%;
-    box-shadow: 0 5px 2px -2px rgba(121, 30, 143, 0.9),
-    0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    cursor: pointer;
-}*/
 .contLogout{
     width: 90%;
     display: flex;
@@ -102,4 +86,7 @@ input:focus{
 .namesocial{
     margin: 0 auto;
     font-size: 14px;
+}
+.bordercolor{
+    border: var(--head-backgroud-color);
 }

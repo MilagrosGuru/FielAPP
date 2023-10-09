@@ -3,13 +3,14 @@ import { useNavigate, Link} from 'react-router-dom';
 
 import { update } from '../../functions/api/Api';
 
-import UpdateHeader from '../../components/common/header/UpdateHeader'
+import RegistrationHeader from '../../components/common/header/RegistrationHeader'
 import PhotoBackground from '../../components/pages/UpdateProfile/PhotoBackground'
 import Success from "../../components/common/Success/success"
 import Mistake from '../../components/common/Mistakes/Mistake';
 import MistakeValidation from '../../components/common/Mistakes/MistakeValidation';
 
 import PhotoImage from '../../Assests/images/btn4.png'
+import imglogo from "../../Assests/images/btn2.png";
 
 import styles from "../../../src/Assests/css/pages/updateprofile/updateprofile.module.scss"
 
@@ -82,7 +83,7 @@ function UpdateProfile()
             setTimeout(() => {
                 setShowErrorMessage(false);
                 /*navigate('/Bienvenido');   */                                      
-            }, 3000);
+            }, 5000);
         } 
     };
 
@@ -155,14 +156,6 @@ function UpdateProfile()
             setErrorTypeMessage('Ingrese una dirección de Email valida');
             setErrorEmail(true);
         }
-        /*if (/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(inputValue)) {
-            setEmail(inputValue);
-            setErrorEmail(false);
-            
-        } else {
-            setErrorTypeMessage('Ingrese una dirección de Email valida');
-            setErrorEmail(true);
-        }*/
     };
     const handleBirthdateChange = (event) => {
         const inputValue = event.target.value;
@@ -225,7 +218,6 @@ function UpdateProfile()
         const requiredFields = ['name', 'last_name', 'document_type', 'document_number', 'telephone', 'email', 'born_date', 'department', 'city', 'address', 'gender'];
         const missingFields = requiredFields.filter(field => !datosModificados[field]);
         if (missingFields.length > 0) {
-            console.log(phone);
             const emptyFieldsArray = [];
             if (name === '') emptyFieldsArray.push('nombre');
             if (lastName === '') emptyFieldsArray.push('apellido');
@@ -260,10 +252,11 @@ function UpdateProfile()
                 setErrorState([part1, part2, part3]);
             });
     };
+    const titleheader = "Actualizar Perfil";
     return(
         <div className="overallContainer">
             <div className="headerContainer">
-                <UpdateHeader />
+                <RegistrationHeader imglogo={imglogo} titleheader={titleheader}/>
             </div>
             <div className="centerContainer">
                 <div className="leftContainer"></div>

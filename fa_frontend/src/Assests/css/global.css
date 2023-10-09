@@ -2,7 +2,8 @@ section {
   padding-top: 8%;
 }
 input[type="text"]::placeholder,
-input[type="password"]::placeholder {
+input[type="password"]::placeholder,
+input[type="email"]::placeholder  {
   text-align: left;
 }
 /*ESTILOS DE LA PLNATILLA*/
