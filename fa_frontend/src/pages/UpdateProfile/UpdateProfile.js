@@ -3,13 +3,14 @@ import { useNavigate, Link} from 'react-router-dom';
 
 import { update } from '../../functions/api/Api';
 
-import UpdateHeader from '../../components/common/header/UpdateHeader'
+import RegistrationHeader from '../../components/common/header/RegistrationHeader'
 import PhotoBackground from '../../components/pages/UpdateProfile/PhotoBackground'
 import Success from "../../components/common/Success/success"
 import Mistake from '../../components/common/Mistakes/Mistake';
 import MistakeValidation from '../../components/common/Mistakes/MistakeValidation';
 
 import PhotoImage from '../../Assests/images/btn4.png'
+import imglogo from "../../Assests/images/btn2.png";
 
 import styles from "../../../src/Assests/css/pages/updateprofile/updateprofile.module.scss"
 
@@ -40,6 +41,7 @@ function UpdateProfile()
     const [successState, setSuccessState] = useState('');
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [emptyFields, setEmptyFields] = useState([]);
+    const [isvalid, setIsValid] = useState(true);
     
     /*DECLARO METODO DE NAVEGACION  */                                              
     const navigate = useNavigate();                                                            
@@ -81,7 +83,7 @@ function UpdateProfile()
             setTimeout(() => {
                 setShowErrorMessage(false);
                 /*navigate('/Bienvenido');   */                                      
-            }, 3000);
+            }, 5000);
         } 
     };
 
@@ -145,11 +147,12 @@ function UpdateProfile()
     };
     const handleEmailChange = (event) => {
         const inputValue = event.target.value;
-        if (/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(inputValue)) {
-            setEmail(inputValue);
-            setErrorEmail(false);
-            
+        setEmail(inputValue);
+        if (inputValue.trim() === '') {
+            setIsValid(true);
         } else {
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            setIsValid(emailPattern.test(inputValue));
             setErrorTypeMessage('Ingrese una dirección de Email valida');
             setErrorEmail(true);
         }
@@ -215,7 +218,6 @@ function UpdateProfile()
         const requiredFields = ['name', 'last_name', 'document_type', 'document_number', 'telephone', 'email', 'born_date', 'department', 'city', 'address', 'gender'];
         const missingFields = requiredFields.filter(field => !datosModificados[field]);
         if (missingFields.length > 0) {
-            console.log(phone);
             const emptyFieldsArray = [];
             if (name === '') emptyFieldsArray.push('nombre');
             if (lastName === '') emptyFieldsArray.push('apellido');
@@ -250,10 +252,11 @@ function UpdateProfile()
                 setErrorState([part1, part2, part3]);
             });
     };
+    const titleheader = "Actualizar Perfil";
     return(
         <div className="overallContainer">
             <div className="headerContainer">
-                <UpdateHeader />
+                <RegistrationHeader imglogo={imglogo} titleheader={titleheader}/>
             </div>
             <div className="centerContainer">
                 <div className="leftContainer"></div>
@@ -362,9 +365,10 @@ function UpdateProfile()
                                                 id="Correo" 
                                                 placeholder="Email"
                                                 required
+                                                style={{ borderColor: isvalid ? 'initial' : 'red' }}
                                                 className={emptyFields.includes('correo') ? styles.redBorder : ''}
                                             />
-                                            {errorEmail && <MistakeValidation message={errortypemessage} />}
+                                            {!isvalid && <MistakeValidation message={errortypemessage} />}
                                         </div>
                                         <div>
                                             <input

@@ -18,6 +18,7 @@ import ForgotPassword from '../../components/pages/Login/ForgotPassword'
 import TermsText from '../../components/pages/Login/TermsText'
 
 import Mistakes from "../../components/common/Mistakes/Mistake"
+import MistakeValidation from '../../components/common/Mistakes/MistakeValidation';
 import StartHeader from '../../components/common/header/StartHeader'
 
 import styles from "../../../src/Assests/css/pages/login/login.module.scss"
@@ -40,6 +41,9 @@ function Login()
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const [successState, setSuccessState] = useState('');
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [isvalid, setIsValid] = useState(true);
+    const [errortypemessage, setErrorTypeMessage] = useState(false);
+    
 
     /*DECLARO LOS PROVEEDORES DE AUTENTICACION CON FIREBASE*/
     const provider = new GoogleAuthProvider();
@@ -48,6 +52,12 @@ function Login()
 
     /*DECLARO METODO DE NAVEGACION*/
     const navigate = useNavigate();
+
+    /*ESTILOS*/
+    const style1 = {
+        position: 'absolute', 
+        top:'40px'
+    };
 
     /*FUNCION PARA HABILITAR MENSAJE DE REGISTRO CORRECTA*/
     const showSuccessAndRedirect = () => {
@@ -81,7 +91,15 @@ function Login()
         setPassword(event.target.value);
     };
     const handleEmailUserChange = (event) => {
-        setEmailUser(event.target.value);
+        const inputValue = event.target.value;
+        setEmailUser(inputValue);
+        if (inputValue.trim() === '') {
+            setIsValid(true);
+        } else {
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            setIsValid(emailPattern.test(inputValue));
+            setErrorTypeMessage('Ingrese una dirección de Email valida');
+        }
     };
     const handleShowPasswordToggle = () => {
         setshowPwd(!showPwd);
@@ -246,7 +264,12 @@ function Login()
                                     id='Email'
                                     onChange={handleEmailUserChange}
                                 />
+                                <div style= {style1} >
+                                    {!isvalid && <MistakeValidation message={errortypemessage} />}
+                                </div>
+                                
                             </label>
+                            
                             <label>
                                 <input 
                                     type={showPwd ? "text" : "password"} 
