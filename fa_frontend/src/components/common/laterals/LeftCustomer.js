@@ -3,15 +3,16 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 import IconMenu from './IconMenu'
-
-import img1 from "../../Assests/images/Plan.png";
-import img2 from "../../Assests/images/Awards.png";
-import img3 from "../../Assests/images/Redeem.png";
-import img4 from "../../Assests/images/Statistics.png";
-
-import styles from "../../Assests/css/laterals/leftside.module.scss"
 import TextsMenuLeft from './TextsMenuLeft';
-class LeftSide extends React.Component{
+
+import img1 from "../../../Assests/images/Plan.png";
+import img2 from "../../../Assests/images/Awards.png";
+import img3 from "../../../Assests/images/Redeem.png";
+import img4 from "../../../Assests/images/Statistics.png";
+
+import styles from "../../../Assests/css/common/laterals/leftpartner.module.scss"
+
+class LeftCustomer extends React.Component{
     render(){
         return(
             <div className={styles.estiloLaterales}>  
@@ -41,19 +42,11 @@ class LeftSide extends React.Component{
                         </div>
                     </div>
                     <div className={styles.linea}>
-                        <div className={styles.conticono}>
-                            <IconMenu src={img1}/>
+                        <div id="Notificaciones" className={styles.conticono}>
+                            <IconMenu src={img2}/>
                         </div>
-                        <div id="Plan" className={styles.conttexto}>
-                            <Link to="miplan" style={{ textDecoration: 'none' }}><TextsMenuLeft txt="Mi Plan" id="plan"/></Link>
-                        </div>
-                    </div>
-                    <div className={styles.linea}>
-                        <div className={styles.conticono}>
-                            <IconMenu src={img1}/>
-                        </div>
-                        <div id="Login" className={styles.conttexto}>
-                            <Link to="Login" style={{ textDecoration: 'none' }}><TextsMenuLeft txt="Login" id="login"/></Link>
+                        <div className={styles.conttexto}>
+                            <Link to="notificaciones" style={{ textDecoration: 'none' }}><TextsMenuLeft txt="Mis Notificaciones" id="notificaciones"/></Link>
                         </div>
                     </div>
                 </div>    
@@ -62,4 +55,4 @@ class LeftSide extends React.Component{
     
     }
 }
-export default LeftSide;
+export default LeftCustomer;

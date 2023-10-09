@@ -1,12 +1,16 @@
 import React,  {useState, useEffect} from 'react';
-import { useNavigate, Link} from 'react-router-dom';                               
+import { useNavigate, Link} from 'react-router-dom';    
 
-import UpdateHeader from '../../components/common/header/UpdateHeader'
+import { update } from '../../functions/api/Api';
+
+import RegistrationHeader from '../../components/common/header/RegistrationHeader'
 import PhotoBackground from '../../components/pages/UpdateProfile/PhotoBackground'
 import Success from "../../components/common/Success/success"
 import Mistake from '../../components/common/Mistakes/Mistake';
+import MistakeValidation from '../../components/common/Mistakes/MistakeValidation';
 
 import PhotoImage from '../../Assests/images/btn4.png'
+import imglogo from "../../Assests/images/btn2.png";
 
 import styles from "../../../src/Assests/css/pages/updateprofile/updateprofile.module.scss"
 
@@ -28,11 +32,16 @@ function UpdateProfile()
     const [photo, setPhoto] =  useState('');  
     const [errorstate, setErrorState] = useState('');
     const [errorType, setErrorType] = useState(false);
+    const [errorNumber, setErrorNumber] = useState(false);
+    const [errorEmail, setErrorEmail] = useState(false);
+    const [errorPhone, setErrorPhone] = useState(false);
+    const [errorBirthdate, setErrorBirthdate] = useState(false);
     const [errortypemessage, setErrorTypeMessage] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const [successState, setSuccessState] = useState('');
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [emptyFields, setEmptyFields] = useState([]);
+    const [isvalid, setIsValid] = useState(true);
     
     /*DECLARO METODO DE NAVEGACION  */                                              
     const navigate = useNavigate();                                                            
@@ -74,7 +83,7 @@ function UpdateProfile()
             setTimeout(() => {
                 setShowErrorMessage(false);
                 /*navigate('/Bienvenido');   */                                      
-            }, 3000);
+            }, 5000);
         } 
     };
 
@@ -116,23 +125,41 @@ function UpdateProfile()
     const handleDocumentTypeChange = (event) => {
         
         const inputValue = event.target.value;
-        // Utiliza una expresión regular para permitir solo letras
         if (/^[A-Za-z]*$/.test(inputValue) && inputValue.length <= 2) {
             setDocumentType(inputValue);
             setErrorType(false);
-            setErrorTypeMessage('Ingrese solo caracteres válidos (A-Z, a-z)');
+            
         } else {
+            setErrorTypeMessage('Ingrese solo caracteres válidos (A-Z, a-z)');
             setErrorType(true);
         }
     };
     const handleDocumentNumberChange = (event) => {
-        setDocumentNumber(event.target.value);
+        const inputValue = event.target.value;
+        if (/^[0-9]*$/.test(inputValue) && inputValue.length <=10) {
+            setDocumentNumber(inputValue);
+            setErrorNumber(false);
+            
+        } else {
+            setErrorTypeMessage('Ingrese solo números');
+            setErrorNumber(true);
+        }
     };
     const handleEmailChange = (event) => {
-        setEmail(event.target.value);
+        const inputValue = event.target.value;
+        setEmail(inputValue);
+        if (inputValue.trim() === '') {
+            setIsValid(true);
+        } else {
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            setIsValid(emailPattern.test(inputValue));
+            setErrorTypeMessage('Ingrese una dirección de Email valida');
+            setErrorEmail(true);
+        }
     };
     const handleBirthdateChange = (event) => {
-        setBirthdate(event.target.value);
+        const inputValue = event.target.value;
+        setBirthdate(inputValue);
     };
     const handleDepartmentChange = (event) => {                                 
         setDepartment(event.target.value);
@@ -144,15 +171,34 @@ function UpdateProfile()
         setAddress(event.target.value);
     };
     const handlePhoneChange = (event) => {
-        setPhone(event.target.value);
+        const inputValue = event.target.value;
+        if (/^[0-9]*$/.test(inputValue) && inputValue.length <=12) {
+            setPhone(inputValue);
+            setErrorPhone(false);
+            
+        } else {
+            setErrorTypeMessage('Ingrese solo números');
+            setErrorPhone(true);
+        }
     };
     const handleGenderChange = (event) => {
         setGender(event.target.value);
     };
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setPhoto(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     /*FUNCION DE ACTUALIZACION DE DATOS*/
     const updateInformation = () => {
-
+        const acction = "actualizar perfil socio";
+        let url =  `user/${UserId}`+'/';
         /*OBJETO QUE TENDRA TODOS LOS DATOS PARA ENVIAR A LA ACTUALIZACION*/
         const datosModificados = {
             name: name, 
@@ -172,7 +218,6 @@ function UpdateProfile()
         const requiredFields = ['name', 'last_name', 'document_type', 'document_number', 'telephone', 'email', 'born_date', 'department', 'city', 'address', 'gender'];
         const missingFields = requiredFields.filter(field => !datosModificados[field]);
         if (missingFields.length > 0) {
-            console.log(phone);
             const emptyFieldsArray = [];
             if (name === '') emptyFieldsArray.push('nombre');
             if (lastName === '') emptyFieldsArray.push('apellido');
@@ -194,59 +239,24 @@ function UpdateProfile()
             setErrorState([part1, part2, part3]);
             return;
         }
-        
-        /*ACTUALIZACION DE DATOS*/
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(datosModificados)
-        };
-        const baseURL = process.env.REACT_APP_BACKEND_URL+ `user/${UserId}`+'/';
-        console.log(baseURL); 
-        
-        fetch(baseURL, requestOptions)
-            .then(response =>{ 
-                console.log(response);
-                if (!response.ok) {
-                    if (response.status === 400) {
-                        throw new Error('Error 400: Petición incorrecta');
-                    } else if (response.status === 401) {
-                        throw new Error('Error 401: No autorizado');
-                    } else if (response.status === 500) {
-                        throw new Error('Error 500: Error interno del servidor');
-                    } else if(response.status === 201){
-                        throw new Error('Error 201: Error al analizar la respuesta del servidor como JSON');
-                    } else{
-                        throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
-                    }
-                }
-                return response.json();
-            })
+        update(url, datosModificados, acction)
             .then(result => {
+                console.log('Actualización exitosa:', result);
                 showSuccessAndRedirect();
             })
             .catch(error => {
-                console.error('Ocurrió un error:', error.message);
-                let errorMessage = 'Error desconocido';
-                if (error.message.includes('400')) {
-                    errorMessage = 'Error 400: Petición incorrecta';
-                } else if (error.message.includes('401')) {
-                    errorMessage = 'Error 401: No autorizado';
-                } else if (error.message.includes('500')) {
-                    errorMessage = 'Error 500: Error interno del servidor';
-                }else if(error.message.includes('201')){
-                    errorMessage = 'Error 201: Ocurrió un error al procesar la respuesta';
-                }
-                const part1 = 'Falló la actualización: ';
-                const part2 =  errorMessage;
-                const part3 = 'será redireccionado en 3 segundos...';
+                console.error('Error durante la actualización:', error);
+                const part1 = 'Se ha generado un error.';
+                const part2 =  'Por favor consulte al';
+                const part3 = 'administrador.';
                 setErrorState([part1, part2, part3]);
             });
     };
+    const titleheader = "Actualizar Perfil";
     return(
         <div className="overallContainer">
             <div className="headerContainer">
-                <UpdateHeader />
+                <RegistrationHeader imglogo={imglogo} titleheader={titleheader}/>
             </div>
             <div className="centerContainer">
                 <div className="leftContainer"></div>
@@ -258,6 +268,8 @@ function UpdateProfile()
                             ) : (
                                 <PhotoBackground src={PhotoImage}></PhotoBackground>
                             )}
+                            <input type="file" id="inputImagen" style={{ display: 'none' }} onChange={handleImageChange} />
+                            <label className={styles.changePhoto} htmlFor="inputImagen">CAMBIAR FOTO</label>
                         </section>
                         <section className={styles.sectionStyles}>
                             <form className={styles.styleForm}>
@@ -327,6 +339,7 @@ function UpdateProfile()
                                                     className={emptyFields.includes('documenttype') ? styles.redBorder : ''}
                                                     title="Solo se permiten caracteres (A-Z, a-z)"
                                                 />
+                                                {errorType && <MistakeValidation message={errortypemessage} />}
                                             </div>
                                             <div className={styles.sizeLine}>-</div>
                                             <div className={styles.sizeNumber}>
@@ -340,6 +353,7 @@ function UpdateProfile()
                                                     required
                                                     className={emptyFields.includes('documentnumber') ? styles.redBorder : ''}
                                                 />
+                                                {errorNumber && <MistakeValidation message={errortypemessage} />}
                                             </div>
                                         </div>
                                         <div>
@@ -351,8 +365,10 @@ function UpdateProfile()
                                                 id="Correo" 
                                                 placeholder="Email"
                                                 required
+                                                style={{ borderColor: isvalid ? 'initial' : 'red' }}
                                                 className={emptyFields.includes('correo') ? styles.redBorder : ''}
                                             />
+                                            {!isvalid && <MistakeValidation message={errortypemessage} />}
                                         </div>
                                         <div>
                                             <input
@@ -365,6 +381,7 @@ function UpdateProfile()
                                                 required
                                                 className={emptyFields.includes('fechaNacimiento') ? styles.redBorder : ''}
                                             />
+                                            {errorBirthdate && <MistakeValidation message={errortypemessage} />}
                                         </div>
                                         <div>
                                             <input
@@ -413,6 +430,7 @@ function UpdateProfile()
                                                 required
                                                 className={emptyFields.includes('telefono') ? styles.redBorder : ''}
                                             />
+                                            {errorPhone && <MistakeValidation message={errortypemessage} />}
                                         </div>
                                         <div>
                                             <select
@@ -436,7 +454,7 @@ function UpdateProfile()
                                 <input className="styleButtonPurple"  type="button"  style={sizeButton} value="Actualizar" onClick={updateInformation}/>
                                 {showErrorMessage && <Mistake message={errorstate.map((part, index) => (
                                     <div key={index}>
-                                        <span style={index === 0 ? style1 : index === 1 ? style2 : style3}>{part}</span>
+                                        <span style={index === 0 ? style1 : index === 1 ? style1 : style1}>{part}</span>
                                     </div>
                                 ))} />}
                                 {showSuccessMessage && <Success message= {successState.map((part, index) => (

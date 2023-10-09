@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../../Assests/css/header/desktop/logo.module.scss";
+import styles from "../../../Assests/css/common/header/logo.module.scss";
 
 
 class Logo extends React.Component{
