@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from "../../../Assests/css/centro/desktop/centerredeem.module.scss"
+import styles from "../../Assests/css/centro/desktop/centerredeem.module.scss"
 class Centerredeem extends React.Component{
     render(){
         return(

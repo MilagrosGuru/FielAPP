@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from "../../../Assests/css/centro/desktop/centercompanyprofile.module.scss"
+import styles from "../../Assests/css/centro/desktop/centercompanyprofile.module.scss"
 class Centercompanyprofile extends React.Component{
     render(){
         return(

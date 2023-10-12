@@ -70,7 +70,7 @@ function CreateCompany()
         setShowSuccessMessage(true);
         setTimeout(() => {
             setShowSuccessMessage(false);
-            navigate('/TipoUsuario'); 
+            navigate('/DashboardSocio'); 
         }, 3000); 
     };
     /*FUNCION PARA HABILITAR MENSAJE DE ACTUALIZACION INCORRECTA*/
@@ -79,7 +79,7 @@ function CreateCompany()
             setShowErrorMessage(true);
             setTimeout(() => {
                 setShowErrorMessage(false);
-                /*navigate('/Bienvenido');   */                                      
+                /*navigate('/');   */                                     
             }, 5000);
         } 
     };
@@ -219,6 +219,7 @@ function CreateCompany()
     const titleheader = "Registro";
     const generalTitle1 = "REGISTRO EMPRESA";
     const generalTitle2 = "FIEL";
+    const LinkTo = "/TipoUsuario";
     return(
         <div className="overallContainer">
             <div className="headerContainer">
@@ -370,7 +371,7 @@ function CreateCompany()
                                 </div>
                                 <div className={styles.contButtonArrow}>
                                     <div className={styles.contButtons}>
-                                        <OtherImages img={LeftArrow}/>
+                                        <OtherImages img={LeftArrow} linkTo={LinkTo}/>
                                     </div>
                                     <div className={styles.contButtons}>
                                         <input className="styleButtonPurple"  type="button"  style={sizeButton} value="Guardar" onClick={createCompany}/>

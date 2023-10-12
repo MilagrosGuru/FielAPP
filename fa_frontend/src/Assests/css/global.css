@@ -55,6 +55,14 @@ input[type="email"]::placeholder  {
     position: relative;
     margin: 0 auto;
   }
+  .contCenter{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0 auto;
+  }
   .contWelcome{
     width: 250px;
     height: 100%;

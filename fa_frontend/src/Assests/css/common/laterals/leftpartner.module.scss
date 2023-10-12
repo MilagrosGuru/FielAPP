@@ -13,7 +13,7 @@
     flex-direction: column;
 }
 .conticono{
-    width: 35%;
+    width: 20%;
     height: 100%;
     display: flex;
 }
@@ -25,9 +25,11 @@
 }
 .linea{
     width: 100%;
-    height: 10%;
-    margin-top: 2rem;
+    height: 5%;
     position: relative;
     display: flex;
     align-items: center;
+}
+.TopSeparation{
+    margin-top: 2rem;
 }

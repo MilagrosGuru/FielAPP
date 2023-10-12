@@ -29,10 +29,10 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     margin: 0 auto;
     font-family: 'Poppins';
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 300;
     p{
         margin: 0.3rem;
@@ -60,4 +60,7 @@
 }
 hr{
     width: 100%;
+}
+.TopSeparation{
+    margin-top: 8rem;
 }
