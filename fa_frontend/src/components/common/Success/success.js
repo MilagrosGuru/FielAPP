@@ -6,7 +6,7 @@ import styles from "../../../Assests/css/common/success/success.module.scss";
 function Success({ message }) {
     return (
         <div className={styles.Successcontainer}>
-            <p className={styles.Successmessage}>{message}</p>
+            <div className={styles.Successmessage}>{message}</div>
         </div>
     );
 }
