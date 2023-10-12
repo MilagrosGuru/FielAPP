@@ -1,7 +1,8 @@
 import React from 'react';
 
-import styles from "../../../Assests/css/centro/desktop/centerstatistics.module.scss"
-class Centerstatistics extends React.Component{
+import styles from "../../Assests/css/centro/desktop/centerstatistics.module.scss"
+
+class CenterStatistics extends React.Component{
     render(){
         return(
             <div className={styles.estiloCentro}>   
@@ -11,4 +12,4 @@ class Centerstatistics extends React.Component{
     
     }
 }
-export default Centerstatistics;
+export default CenterStatistics;

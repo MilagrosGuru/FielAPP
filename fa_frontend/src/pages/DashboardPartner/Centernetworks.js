@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from "../../../Assests/css/centro/desktop/centernetworks.module.scss"
+import styles from "../../Assests/css/centro/desktop/centernetworks.module.scss"
 class Centernetworks extends React.Component{
     render(){
         return(

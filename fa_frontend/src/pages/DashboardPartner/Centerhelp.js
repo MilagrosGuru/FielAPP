@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from "../../../Assests/css/centro/desktop/centerhelp.module.scss"
+import styles from "../../Assests/css/centro/desktop/centerhelp.module.scss"
 class Centerhelp extends React.Component{
     render(){
         return(

@@ -7,13 +7,12 @@
     position: relative;
 }
 .search input[type=text]{
-    width: 100%;
+    width: 100%; 
     height: 35px;
-    border-radius: 20px;
+    background-color: transparent;
     border: none;
-    font-family: var(--text_font-family1);
-    font-size:small;
-    @media (max-width: 980px) {
+    outline: none;
+    /*@media (max-width: 980px) {
         font-size: x-small;
     }
     @media (max-width: 780px) {
@@ -21,14 +20,20 @@
     }
     @media (max-width: 655px) {
         font-size: 5px;
-    }
+    }*/
 }
 form{
     position: relative;
 }    
 .search{
     float: right;
-    width: 98%;
+    width: 100%; 
+    display: flex;
+    background: white;
+    border-radius: 20px;
+    width: 100%;
+    border: none;
+    align-items: center;
 }
 ::placeholder {
     text-align: center; 
@@ -48,25 +53,22 @@ form{
 :-ms-input-placeholder {  
     text-align: center; 
 }
-.search button{
-    background-color: var(--background-color);
-    color: grey;
-    font-size: 20px;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    left: 5%;
-    top: 0;
-    margin-top: 3%;
-    @media (max-width: 980px) {
-        font-size: 16px;
-        top: 10%;
-    }
-    @media (max-width: 780px) {
-        font-size: 12px;
-        top: 17%;
-    }
+.search svg{
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin-left: 4px;
+    margin-right: 4px;
+    color: lightgrey;
 }
 .centrar{
     text-align: center;
+}
+.icon{
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin-left: 4px;
+    margin-right: 4px;
+    color: lightgrey;
 }
