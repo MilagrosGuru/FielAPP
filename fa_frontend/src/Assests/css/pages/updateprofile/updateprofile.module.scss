@@ -1,0 +1,112 @@
+.contUpdate{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0 auto;
+}
+.centercontainer{
+    width: 250px;
+    height: 100%;
+    margin: 0 auto;
+}
+.contLabels{
+    width: 100%;
+    display: flex;
+}
+.labelsStyle{
+    font-size: var(--text_paragraph);
+    color: var(--color_text-grey);
+    line-height: 37px;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items:flex-end;
+}
+.requiredStyle{
+    font-size: var(--text_paragraph);
+    color: red;
+    line-height: 37px;
+    width: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contInformation{
+    width: 66%;
+    line-height: 35px;
+    display: flex;
+    flex-direction: column;
+
+    div{
+        line-height: 35px;
+        position: relative;
+        /*display: flex;*/
+        input{
+            width: 93%;
+            border: 1px solid lightgrey;
+            border-radius: 15px;
+            padding: 3%;
+        }
+        select{
+            border-radius: 15px;
+            border: 1px solid lightgrey;
+            padding: 3%;
+            width: 100%;
+        }
+    }
+}
+.styleForm{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.sectionStyles{
+    display: flex;
+    flex-direction: column;
+}
+.contForm{
+    width: 400px;
+    height: 100%;
+   
+}
+.contDocument{
+    width: 100%;
+    display: flex;
+}
+
+.sizeType{
+    width: 25%;
+    input{
+        line-height: 27px;
+        padding-left: 7%;
+    }
+}
+.sizeLine{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+.sizeNumber{
+    width: 75%;
+    input{
+        line-height: 20px;
+        padding-left: 7%;
+    }
+}
+.colorfirstoption{
+    color:lightgray !important;
+}
+.redBorder{
+    border: 1px solid #ff0000 !important;
+}
+.changePhoto{
+    position: absolute;
+    top: 80px;
+    left: 286px;
+    color: var(--head-backgroud-color);
+    font-size: var(--text_size);
+    font-weight: bold;
+}
