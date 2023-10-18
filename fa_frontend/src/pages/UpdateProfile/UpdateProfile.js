@@ -50,8 +50,11 @@ function UpdateProfile()
     const navigate = useNavigate();                                                            
 
     /*LEO LA VARIABLE ID DEL LOCAL STORAGE Y ARMO URL*/
+    console.log("Iniciando carga de datos guardados en la base de datos");
     const UserId = localStorage.getItem('userId');                              
-    const baseURL = process.env.REACT_APP_BACKEND_URL + `user/${UserId}`;
+    const baseURL = process.env.REACT_APP_BACKEND_URL + `/user/${UserId}`;
+    console.log('Id:',UserId);
+    console.log('URL:',baseURL);
 
     /*ESTILOS */
     const sizeButton = {
@@ -85,6 +88,7 @@ function UpdateProfile()
         if(errorstate){
             setShowErrorMessage(true);
             setTimeout(() => {
+                setLoading(false);
                 setShowErrorMessage(false);
                 /*navigate('/Bienvenido');   */                                      
             }, 5000);
@@ -203,7 +207,7 @@ function UpdateProfile()
     const updateInformation = () => {
         setLoading(true);
         const acction = "actualizar perfil socio";
-        let url =  `user/${UserId}`+'/';
+        let url =  `/user/${UserId}`+'/';
         /*OBJETO QUE TENDRA TODOS LOS DATOS PARA ENVIAR A LA ACTUALIZACION*/
         const datosModificados = {
             name: name, 

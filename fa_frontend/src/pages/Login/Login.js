@@ -114,7 +114,7 @@ function Login()
             setLoading(true);
             console.log("Ambiente: "+process.env.NODE_ENV); 
             const acction = "crear registro";
-            let url = 'user/create';
+            let url = '/user/create';
             /*OBJETO QUE TENDRA TODOS LOS DATOS PARA ENVIAR A LA ACTUALIZACION*/
             const datosCrear = {
                 full_name:displayname,
