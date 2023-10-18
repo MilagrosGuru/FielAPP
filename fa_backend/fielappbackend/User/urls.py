@@ -3,7 +3,7 @@ from DataInit import views
 from User import views
 from rest_framework import routers
 from django.urls import path
-from .views import UserView
+from .views import UserView, UserUpdate
 
 
 router = routers.DefaultRouter()
@@ -15,7 +15,9 @@ urlpatterns = [
     path('api/', include(router.urls)),
     #path('users/', UserCreateView.as_view(), name='user-create'),
     #path(r'^api/users$', views.UserCreateView.user_list),
-    #path(r'^api/users/(?P<pk>[0-9]+)$', views.UserCreateView.user_detail),
+    #path(r'^api/users/(?P<pk>[0-9]+)$', user_detail),
     path('user/create', UserView.as_view()),
+    path('user/<str:user_id>/', UserUpdate.update_user, name='update_user'),
+    path('userType/<str:user_id>/', UserUpdate.client_partner_user, name='client_partner_user'),
 ]
 

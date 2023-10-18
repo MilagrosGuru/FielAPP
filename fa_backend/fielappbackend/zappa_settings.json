@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "aws_region": "us-east-1",
+        "django_settings": "fielappbackend.settings",
+        "profile_name": "default",
+        "project_name": "fielappbackend",
+        "runtime": "python3.9",
+        "s3_bucket": "zappa-iua4rl5jr"
+    }
+}

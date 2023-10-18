@@ -21,10 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY")
+#LOCAL
+#SECRET_KEY = config("SECRET_KEY")
+#AWS
+SECRET_KEY = 'django-insecure-&k1%2o!3riu)3ve*mv12!a0i%iz8&1!ab#34cikws4zp9zdw=3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False#config("DEBUG", cast=bool)
+
+DEBUG = True #config("DEBUG", cast=bool)
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'DataInit',
     'User',
+    'Company',
+    'Reward', #premio fiel
     # CORS Deciree
     'corsheaders',
 ]
@@ -78,6 +85,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fielappbackend.wsgi.application'
 
+# Whether to append trailing slashes to URLs.
+#APPEND_SLASH = False
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -118,12 +127,31 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 #deciree
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',  # Opcionalmente, puedes establecer el nivel de registro aquí
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',  # Nombre del archivo de registro
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',  # Opcionalmente, puedes establecer el nivel de registro aquí
+            'propagate': True,
+        },
+    },
+}
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8081',
     'http://localhost:3000',
-    'http://fielapp.com',
+    'https://fielapp.com',
 )
 
 # Internationalization

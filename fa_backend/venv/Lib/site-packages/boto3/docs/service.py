@@ -41,7 +41,6 @@ class ServiceDocumenter(BaseServiceDocumenter):
             self._service_resource = self._boto3_session.resource(service_name)
         self.sections = [
             'title',
-            'table-of-contents',
             'client',
             'paginators',
             'waiters',
@@ -63,7 +62,6 @@ class ServiceDocumenter(BaseServiceDocumenter):
             self._service_name, section_names=self.sections, target='html'
         )
         self.title(doc_structure.get_section('title'))
-        self.table_of_contents(doc_structure.get_section('table-of-contents'))
 
         self.client_api(doc_structure.get_section('client'))
         self.paginator_api(doc_structure.get_section('paginators'))
@@ -111,6 +109,11 @@ class ServiceDocumenter(BaseServiceDocumenter):
         service_resource_doc = DocumentStructure(
             'service-resource', target='html'
         )
+        breadcrumb_section = service_resource_doc.add_new_section('breadcrumb')
+        breadcrumb_section.style.ref(
+            self._client.__class__.__name__, f'../../{self._service_name}'
+        )
+        breadcrumb_section.write(' / Resource / ServiceResource')
         ServiceResourceDocumenter(
             self._service_resource, self._session, self._root_docs_path
         ).document_resource(service_resource_doc)
@@ -158,6 +161,13 @@ class ServiceDocumenter(BaseServiceDocumenter):
             # Create a new DocumentStructure for each Resource and add contents.
             resource_name = resource.meta.resource_model.name.lower()
             resource_doc = DocumentStructure(resource_name, target='html')
+            breadcrumb_section = resource_doc.add_new_section('breadcrumb')
+            breadcrumb_section.style.ref(
+                self._client.__class__.__name__, f'../../{self._service_name}'
+            )
+            breadcrumb_section.write(
+                f' / Resource / {resource.meta.resource_model.name}'
+            )
             ResourceDocumenter(
                 resource, self._session, self._root_docs_path
             ).document_resource(
@@ -184,9 +194,6 @@ class ServiceDocumenter(BaseServiceDocumenter):
         examples_file = self._get_example_file()
         if os.path.isfile(examples_file):
             section.style.h2('Examples')
-            section.style.new_line()
-            section.write(".. contents::\n    :local:\n    :depth: 1")
-            section.style.new_line()
             section.style.new_line()
             with open(examples_file) as f:
                 section.write(f.read())
