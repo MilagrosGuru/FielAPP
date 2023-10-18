@@ -80,8 +80,10 @@ function CreateCompany()
     const showErrorAndRedirect = () => {
         if(errorstate){
             setShowErrorMessage(true);
+
             setTimeout(() => {
                 setShowErrorMessage(false);
+                setLoading(false);
                 /*navigate('/');   */                                     
             }, 5000);
         } 
@@ -91,7 +93,7 @@ function CreateCompany()
     useEffect(() => {
         console.log("Inicio carga combos");
         const acction = "CargarDepartamentos";
-        let url =  'department/list';
+        let url =  '/department/list';
         read(url, acction)
             .then((dataDepartment) => {
                 setDatosDepartment(dataDepartment);
@@ -101,7 +103,7 @@ function CreateCompany()
             });
             
         const acction2 = "CargarPaises";
-        let url2 =  'country/list';
+        let url2 =  '/country/list';
         read(url2, acction2)
             .then((dataCountry) => {
                 setDatosCountry(dataCountry);
@@ -166,7 +168,7 @@ function CreateCompany()
         setLoading(true);
         console.log("inicio crear compania");
         const acction = "CrearCompañia";
-        let url =  'company/create';
+        let url =  '/company/create';
         const urllogo = 'www.logo.com';
         /*OBJETO QUE TENDRA TODOS LOS DATOS PARA ENVIAR A LA CREACION*/
         const CompanyDetails = {
