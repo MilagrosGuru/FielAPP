@@ -400,11 +400,13 @@ function CreateCompany()
                                         <div key={index}>
                                             <span style={index === 0 ? style1 : style2}>{part}</span>
                                         </div>
+
                                     ))} />}
                                 </form>
                             </section>
                         </main>
                     )}
+
                 </div>
                 <div className="rightContainer"></div>
             </div>

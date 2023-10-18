@@ -6,6 +6,7 @@ import CentralText from '../../components/common/centralText/centralText'
 import img from '../../Assests/images/partnerlogo.png'
 import styles from "../../Assests/css/pages/dashboardpartner/centerdashboardpartner.module.scss"
 
+
 function CenterDashboardPartner() {
     const nombreEmpresa = localStorage.getItem('companyname').toUpperCase();
     const nombreUsuario = localStorage.getItem('username').toUpperCase();
@@ -34,3 +35,4 @@ function CenterDashboardPartner() {
 }
 
 export default CenterDashboardPartner;
+
