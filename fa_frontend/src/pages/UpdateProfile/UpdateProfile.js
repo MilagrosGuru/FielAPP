@@ -12,6 +12,8 @@ import MistakeValidation from '../../components/common/Mistakes/MistakeValidatio
 import PhotoImage from '../../Assests/images/btn4.png'
 import imglogo from "../../Assests/images/btn2.png";
 
+import LoadingSpinner from '../../components/common/LoadingSpinner/LoadingSpinner';
+
 import styles from "../../../src/Assests/css/pages/updateprofile/updateprofile.module.scss"
 
 
@@ -42,6 +44,7 @@ function UpdateProfile()
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [emptyFields, setEmptyFields] = useState([]);
     const [isvalid, setIsValid] = useState(true);
+    const [loading, setLoading] = useState(false);
     
     /*DECLARO METODO DE NAVEGACION  */                                              
     const navigate = useNavigate();                                                            
@@ -72,6 +75,7 @@ function UpdateProfile()
         setSuccessState([part1, part2]);
         setShowSuccessMessage(true);
         setTimeout(() => {
+            setLoading(false);
             setShowSuccessMessage(false);
             navigate('/TipoUsuario'); 
         }, 3000); 
@@ -197,6 +201,7 @@ function UpdateProfile()
 
     /*FUNCION DE ACTUALIZACION DE DATOS*/
     const updateInformation = () => {
+        setLoading(true);
         const acction = "actualizar perfil socio";
         let url =  `user/${UserId}`+'/';
         /*OBJETO QUE TENDRA TODOS LOS DATOS PARA ENVIAR A LA ACTUALIZACION*/
@@ -261,6 +266,11 @@ function UpdateProfile()
             <div className="centerContainer">
                 <div className="leftContainer"></div>
                 <div className="center">
+                    {loading ? (  // Verifica si loading es true
+                        <div className="spinner-container">
+                            <LoadingSpinner texto="¡Personalizando tu experiencia FIEL! Tu perfil se está transformando..." size={15} color={'#36D7B7'} loading={true} />
+                        </div>
+                    ) : (
                     <main className={styles.contUpdate}>   
                         <section>
                             {photo ? (
@@ -465,6 +475,7 @@ function UpdateProfile()
                             </form>
                         </section>
                     </main>
+                    )}
                 </div>
                 <div className="rightContainer"></div>
             </div>
