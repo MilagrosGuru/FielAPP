@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from "../../../Assests/css/centro/desktop/centerfollow.module.scss"
+import styles from "../../Assests/css/centro/desktop/centerfollow.module.scss"
 class Centerfollow extends React.Component{
     render(){
         return(

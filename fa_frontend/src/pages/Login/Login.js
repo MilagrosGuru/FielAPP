@@ -21,6 +21,8 @@ import Mistakes from "../../components/common/Mistakes/Mistake"
 import MistakeValidation from '../../components/common/Mistakes/MistakeValidation';
 import StartHeader from '../../components/common/header/StartHeader'
 
+import LoadingSpinner from '../../components/common/LoadingSpinner/LoadingSpinner';
+
 import styles from "../../../src/Assests/css/pages/login/login.module.scss"
 
 function Login()
@@ -43,6 +45,7 @@ function Login()
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [isvalid, setIsValid] = useState(true);
     const [errortypemessage, setErrorTypeMessage] = useState(false);
+    const [loading, setLoading] = useState(false);
     
 
     /*DECLARO LOS PROVEEDORES DE AUTENTICACION CON FIREBASE*/
@@ -66,6 +69,7 @@ function Login()
         setSuccessState([part1, part2]);
         setShowSuccessMessage(true);
         setTimeout(() => {
+            setLoading(false);
             setShowSuccessMessage(false);
             navigate('/Bienvenido');
         }, 3000); 
@@ -107,9 +111,10 @@ function Login()
 
     /*LLAMADO A LA API DE REGISTRO DE USUARIO*/
     const llamarApi = (displayname, email, phonenumber) =>{
+            setLoading(true);
             console.log("Ambiente: "+process.env.NODE_ENV); 
             const acction = "crear registro";
-            let url = 'user/create';
+            let url = '/user/create';
             /*OBJETO QUE TENDRA TODOS LOS DATOS PARA ENVIAR A LA ACTUALIZACION*/
             const datosCrear = {
                 full_name:displayname,
@@ -142,6 +147,7 @@ function Login()
                 const part3 = 'administrador.';
                 setErrorState([part1, part2, part3]);
             });
+            
     }
 
     /*FUNCIONES DE AUTENTICACION CON FIREBASE*/
@@ -254,6 +260,11 @@ function Login()
             <div className="centerContainer">
                 <div className="leftContainer"></div>
                 <div className="center">
+                    {loading ? (  // Verifica si loading es true
+                        <div className="spinner-container">
+                            <LoadingSpinner texto="Prepárate para las ventajas de ser FIEL! Registro en proceso.." size={15} color={'#36D7B7'} loading={true} />
+                    </div>
+                    ) : (
                     <div className="contLogin">
                         <LoginTitle />
                         <form className={styles.contForm} id='LoginForm'>
@@ -298,6 +309,7 @@ function Login()
                         <Link to="/TerminosyCondiciones" style={{ textDecoration: 'none' }}><TermsText/></Link>
                         {errorState && <Mistakes message={errorState} />}
                     </div>
+                    )}
                 </div>
                 <div className="rightContainer"></div>
             </div>

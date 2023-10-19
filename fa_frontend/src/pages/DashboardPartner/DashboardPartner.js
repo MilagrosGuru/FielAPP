@@ -1,14 +1,17 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-/*import styles from "../../../src/Assests/css/pages/verifyemail/verifyemail.module.scss"*/
-class DashboardPartner extends React.Component{
-    render(){
-        return(
-            <div>   
-                esta es la pagina del Dashboard del socio
-            </div>
-        );
-    
-    }
+
+import Layout from '../Layout/Layout'
+
+import styles from "../../Assests/css/pages/dashboardpartner/dashboardpartner.module.scss"
+
+function DashboardPartner() {
+    return (
+        <Layout> 
+            <Outlet />
+        </Layout>
+    );
 }
-export default DashboardPartner; 
+
+export default DashboardPartner;

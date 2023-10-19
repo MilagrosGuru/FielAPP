@@ -14,6 +14,7 @@ import img5 from "../../../Assests/images/Follow.png";
 import img6 from "../../../Assests/images/User.png";
 import img7 from "../../../Assests/images/MyPlan.png";
 import img8 from "../../../Assests/images/Points.png";
+import img9 from "../../../Assests/images/contacts.png";
 
 import styles from "../../../Assests/css/common/laterals/rightpartner.module.scss"
 
@@ -24,6 +25,8 @@ class RightPartner extends React.Component{
                 <div className={styles.contmenu}>
                     <div className={styles.bloques}>
                         <div className={styles.linea}>
+                            <div className={styles.conticono}>
+                            </div>
                             <div className={styles.contsubtitulo}>
                                 <Subtitle txt="Usuarios y Perfiles"/>
                             </div>
@@ -33,7 +36,7 @@ class RightPartner extends React.Component{
                                 <IconMenu src={img4}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="perfilempresa" style={{ textDecoration: 'none' }}><TextsMenu txt="Perfil de empresa"/></Link>
+                                <Link to="PerfilEmpresa" style={{ textDecoration: 'none' }}><TextsMenu txt="Perfil de empresa"/></Link>
                             </div>
                         </div>
                         <div className={styles.linea}>
@@ -49,21 +52,16 @@ class RightPartner extends React.Component{
                                 <IconMenu src={img6}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="clientesFIEL" style={{ textDecoration: 'none' }}><TextsMenu txt="Clientes FIEL"/></Link>
-                            </div>
-                        </div>
-                        <div className={styles.linea}>
-                            <div className={styles.conticono}>
-                                <IconMenu src={img7}/>
-                            </div>
-                            <div className={styles.conttexto}>
-                                <Link to="miplan" style={{ textDecoration: 'none' }}><TextsMenu txt="Mi Plan"/></Link>
+                                <Link to="ClientesFIEL" style={{ textDecoration: 'none' }}><TextsMenu txt="Clientes FIEL"/></Link>
                             </div>
                         </div>
                     </div>
-                    <hr />
+    
                     <div className={styles.bloques}>
                         <div className={styles.linea}>
+                            <div className={styles.conticono}>
+                                
+                            </div>
                             <div className={styles.contsubtitulo}>
                                 <Subtitle txt="Enlaces de interés"/>
                             </div>
@@ -92,26 +90,18 @@ class RightPartner extends React.Component{
                                 <Link to="beneficios" style={{ textDecoration: 'none' }}><TextsMenu txt="Beneficios de FielAPP"/></Link>
                             </div>
                         </div>
-                    </div>
-                    <hr/>
-                    <div className={styles.bloques}>
-                        <div className={styles.linea}>
-                            <div className={styles.contsubtitulo}>
-                                <Subtitle txt="Puntos FIEL"/>
-                            </div>
-                        </div>
                         <div className={styles.linea}>
                             <div className={styles.conticono}>
-                                <IconMenu src={img8}/>
+                                <IconMenu src={img9}/>
                             </div>
                             <div className={styles.conttexto}>
-                                <Link to="otorgarpuntos" style={{ textDecoration: 'none' }}><TextsMenu txt="Otorgar puntos FIEL"/></Link>
+                                <Link to="contactanos" style={{ textDecoration: 'none' }}><TextsMenu txt="Contáctanos"/></Link>
                             </div>
                         </div>
                     </div>
-                    <hr/>
+                    
                     <div className={styles.bloques}>
-                        <div className={styles.linea}>
+                        <div className={`${styles.linea} ${styles.TopSeparation}`}>
                             <div className={styles.conticono}>
                                 <IconMenu src={img3}/>
                             </div>
