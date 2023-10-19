@@ -4,7 +4,8 @@ from datetime import date
 
 class Reward(models.Model):
     activate= models.BooleanField(default=False, blank=True)
-    URL = models.URLField(max_length=200, blank=True, default='')
+    '''URL = models.URLField(max_length=200, blank=True, default='')'''
+    URL = models.FileField(upload_to='uploads/')  # Campo FileField
     minimun_cost = models.FloatField(max_length=100, blank=True, default='')
     description= models.CharField(max_length=600, blank=True, default='')
     redeem_points= models.IntegerField(blank=True, default='')

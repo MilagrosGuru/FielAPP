@@ -22,7 +22,7 @@ function BtnPartner({ onActualizacionError }){
         const UserId = localStorage.getItem('userId'); 
 
         const acction = "actualizar tipo de usuario SocioFiel";
-        let url =  `userType/${UserId}`+'/';
+        let url =  `/userType/${UserId}`+'/';
         
         /*OBJETO QUE TENDRA TODOS LOS DATOS PARA ENVIAR A LA ACTUALIZACION*/
         const nuevosDatos = {

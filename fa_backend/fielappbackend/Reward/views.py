@@ -20,10 +20,19 @@ db = client[settings.MONGODB_DB]
 
 class RewardAPIView(APIView):   #otra forma de crear compañia
     def post(self, request, format=None):
+        #URL = request.FILES['URL']
+        data = request.body
+        #datos_json = request.POST['datos']
+        data=request.data
+        data['company']=json.loads(request.POST['company'])
         serializer = RewardSerializer(data=request.data)
+
         try:
             if serializer.is_valid():
+                print("4")
+                
                 reward = serializer.save()  # Guarda el objeto en la base de datos
+                print("1")
                 reward_id = reward.id  # Accede al ID del objeto creado
                 print(reward_id)
                 return Response({"message": "Premio creado", "reward_id": reward_id}, status=status.HTTP_201_CREATED)
