@@ -34,15 +34,27 @@
     align-items: center;
 }
 .contInformation{
-    width: 66%;
-    line-height: 35px;
+    width: 100%;
+    height: 95%;
+    /*line-height: 35px;*/
     display: flex;
     flex-direction: column;
-
-    div{
-        line-height: 35px;
+    align-items: center;
+    margin-top: 4%;
+    /*div{
+        line-height: 20px;
         position: relative;
-        /*display: flex;*/
+        margin-bottom: 2%;
+        label{
+            margin-left: 2%;
+            font-size: var(--text_paragraph);
+            color: var(--color_text-grey);
+        }
+        span{
+            font-size: var(--text_paragraph);
+            color: red;
+            padding-left: 2%;
+        }
         input{
             width: 93%;
             border: 1px solid lightgrey;
@@ -55,7 +67,7 @@
             padding: 3%;
             width: 100%;
         }
-    }
+    }*/
 }
 .styleForm{
     width: 100%;
@@ -66,17 +78,17 @@
 .sectionStyles{
     display: flex;
     flex-direction: column;
+    //border: 1px solid blue;
+    height: 85%;
 }
 .contForm{
-    width: 400px;
-    height: 100%;
-   
+    width: 100%;
+    height: 90%;
 }
 .contDocument{
     width: 100%;
     display: flex;
 }
-
 .sizeType{
     width: 25%;
     input{
@@ -103,10 +115,106 @@
     border: 1px solid #ff0000 !important;
 }
 .changePhoto{
-    position: absolute;
-    top: 80px;
-    left: 286px;
     color: var(--head-backgroud-color);
     font-size: var(--text_size);
     font-weight: bold;
+    @media (max-width: 800px) {
+        font-size: 9px;
+    }
 }
+.contphoto{
+    width: 100%;
+    height: 15%;
+    //border: 1px solid red;
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+}
+.contphototext{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    //border: 1px solid yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.photo{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    //border: 1px solid green;
+}
+.textphoto{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    //border: 1px solid pink;
+    justify-content: center;
+}
+.contbutton{
+    width: 100%;
+    height: 10%;
+    //border: 1px solid pink;
+    display: flex;
+    align-items: center;
+}
+.formLine {
+    width: 80%; /* Cada línea ocupa todo el ancho del contenedor */
+    height: 9%;
+    margin-bottom: 10px; /* Espacio entre las líneas */
+    //border: 1px solid purple; /* Estilo de borde para cada línea (opcional) */
+    padding: 5px; /* Espaciado interno para cada línea (opcional) */
+  }
+  .contLabels{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    //border: 1px solid yellow;
+    margin-bottom: 1%;
+    div{
+        width: 50%;
+        height: 100%;
+        //border: 1px solid red;
+        display: flex;
+    }
+    label{
+        font-size: var(--text_paragraph);
+        color: var(--color_text-grey);
+    }
+    span{
+        font-size: var(--text_paragraph);
+        color: red;
+        padding-left: 2%;
+    }
+  }
+  .contInput{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    //border: 1px solid green;
+    div{
+        width: 50%;
+        height: 100%;
+        //border: 1px solid red;
+        display: flex;
+    }
+    input{
+        width: 95%;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+    }
+    select{
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+        width: 98%;
+        &.selected {
+            border: 2px solid lightgrey; // Cambia el borde a rojo después de la selección
+          }
+        &:focus {
+            border: 2px solid lightgrey; 
+          }
+    }
+  }
