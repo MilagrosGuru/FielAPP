@@ -1,6 +1,4 @@
-section {
-  padding-top: 8%;
-}
+
 input[type="text"]::placeholder,
 input[type="password"]::placeholder,
 input[type="email"]::placeholder  {
@@ -12,7 +10,7 @@ input[type="email"]::placeholder  {
     margin: 0 auto;
     padding: 0;
     height: 100vh;
-    min-width: 1224px;
+    /*min-width: 660px;*/
     /*border: 1px solid grey;*/
     position: relative;
   }
@@ -48,7 +46,7 @@ input[type="email"]::placeholder  {
     /*border: 1px solid red;*/
   }
   .contLogin{
-    width: 50%;
+    width: 300px;   /*estaba en 50%*/
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -75,7 +73,7 @@ input[type="email"]::placeholder  {
 .styleButtonPurple{
   border-radius: 10px;
   height: 35px;
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   border: none;
   background: var(--head-backgroud-color);
@@ -90,7 +88,7 @@ input[type="email"]::placeholder  {
 .styleButtonWhite{
   border-radius: 10px;
   height: 35px;
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   border: none;
   background: var(--background-color);

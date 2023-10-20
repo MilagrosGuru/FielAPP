@@ -2,6 +2,7 @@ import React,  {useState, useEffect} from 'react';
 import { useNavigate, Link} from 'react-router-dom';    
 
 import { update } from '../../functions/api/Api';
+import { read } from '../../functions/api/Api';
 
 import RegistrationHeader from '../../components/common/header/RegistrationHeader'
 import PhotoBackground from '../../components/pages/UpdateProfile/PhotoBackground'
@@ -26,7 +27,6 @@ function UpdateProfile()
     const [documentnumber, setDocumentNumber] = useState('');
     const [email, setEmail] = useState('');
     const [birthdate, setBirthdate] = useState('');
-    const [department, setDepartment] =  useState('');
     const [city, setCity] =  useState('');
     const [address, setAddress] =  useState('');
     const [phone, setPhone] =  useState('');
@@ -45,6 +45,8 @@ function UpdateProfile()
     const [emptyFields, setEmptyFields] = useState([]);
     const [isvalid, setIsValid] = useState(true);
     const [loading, setLoading] = useState(false);
+    const [department, setDepartment] =  useState([]);
+    const [selectedDepartment, setSelectedDepartment] = useState([]);
     
     /*DECLARO METODO DE NAVEGACION  */                                              
     const navigate = useNavigate();                                                            
@@ -59,6 +61,10 @@ function UpdateProfile()
     /*ESTILOS */
     const sizeButton = {
         width: '50%',
+        marginTop: '0',
+    };
+    const marginButton = {
+        marginTop: '0',
     };
     const style3 = {
         fontSize: '8px',  
@@ -100,6 +106,19 @@ function UpdateProfile()
         fetch(baseURL)
             .then((response) => response.json())
             .then((data) => {
+
+                console.log("Inicio carga combo departamento");
+                console.log(data.department);
+                const acction = "CargarDepartamentos";
+                let url =  '/department/list';
+                read(url, acction)
+                .then((department) => {
+                    setDepartment(department);
+                })
+                .catch((error) => {
+                    console.error('Error en la lectura de datos de departamentos:', error);
+                });
+                
                 setName(data.name);
                 setLastName(data.last_name);
                 setDocumentType(data.document_type);
@@ -107,7 +126,7 @@ function UpdateProfile()
                 setEmail(data.email);
                 setPhone(data.telephone);
                 setBirthdate(data.born_date);
-                setDepartment(data.department);
+                //setDepartment(data.department);
                 setCity(data.city);
                 setAddress(data.address);
                 setGender(data.gender);
@@ -117,6 +136,19 @@ function UpdateProfile()
                 console.error('Error al obtener datos de la API:', error);
             });
     }, []); 
+    /*CARGO COMBOS APENAS CARGA LA PAGINA
+    useEffect(() => {
+        console.log("Inicio carga combo departamento");
+        const acction = "CargarDepartamentos";
+        let url =  '/department/list';
+        read(url, acction)
+            .then((dataDepartment) => {
+                setDatosDepartment(dataDepartment);
+            })
+            .catch((error) => {
+                console.error('Error en la lectura de datos de departamentos:', error);
+            });
+    }, []);*/
 
     /*RENDERIZACION DEL ESTADO ERRORSTATE*/
     useEffect(() => {
@@ -169,8 +201,8 @@ function UpdateProfile()
         const inputValue = event.target.value;
         setBirthdate(inputValue);
     };
-    const handleDepartmentChange = (event) => {                                 
-        setDepartment(event.target.value);
+    const handleDepartmentChange = (event) => {
+        setSelectedDepartment(event.target.value);
     };
     const handleCityChange = (event) => {
         setCity(event.target.value);
@@ -217,7 +249,7 @@ function UpdateProfile()
             telephone: phone, 
             email: email, 
             born_date: birthdate, 
-            department: department, 
+            department:  selectedDepartment, 
             city: city, 
             address: address, 
             gender: gender
@@ -235,7 +267,7 @@ function UpdateProfile()
             if (phone === '000000000000') emptyFieldsArray.push('telefono');
             if (email === '') emptyFieldsArray.push('correo');
             if (birthdate === '') emptyFieldsArray.push('fechaNacimiento');
-            if (department === '') emptyFieldsArray.push('departamento');
+            if (selectedDepartment.length === 0) emptyFieldsArray.push('department');
             if (city === '') emptyFieldsArray.push('ciudad');
             if (address === '') emptyFieldsArray.push('direccion');
             if (gender === '') emptyFieldsArray.push('genero');
@@ -276,195 +308,268 @@ function UpdateProfile()
                         </div>
                     ) : (
                     <main className={styles.contUpdate}>   
-                        <section>
-                            {photo ? (
-                                <PhotoBackground src={photo}></PhotoBackground>
-                            ) : (
-                                <PhotoBackground src={PhotoImage}></PhotoBackground>
-                            )}
-                            <input type="file" id="inputImagen" style={{ display: 'none' }} onChange={handleImageChange} />
-                            <label className={styles.changePhoto} htmlFor="inputImagen">CAMBIAR FOTO</label>
+                        <section className={styles.contphoto}>
+                            <div className={styles.contphototext}>
+                                <div className={styles.photo}>
+                                    {photo ? (
+                                        <PhotoBackground src={photo}></PhotoBackground>
+                                    ) : (
+                                        <PhotoBackground src={PhotoImage}></PhotoBackground>
+                                    )}
+                                </div>
+                                <div className={styles.textphoto}>
+                                    <input type="file" id="inputImagen" style={{ display: 'none' }} onChange={handleImageChange} />
+                                    <label className={styles.changePhoto} htmlFor="inputImagen">CAMBIAR FOTO</label>
+                                </div>
+                            </div>
                         </section>
                         <section className={styles.sectionStyles}>
                             <form className={styles.styleForm}>
                                 <div className={styles.contForm}>
-                                    <div className={styles.contLabels}>
-                                        <div className={styles.labelsStyle}>
-                                            <label>Nombre:</label>
-                                            <label>Apellido:</label>
-                                            <label>Doc. de Identidad:</label>
-                                            <label>Email:</label>
-                                            <label>Fecha de Nacimiento:</label>
-                                            <label>Departamento:</label>
-                                            <label>Ciudad:</label>
-                                            <label>Dirección:</label>
-                                            <label>Número de Teléfono:</label>
-                                            <label>Género:</label>
-                                        </div>
-                                        <div className={styles.requiredStyle}>
-                                            <label>*</label>
-                                            <label>*</label>
-                                            <label>*</label>
-                                            <label>*</label>
-                                            <label>*</label>
-                                            <label>*</label>
-                                            <label>*</label>
-                                            <label>*</label>
-                                            <label>*</label>
-                                            <label>*</label>
-                                        </div>
                                     <div className={styles.contInformation}>
-                                        <div>
-                                            <input
-                                                type="text"
-                                                name="nombre"
-                                                value={name || ''}
-                                                onChange={handleNameChange}
-                                                id="nombre" 
-                                                placeholder="Nombre"
-                                                required
-                                                className={emptyFields.includes('nombre') ? styles.redBorder : ''}
-                                            />
-                                        </div>
-                                        <div>
-                                            <input
-                                                type="text"
-                                                name="apellido"
-                                                value={lastName || ''}
-                                                onChange={handleLastNameChange}
-                                                id="apellido" 
-                                                placeholder="Apellido"
-                                                required
-                                                className={emptyFields.includes('apellido') ? styles.redBorder : ''}
-                                            />
-                                        </div>
-                                        <div className={styles.contDocument}>
-                                            <div className={styles.sizeType}>
-                                                <input
-                                                    type="text"
-                                                    name="documenttype"
-                                                    maxLength="2" 
-                                                    pattern="[A-Za-z]+"
-                                                    value={documenttype || ''}
-                                                    onChange={handleDocumentTypeChange}
-                                                    id="documenttype" 
-                                                    placeholder="Tipo"
-                                                    required
-                                                    className={emptyFields.includes('documenttype') ? styles.redBorder : ''}
-                                                    title="Solo se permiten caracteres (A-Z, a-z)"
-                                                />
-                                                {errorType && <MistakeValidation message={errortypemessage} />}
+                                        <div className={styles.formLine}>
+                                            <div className={styles.contLabels}>
+                                                <div>
+                                                    <label>Nombre</label><span>*</span>
+                                                </div>
+                                                <div>
+                                                    <label>Apellido</label><span>*</span>
+                                                </div>
                                             </div>
-                                            <div className={styles.sizeLine}>-</div>
-                                            <div className={styles.sizeNumber}>
-                                                <input
-                                                    type="text"
-                                                    name="documentnumber"
-                                                    value={documentnumber || ''}
-                                                    onChange={handleDocumentNumberChange}
-                                                    id="documentnumber" 
-                                                    placeholder="Número"
-                                                    required
-                                                    className={emptyFields.includes('documentnumber') ? styles.redBorder : ''}
-                                                />
-                                                {errorNumber && <MistakeValidation message={errortypemessage} />}
+                                            <div className={styles.contInput}>
+                                                <div>
+                                                    <input
+                                                        type="text"
+                                                        name="nombre"
+                                                        value={name || ''}
+                                                        onChange={handleNameChange}
+                                                        id="nombre" 
+                                                        placeholder="Nombre"
+                                                        required
+                                                        className={emptyFields.includes('nombre') ? styles.redBorder : ''}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <input
+                                                        type="text"
+                                                        name="apellido"
+                                                        value={lastName || ''}
+                                                        onChange={handleLastNameChange}
+                                                        id="apellido" 
+                                                        placeholder="Apellido"
+                                                        required
+                                                        style={{
+                                                            width: '100%',
+                                                        }}
+                                                        className={emptyFields.includes('apellido') ? styles.redBorder : ''}
+                                                    /> 
+                                                </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <input
-                                                type="email"
-                                                name="correo"
-                                                value={email || ''}
-                                                onChange={handleEmailChange}
-                                                id="Correo" 
-                                                placeholder="Email"
-                                                required
-                                                style={{ borderColor: isvalid ? 'initial' : 'red' }}
-                                                className={emptyFields.includes('correo') ? styles.redBorder : ''}
-                                            />
-                                            {!isvalid && <MistakeValidation message={errortypemessage} />}
+                                        <div className={styles.formLine}>
+                                            <div className={styles.contLabels}>
+                                                <div>
+                                                    <label>Documento de Identidad</label><span>*</span>
+                                                </div>
+                                                <div></div>
+                                            </div>
+                                            <div className={styles.contInput}>
+                                                <div>
+                                                    <input
+                                                        type="text"
+                                                        name="documenttype"
+                                                        maxLength="2" 
+                                                        pattern="[A-Za-z]+"
+                                                        value={documenttype || ''}
+                                                        onChange={handleDocumentTypeChange}
+                                                        id="documenttype" 
+                                                        placeholder="Tipo"
+                                                        required
+                                                        className={emptyFields.includes('documenttype') ? styles.redBorder : ''}
+                                                        title="Solo se permiten caracteres (A-Z, a-z)"
+                                                    />
+                                                    {errorType && <MistakeValidation message={errortypemessage} />}
+                                                </div>
+                                                <div>
+                                                    <input
+                                                        type="text"
+                                                        name="documentnumber"
+                                                        value={documentnumber || ''}
+                                                        onChange={handleDocumentNumberChange}
+                                                        id="documentnumber" 
+                                                        placeholder="Número"
+                                                        required
+                                                        style={{
+                                                            width: '100%',
+                                                        }}
+                                                        className={emptyFields.includes('documentnumber') ? styles.redBorder : ''}
+                                                    />
+                                                    {errorNumber && <MistakeValidation message={errortypemessage} />}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input
-                                                type="date"
-                                                name="fechaNacimiento"
-                                                value={birthdate || ''}
-                                                onChange={handleBirthdateChange}
-                                                id="fechaNacimiento" 
-                                                placeholder="Fecha de Nacimiento"
-                                                required
-                                                className={emptyFields.includes('fechaNacimiento') ? styles.redBorder : ''}
-                                            />
-                                            {errorBirthdate && <MistakeValidation message={errortypemessage} />}
+                                        <div className={styles.formLine}>
+                                            <div className={styles.contLabels}>
+                                                <div>
+                                                    <label>Email</label><span>*</span>
+                                                </div>
+                                                <div></div>
+                                            </div>
+                                            <div className={styles.contInput}>
+                                                <div style={{ width: '100%' }}>
+                                                    <input
+                                                        type="email"
+                                                        name="correo"
+                                                        value={email || ''}
+                                                        onChange={handleEmailChange}
+                                                        id="Correo" 
+                                                        placeholder="Email"
+                                                        required
+                                                        style={{
+                                                            borderColor: isvalid ? 'lightgrey' : 'red',
+                                                            width: '100%',
+                                                        }}
+                                                        className={emptyFields.includes('correo') ? styles.redBorder : ''}
+                                                    />
+                                                    {!isvalid && <MistakeValidation message={errortypemessage} />}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input
-                                                type="text"
-                                                name="departamento"
-                                                value={department || ''}
-                                                onChange={handleDepartmentChange}
-                                                id="departamento" 
-                                                placeholder="Departamento"
-                                                required
-                                                className={emptyFields.includes('departamento') ? styles.redBorder : ''}
-                                            />
+                                        <div className={styles.formLine}>
+                                            <div className={styles.contLabels}>
+                                                <div>
+                                                    <label>Dirección</label><span>*</span>
+                                                </div>
+                                                <div></div>
+                                            </div>
+                                            <div className={styles.contInput}>
+                                                <div style={{ width: '100%' }}>
+                                                    <input
+                                                        type="text"
+                                                        name="direccion"
+                                                        value={address || ''}
+                                                        onChange={handleAddressChange}
+                                                        id="direccion" 
+                                                        placeholder="Dirección"
+                                                        required
+                                                        style={{
+                                                            width: '100%',
+                                                        }}
+                                                        className={emptyFields.includes('direccion') ? styles.redBorder : ''}
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input
-                                                type="text"
-                                                name="ciudad"
-                                                value={city || ''}
-                                                onChange={handleCityChange}
-                                                id="ciudad" 
-                                                placeholder="Ciudad"
-                                                required
-                                                className={emptyFields.includes('ciudad') ? styles.redBorder : ''}
-                                            />
+                                        <div className={styles.formLine}>
+                                            <div className={styles.contLabels}>
+                                                <div>
+                                                    <label>Departamento</label><span>*</span>
+                                                </div>
+                                                <div>
+                                                    <label>Ciudad</label><span>*</span>
+                                                </div>
+                                            </div>
+                                            <div className={styles.contInput}>
+                                                <div>
+                                                    <select id="Department" value={selectedDepartment} onChange={handleDepartmentChange} className={emptyFields.includes('department') ? styles.redBorder : ''}>
+                                                        <option id="firstOption" value="" className={styles.selectgroup}>Selecciona una opción</option>
+                                                        {department.map((item) => (
+                                                            <option key={item.id} value={item.id}>
+                                                                {item.name}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <input
+                                                        type="text"
+                                                        name="ciudad"
+                                                        value={city || ''}
+                                                        onChange={handleCityChange}
+                                                        id="ciudad" 
+                                                        placeholder="Ciudad"
+                                                        required
+                                                        style={{
+                                                            width: '100%',
+                                                        }}
+                                                        className={emptyFields.includes('ciudad') ? styles.redBorder : ''}
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input
-                                                type="text"
-                                                name="direccion"
-                                                value={address || ''}
-                                                onChange={handleAddressChange}
-                                                id="direccion" 
-                                                placeholder="Dirección"
-                                                required
-                                                className={emptyFields.includes('direccion') ? styles.redBorder : ''}
-                                            />
+                                        <div className={styles.formLine}>
+                                            <div className={styles.contLabels}>
+                                                <div>
+                                                    <label>Fecha de Nacimiento</label><span>*</span>
+                                                </div>
+                                                <div>
+                                                    <label>Teléfono</label><span>*</span>
+                                                </div>
+                                            </div>
+                                            <div className={styles.contInput}>
+                                                <div>
+                                                    <input
+                                                        type="date"
+                                                        name="fechaNacimiento"
+                                                        value={birthdate || ''}
+                                                        onChange={handleBirthdateChange}
+                                                        id="fechaNacimiento" 
+                                                        placeholder="Fecha de Nacimiento"
+                                                        required
+                                                        className={emptyFields.includes('fechaNacimiento') ? styles.redBorder : ''}
+                                                    />
+                                                    {errorBirthdate && <MistakeValidation message={errortypemessage} />}
+                                                </div>
+                                                <div>
+                                                    <input
+                                                        type="text"
+                                                        name="telefono"
+                                                        value={phone || ''}
+                                                        onChange={handlePhoneChange}
+                                                        id="telefono" 
+                                                        placeholder="Número de Teléfono"
+                                                        required
+                                                        style={{
+                                                            width: '100%',
+                                                        }}
+                                                        className={emptyFields.includes('telefono') ? styles.redBorder : ''}
+                                                    />
+                                                    {errorPhone && <MistakeValidation message={errortypemessage} />}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input
-                                                type="text"
-                                                name="telefono"
-                                                value={phone || ''}
-                                                onChange={handlePhoneChange}
-                                                id="telefono" 
-                                                placeholder="Número de Teléfono"
-                                                required
-                                                className={emptyFields.includes('telefono') ? styles.redBorder : ''}
-                                            />
-                                            {errorPhone && <MistakeValidation message={errortypemessage} />}
+                                        <div className={styles.formLine}>
+                                            <div className={styles.contLabels}>
+                                                <div>
+                                                    <label>Género</label><span>*</span>
+                                                </div>
+                                                <div></div>
+                                            </div>
+                                            <div className={styles.contInput}>
+                                                <div style={{ width: '100%' }}>
+                                                    <select
+                                                        name="genero"
+                                                        value={gender || ''}
+                                                        onChange={handleGenderChange}
+                                                        id="genero" 
+                                                        placeholder="Género"
+                                                        required
+                                                        style={{
+                                                            width: '100%',
+                                                        }}
+                                                        className={emptyFields.includes('genero') ? styles.redBorder : ''}
+                                                    >
+                                                        <option className={styles.colorfirstoption} value="">Selecciona una opción</option>
+                                                        <option value="M">M</option>
+                                                        <option value="F">F</option>
+                                                        <option value="O">O</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <select
-                                                name="genero"
-                                                value={gender || ''}
-                                                onChange={handleGenderChange}
-                                                id="genero" 
-                                                placeholder="Género"
-                                                required
-                                                className={emptyFields.includes('genero') ? styles.redBorder : ''}
-                                            >
-                                                <option className={styles.colorfirstoption} value="">Selecciona una opción</option>
-                                                <option value="M">M</option>
-                                                <option value="F">F</option>
-                                                <option value="O">O</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
+                                <div className={styles.contbutton}>
                                 <input className="styleButtonPurple"  type="button"  style={sizeButton} value="Actualizar" onClick={updateInformation}/>
                                 {showErrorMessage && <Mistake message={errorstate.map((part, index) => (
                                     <div key={index}>
@@ -476,7 +581,9 @@ function UpdateProfile()
                                         <span style={index === 0 ? style1 : style2}>{part}</span>
                                     </div>
                                 ))} />}
-                            </form>
+                                </div>
+                                
+                                </form>
                         </section>
                     </main>
                     )}
