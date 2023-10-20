@@ -8,6 +8,7 @@
     width: 200px;
     height: 15px;
     z-index: 99;
+    top: 100%;
 }
 
 .errormessage {
@@ -15,4 +16,5 @@
     text-align: center;
     line-height: 12px !important;
     font-size: 11px;
+    width: 100% !important;
 }
