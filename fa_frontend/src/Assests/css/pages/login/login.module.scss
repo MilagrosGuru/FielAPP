@@ -84,8 +84,12 @@ input:focus{
     align-items: center;
 }
 .namesocial{
+    width: 70%;
     margin: 0 auto;
     font-size: 14px;
+    @media (max-width: 560px) {
+        font-size: 11px;
+    }
 }
 .bordercolor{
     border: var(--head-backgroud-color);
