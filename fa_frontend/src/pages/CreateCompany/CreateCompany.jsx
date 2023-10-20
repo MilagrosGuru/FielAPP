@@ -147,10 +147,12 @@ function CreateCompany()
         if (/^[0-9]*$/.test(inputValue) && inputValue.length <=12) {
             setPhone(inputValue);
             setErrorPhone(false);
+            setIsValid(true);
             
         } else {
             setErrorTypeMessage('Ingrese solo números');
             setErrorPhone(true);
+            setIsValid(false);
         }
     };
     const handleImageChange = (e) => {
@@ -375,6 +377,7 @@ function CreateCompany()
                                                             required
                                                             style={{
                                                                 width: '100%',
+                                                                borderColor: isvalid ? 'lightgrey' : 'red',
                                                             }}
                                                             className={emptyFields.includes('telephone') ? styles.redBorder : ''}
                                                         />
@@ -458,178 +461,9 @@ function CreateCompany()
                                                 <span style={index === 0 ? style1 : style2}>{part}</span>
                                             </div>
                                         ))} />}
-                                    {/*<input className="styleButtonPurple"  type="button"  style={sizeButton} value="Actualizar" onClick={updateInformation}/>
-                                    {showErrorMessage && <Mistake message={errorstate.map((part, index) => (
-                                        <div key={index}>
-                                            <span style={index === 0 ? style1 : index === 1 ? style1 : style1}>{part}</span>
-                                        </div>
-                                    ))} />}
-                                    {showSuccessMessage && <Success message= {successState.map((part, index) => (
-                                        <div key={index}>
-                                            <span style={index === 0 ? style1 : style2}>{part}</span>
-                                        </div>
-                                    ))} />}*/}
                                     </div>
                                     
                                 </form>
-                       
-                                {/*<form className={styles.styleForm}>
-                                    <div className={styles.contForm}>
-                                        <div className={styles.contLabels}>
-                                            <div className={styles.labelsStyle}>
-                                                <label className={styles.labelLogo}>Logo:</label>
-                                                <label>Nombre de Empresa:</label>
-                                                <label>NIT:</label>
-                                                <label>Categoria:</label>
-                                                <label>Horario de atención:</label>
-                                                <label>País:</label>
-                                                <label>Departamento:</label>
-                                                <label>Dirección:</label>
-                                                <label>Número de Teléfono:</label>
-                                            </div>
-                                            <div className={styles.requiredStyle}>
-                                                <label className={styles.labelasterisco}> </label>
-                                                <label>*</label>
-                                                <label>*</label>
-                                                <label>*</label>
-                                                <label>*</label>
-                                                <label>*</label>
-                                                <label>*</label>
-                                                <label>*</label>
-                                                <label>*</label>
-                                            </div>
-                                        <div className={styles.contInformation}>
-                                            <div>
-                                                {logo ? (
-                                                    <LogoBackground src={logo}></LogoBackground>
-                                                ) : (
-                                                    <LogoBackground src={LogoImage}></LogoBackground>
-                                                )}
-                                                <input 
-                                                    type="file" 
-                                                    id="inputImagen" 
-                                                    style={{ display: 'none' }} 
-                                                    onChange={handleImageChange} 
-                                                />  
-                                                <label className={styles.changeLogo} htmlFor="inputImagen">CAMBIAR LOGO</label>   
-                                            </div>
-                                            <div>
-                                                <input
-                                                    type="text"
-                                                    name="nameCompany"
-                                                    value={namecompany || ''}
-                                                    onChange={handleNameCompanyChange}
-                                                    id="namecompany" 
-                                                    placeholder="Nombre de Empresa"
-                                                    required
-                                                    className={emptyFields.includes('companyName') ? styles.redBorder : ''}
-                                                />
-                                            </div>
-                                            <div>
-                                                <input
-                                                    type="text"
-                                                    name="nit"
-                                                    value={nit || ''}
-                                                    onChange={handleNitChange}
-                                                    id="nit" 
-                                                    placeholder="NIT"
-                                                    required
-                                                    className={emptyFields.includes('nit') ? styles.redBorder : ''}
-                                                />
-                                            </div>
-                                            <div>
-                                                <input
-                                                    type="text"
-                                                    name="category"
-                                                    value={category || ''}
-                                                    onChange={handleCategoryChange}
-                                                    id="category" 
-                                                    placeholder="Categoria"
-                                                    required
-                                                    className={emptyFields.includes('category') ? styles.redBorder : ''}
-                                                />
-                                            </div>
-                                            <div>
-                                                <input
-                                                    type="text"
-                                                    name="timetable"
-                                                    value={timetable || ''}
-                                                    onChange={handleTimetableChange}
-                                                    id="timetable" 
-                                                    placeholder="Horario de atención"
-                                                    required
-                                                    className={emptyFields.includes('timetable') ? styles.redBorder : ''}
-                                                />
-                                            </div>
-                                            <div>
-                                                <select id="Country" value={selectedCountry} onChange={handleCountryChange} className={emptyFields.includes('country') ? styles.redBorder : ''}>
-                                                    <option value="" style={{ color: 'lightgrey' }}>Selecciona una opción</option>
-                                                    {datoscountry.map((item) => (
-                                                        <option key={item.id} value={item.id} style={{ color: selectedCountry === item.id ? 'black' : 'initial' }}>
-                                                            {item.name}
-                                                        </option>
-                                                    ))}
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <select id="Department" value={selectedDepartment} onChange={handleDepartmentChange} className={emptyFields.includes('department') ? styles.redBorder : ''}>
-                                                    <option id="firstOption" value="" className={styles.selectgroup}>Selecciona una opción</option>
-                                                    {datosdepartment.map((item) => (
-                                                        <option key={item.id} value={item.id}>
-                                                            {item.name}
-                                                        </option>
-                                                    ))}
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <input
-                                                    type="text"
-                                                    name="address"
-                                                    value={address || ''}
-                                                    onChange={handleAddressChange}
-                                                    id="address" 
-                                                    placeholder="Dirección"
-                                                    required
-                                                    className={emptyFields.includes('address') ? styles.redBorder : ''}
-                                                />
-                                            </div>
-                                            <div>
-                                                <input
-                                                    type="text"
-                                                    name="telephone"
-                                                    value={phone || ''}
-                                                    onChange={handlePhoneChange}
-                                                    id="telephone" 
-                                                    placeholder="Número de Teléfono"
-                                                    required
-                                                    className={emptyFields.includes('telephone') ? styles.redBorder : ''}
-                                                />
-                                                {errorPhone && <MistakeValidation message={errortypemessage} />}
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.contButtonArrow}>
-                                        <div className={styles.contButtons}>
-                                            <OtherImages img={LeftArrow} linkTo={LinkTo}/>
-                                        </div>
-                                        <div className={styles.contButtons}>
-                                            <input className="styleButtonPurple"  type="button"  style={sizeButton} value="Guardar" onClick={createCompany}/>
-                                        </div>
-                                    </div>
-                                    
-                                    {showErrorMessage && <Mistake message={errorstate.map((part, index) => (
-                                        <div key={index}>
-                                            <span style={index === 0 ? style1 : index === 1 ? style1 : style1}>{part}</span>
-                                        </div>
-                                    ))} />}
-                                    {showSuccessMessage && <Success message= {successState.map((part, index) => (
-                                        <div key={index}>
-                                            <span style={index === 0 ? style1 : style2}>{part}</span>
-                                        </div>
-
-                                    ))} />}
-                                    </form>*/}
                             </section>
                         </main>
                     )}

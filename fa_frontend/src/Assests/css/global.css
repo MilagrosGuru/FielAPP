@@ -104,10 +104,11 @@ input[type="email"]::placeholder  {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   flex-direction: column;
 }
 .text-spinner{
   margin-top: 40px;
+  text-align: center;
 }
