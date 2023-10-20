@@ -21,14 +21,16 @@ function Welcome()
                 <div className="leftContainer"></div>
                 <div className="center">
                     <main className="contLogin">   
-                        <section>
-                            <WelcomeTitle />
+                        <section className={styles.section1}>
+                                <WelcomeTitle />
                         </section>
-                        <section>
-                            <UserWelcome/>
+                        <section className={styles.section2}>
+                                <UserWelcome/>
                         </section> 
                         <section className={styles.styleText}>
-                            <CentralText text={'¡Gracias por preferirnos! Estamos listos para acompañarte en esta nueva aventura'}/>
+                            <div>
+                                <CentralText text={'¡Gracias por preferirnos! Estamos listos para acompañarte en esta nueva aventura'}/>
+                            </div>
                         </section>
                         <section className={styles.contButton}>
                             <div className={styles.ContgenButton}>
