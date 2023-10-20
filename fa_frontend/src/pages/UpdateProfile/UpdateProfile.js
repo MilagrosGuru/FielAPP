@@ -44,6 +44,8 @@ function UpdateProfile()
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [emptyFields, setEmptyFields] = useState([]);
     const [isvalid, setIsValid] = useState(true);
+    const [isvalidnumber, setIsValidNumber] = useState(true);
+    const [isvalidtype, setIsValidType] = useState(true);
     const [loading, setLoading] = useState(false);
     const [department, setDepartment] =  useState([]);
     const [selectedDepartment, setSelectedDepartment] = useState([]);
@@ -136,19 +138,6 @@ function UpdateProfile()
                 console.error('Error al obtener datos de la API:', error);
             });
     }, []); 
-    /*CARGO COMBOS APENAS CARGA LA PAGINA
-    useEffect(() => {
-        console.log("Inicio carga combo departamento");
-        const acction = "CargarDepartamentos";
-        let url =  '/department/list';
-        read(url, acction)
-            .then((dataDepartment) => {
-                setDatosDepartment(dataDepartment);
-            })
-            .catch((error) => {
-                console.error('Error en la lectura de datos de departamentos:', error);
-            });
-    }, []);*/
 
     /*RENDERIZACION DEL ESTADO ERRORSTATE*/
     useEffect(() => {
@@ -168,10 +157,11 @@ function UpdateProfile()
         if (/^[A-Za-z]*$/.test(inputValue) && inputValue.length <= 2) {
             setDocumentType(inputValue);
             setErrorType(false);
-            
+            setIsValidType(true);
         } else {
             setErrorTypeMessage('Ingrese solo caracteres válidos (A-Z, a-z)');
             setErrorType(true);
+            setIsValidType(false);
         }
     };
     const handleDocumentNumberChange = (event) => {
@@ -179,10 +169,12 @@ function UpdateProfile()
         if (/^[0-9]*$/.test(inputValue) && inputValue.length <=10) {
             setDocumentNumber(inputValue);
             setErrorNumber(false);
+            setIsValidNumber(true);
             
         } else {
             setErrorTypeMessage('Ingrese solo números');
             setErrorNumber(true);
+            setIsValidNumber(false);
         }
     };
     const handleEmailChange = (event) => {
@@ -385,6 +377,9 @@ function UpdateProfile()
                                                         id="documenttype" 
                                                         placeholder="Tipo"
                                                         required
+                                                        style={{
+                                                            borderColor: isvalidtype ? 'lightgrey' : 'red',
+                                                        }}
                                                         className={emptyFields.includes('documenttype') ? styles.redBorder : ''}
                                                         title="Solo se permiten caracteres (A-Z, a-z)"
                                                     />
@@ -400,6 +395,7 @@ function UpdateProfile()
                                                         placeholder="Número"
                                                         required
                                                         style={{
+                                                            borderColor: isvalidnumber ? 'lightgrey' : 'red',
                                                             width: '100%',
                                                         }}
                                                         className={emptyFields.includes('documentnumber') ? styles.redBorder : ''}
