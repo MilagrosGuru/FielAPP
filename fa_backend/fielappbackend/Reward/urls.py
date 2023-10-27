@@ -10,5 +10,6 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('reward/create', RewardAPIView.as_view()), #crear premio
     path('reward/<int:id>/', RewardAPIView.consult_reward, name='consult_rewards'),
+    path('reward/<int:id>/<int:id_usuario>/delete', RewardAPIView.delete_reward, name='delete_rewards'),
 ]
 
