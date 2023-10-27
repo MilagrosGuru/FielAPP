@@ -36,7 +36,7 @@ class CategoryList(APIView):
         db = client[settings.MONGODB_DB]
 
         # Consulta para obtener todos los países y sus estados
-        categories = db.DataInit_category.find({}, {'_id': False})
+        categories = db.Company_category.find({}, {'_id': False})
 
         # Convertir el resultado a una lista y devolverla en la respuesta
         category_list = []
