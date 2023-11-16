@@ -22,3 +22,7 @@ class DocumentType(models.Model):
 class Gender(models.Model):
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=3)
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    code = models.CharField(max_length=3)

@@ -1,10 +1,6 @@
 from rest_framework import serializers
-from .models import Company, Category
+from .models import Company
 
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['name', 'code']
 
 class CompanySerializer(serializers.ModelSerializer):
     '''categories = CategorySerializer(many=True, read_only=True)
@@ -14,5 +10,5 @@ class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
         '''fields = ['logo', 'NIT','companyName', 'categories', 'timetable','countries' ,'departments',
-                  'user_id','address','telephone']'''
+                  'user_id','address','telephone', 'full_name','setup_type_reward]'''
         fields = '__all__'

@@ -21,6 +21,7 @@ db = client1[settings.MONGODB_DB]
 
 class UserView(APIView):
     def post(self, request):
+        print("entro")
 
         data = request.data
         name_array = data['full_name'].split()
@@ -33,10 +34,10 @@ class UserView(APIView):
         if data['born_date'] == '':
             request.data['born_date'] = '1900-11-11'
 
-
         user_serializer = UserSerializer(data=request.data)
         try:
             if user_serializer.is_valid():
+                   # print("entro serializador ",user_serializer.validated_datap)
                     user_serializer.save()
                     
                     partial_data = {

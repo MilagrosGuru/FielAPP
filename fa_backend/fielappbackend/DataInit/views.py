@@ -4,8 +4,8 @@ from pymongo import MongoClient
 from django.conf import settings
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Country, Department, City, DocumentType, Gender
-from .serializers import CountrySerializer, DocumentTypeSerializer, GenderSerializer
+from .models import Country, Department, City, DocumentType, Gender, Category
+from .serializers import CountrySerializer, DocumentTypeSerializer, GenderSerializer, CategorySerializer
 from rest_framework import status
 from rest_framework.decorators import api_view
 from bson.objectid import ObjectId
@@ -174,4 +174,31 @@ class GenderViewId(APIView):
         except Gender.DoesNotExist:
             return Response({'error': 'Género no encontrado'}, status=status.HTTP_404_NOT_FOUND)
         
+    
+class CategoryView(APIView):
+    def post(self, request):
+        categories = [JSONParser().parse(request)]
+        
+        for category in categories:
+            category_obj = Category.objects.create(**category)
+                
+            db.categories.insert_one(category) # Insertar datos en MongoDB
+        
+        return Response(CategorySerializer(Category.objects.all(), many=True).data)
+    
+
+class CategoryList(APIView):
+    def get(self, request):
+        # Conexión a la base de datos MongoDB
+        client = MongoClient(settings.MONGODB_HOST)
+        db = client[settings.MONGODB_DB]
+
+        # Consulta para obtener todos los países y sus estados
+        categories = db.Company_category.find({}, {'_id': False})
+
+        # Convertir el resultado a una lista y devolverla en la respuesta
+        category_list = []
+        for category in categories:
+            category_list.append(category)
+        return Response(category_list, status=status.HTTP_200_OK)
     

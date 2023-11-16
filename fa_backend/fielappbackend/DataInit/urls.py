@@ -2,7 +2,7 @@ from django.urls import path,include
 from DataInit import views
 from rest_framework import routers
 
-from .views import CountryView, CountryStateList, DocumentTypeView, DocumentTypeList,GenderView, GenderList, DepartmentList, DocumentTypeViewId, GenderViewId, DepartmentViewId
+from .views import CountryView, CountryStateList, DocumentTypeView, DocumentTypeList,GenderView, GenderList, DepartmentList, DocumentTypeViewId, GenderViewId, DepartmentViewId, CategoryView, CategoryList
 
 router = routers.DefaultRouter()
 
@@ -22,6 +22,8 @@ urlpatterns = [
     path('documentType/<str:document_id>/', DocumentTypeViewId.as_view(), name='document-detail'),
     path('gender/<str:gender_id>/', GenderViewId.as_view(), name='gender-detail'),
     path('department/<str:department_id>/', DepartmentViewId.as_view(), name='department-detail'),
+    path('category/create', CategoryView.as_view()),
+    path('category/list', CategoryList.as_view()),
 
 ]
 
