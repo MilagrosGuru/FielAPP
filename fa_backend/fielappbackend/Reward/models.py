@@ -1,11 +1,12 @@
 from djongo import models
-from storages.backends.s3boto3 import S3Boto3Storage
+#from storages.backends.s3boto3 import S3Boto3Storage
 from datetime import datetime
 
 
 class Reward(models.Model):
     activate= models.BooleanField(default=False, blank=True)
-    URL = models.FileField(upload_to='uploads/', storage=S3Boto3Storage())  # Campo FileField
+    #URL = models.FileField(upload_to='uploads/', storage=S3Boto3Storage())  # Campo FileField
+    URL = models.FileField(upload_to='uploads/')  # Campo FileField
     minimun_cost = models.FloatField(max_length=100, blank=True, default='')
     description= models.CharField(max_length=600, blank=True, default='')
     redeem_points= models.IntegerField(blank=True, default='')

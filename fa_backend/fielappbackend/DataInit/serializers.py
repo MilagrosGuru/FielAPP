@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Country, Department, City, DocumentType, Gender
+from .models import Country, Department, City, DocumentType, Gender, Category
 
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,4 +28,9 @@ class DocumentTypeSerializer(serializers.ModelSerializer):
 class GenderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gender
+        fields = ['name', 'code']
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
         fields = ['name', 'code']

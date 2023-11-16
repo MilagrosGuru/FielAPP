@@ -27,7 +27,7 @@ class RewardAPIView(APIView):   #otra forma de crear premio
         serializer = RewardSerializer(data=data)
 
         try:
-            if serializer.is_valid():  
+            if serializer.is_valid(): 
                 reward = serializer.save()  # Guarda el objeto en la base de datos
                 reward_id = reward.id  # Accede al ID del objeto creado
                 return Response({"message": "Premio creado", "reward_id": reward_id}, status=status.HTTP_201_CREATED)
@@ -102,4 +102,30 @@ class RewardAPIView(APIView):   #otra forma de crear premio
         except Exception as e:
             print("Error:", str(e))
 
+    def get_rewards_by_company(request, company_id): #lista de premios Fielapp 113
+        print(company_id)
+        # Query all rewards for the given company ID
+        #rewards = Reward.objects.filter(company__id_company=company_id)
+        '''rewards = Reward.objects.filter({'company.id_company': company_id})
+
+        # Serialize the rewards data
+        rewards_data = [
+            {
+                'id': reward.id
+            }
+            for reward in rewards
+        ]'''
+         # Consulta para obtener todos los países y sus estados
+        rewards = db.Reward_reward.find({}, {'company.id_company': company_id})
+        print(rewards)
+
+        # Convertir el resultado a una lista y devolverla en la respuesta
+        reward_list = []
+        for rew in rewards:
+            reward_list.append(rew)
+
+        return Response(reward_list, status=status.HTTP_200_OK)
+
+        # Return the data as JSON
+        #return JsonResponse({'rewards': rewards_data})
 
