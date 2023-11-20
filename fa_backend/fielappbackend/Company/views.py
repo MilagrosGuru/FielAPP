@@ -1,49 +1,25 @@
+import json
 from django import apps
+from django.http import HttpResponseServerError
 from django.shortcuts import render
 from pymongo import MongoClient
 from django.conf import settings
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Category, Company, Country, Department, User
-from .serializers import CategorySerializer, CompanySerializer
+from .models import Company, User
+from .serializers import  CompanySerializer
 from rest_framework import status
 from rest_framework.decorators import api_view
 from bson.objectid import ObjectId
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from rest_framework import generics
-import json
+from django.shortcuts import get_object_or_404
+
 
 client = MongoClient(settings.MONGODB_HOST)
 db = client[settings.MONGODB_DB]
 
-class CategoryView(APIView):
-    def post(self, request):
-        categories = [JSONParser().parse(request)]
-        
-        for category in categories:
-            category_obj = Category.objects.create(**category)
-                
-            db.categories.insert_one(category) # Insertar datos en MongoDB
-        
-        return Response(CategorySerializer(Category.objects.all(), many=True).data)
-    
-
-class CategoryList(APIView):
-    def get(self, request):
-        # Conexión a la base de datos MongoDB
-        client = MongoClient(settings.MONGODB_HOST)
-        db = client[settings.MONGODB_DB]
-
-        # Consulta para obtener todos los países y sus estados
-        categories = db.Company_category.find({}, {'_id': False})
-
-        # Convertir el resultado a una lista y devolverla en la respuesta
-        category_list = []
-        for category in categories:
-            category_list.append(category)
-        return Response(category_list, status=status.HTTP_200_OK)
-    
 '''class CompanyView(APIView):
     def post(self, request):
         try:
@@ -87,19 +63,20 @@ class CompanyAPIView(APIView):   #otra forma de crear compañia
         serializer = CompanySerializer(data=request.data)
         try:
             if serializer.is_valid():
-                company = serializer.save()  # Guarda el objeto en la base de datos
+                print("data: ",request.data)
+                company = serializer.save() 
+                print("3") # Guarda el objeto en la base de datos
                 company_id = company.id  # Accede al ID del objeto creado
-                print(company_id)
+
                 company2 = {
                     'id_company': company.id,
                     'company_name': company.companyName,
-                    'logo': company.logo
+                    'logo': company.logo.path
                 }
+
                 collection = db.User_user
-                print(company)
-                print(company.user_id)
-                user = collection.find_one({'id': int(company.user_id)})
-                print(user['object_company'])
+                print(company.logo)
+                print(company2)
 
                 collection.update_one({'id': company.user_id}, {'$set': {'object_company':company2,
                                                                          'partnerType':True,
@@ -112,6 +89,27 @@ class CompanyAPIView(APIView):   #otra forma de crear compañia
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             print("Error:", str(e))
+
+    @api_view(['PUT'])
+    def put_setup_type_reward(request, comp_id, setup_type_reward): #historia fiealpp-135
+    # Connect to the MongoDB database
+        collection = db.Company_company
+        company = collection.find_one({'id': int(comp_id)})
+           
+        if company is not None:
+                # Update the user document with the provided data
+
+            collection.update_one({'id': int(comp_id)}, {'$set': {'setup_type_reward':setup_type_reward}})
+
+            partial_data = {
+                'id_company': company['id']
+            }
+
+                # Return a success response
+            return JsonResponse(partial_data, status=status.HTTP_200_OK) 
+        else:
+                # Return an error response if the user is not found
+            return JsonResponse(data.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -140,7 +138,7 @@ class CompanyList(APIView): #crear compañia y agrego al objeto usuario los dato
         db = client[settings.MONGODB_DB]
 
         # Consulta para obtener todos los países y sus estados
-        companies = db.DataInit_company.find({}, {'_id': False})
+        companies = db.Company_company.find({}, {'_id': False})
 
         # Convertir el resultado a una lista y devolverla en la respuesta
         company_list = []
@@ -149,19 +147,25 @@ class CompanyList(APIView): #crear compañia y agrego al objeto usuario los dato
 
         return Response(company_list, status=status.HTTP_200_OK)
     
-class CompanybyContact(APIView): #cuando el usuario retorna para una sola compañia
+class CompanybyContact(APIView): #cuando el usuario retorna para una sola compañia Fielapp #90
     def get(self, request, user_id): # Método GET para la búsqueda
+        print("enrooo")
         try:
-            company = Company.objects.get(user_com_id=int(user_id)) # Busca el departamento por ID de usuario
-            user = User.objects.get(id=int(user_id)) # Busca el departamento por ID de usuario
+            company_instance = get_object_or_404(Company, user_id=user_id)
+            print("enrooo: ",company_instance.logo)
 
-            print("usuario",user)
-            # Aquí puedes realizar cualquier otra lógica necesaria con el estado encontrado
-            # ...
-            return Response({'logo': company.logo, 'empresa': company.companyName, 'contacto':company.user_com.full_name}, status=status.HTTP_200_OK)
-        except Company.DoesNotExist:
-            return Response({'error': 'Empresa no encontrada'}, status=status.HTTP_404_NOT_FOUND)
-        
+            # Accede al campo FileField
+            logo_file = company_instance.logo
+            # Abre el archivo y lee su contenido en bytes
+            with open(logo_file.path, 'rb') as file:
+                file_content_bytes = file.read()
+            
+            file_content_str = file_content_bytes.decode('utf-8', errors='replace')
+                
+            return Response({'logo': file_content_str, 'empresa': company_instance.companyName, 'contacto':company_instance.full_name, 'setup_type_reward':company_instance.setup_type_reward}, status=status.HTTP_200_OK)
+        except Exception as e:
+            # Manejar la excepción y devolver una respuesta de error
+            return HttpResponseServerError(f"Error: {e}")
 
 
 class CompanyGetByContact(APIView): #cuando un usuario esta en mas de una compañia

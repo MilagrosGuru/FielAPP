@@ -1,4 +1,6 @@
 from django.db import models
+#from storages.backends.s3boto3 import S3Boto3Storage
+
 
 class User(models.Model):
     full_name= models.CharField(max_length=150, default='')
@@ -15,6 +17,8 @@ class User(models.Model):
     gender= models.CharField(max_length=15, blank=True, default='')
     password = models.CharField(max_length=100, blank=True, default='')
     photo= models.CharField(max_length=400, blank=True, default='')
+    #photo_File = models.FileField(upload_to='uploads/', storage=S3Boto3Storage())  # Campo FileField
+    photo_File = models.FileField(upload_to='uploads/')  # Campo FileField
     object_company = models.JSONField(null=True, blank=True)
 
 
