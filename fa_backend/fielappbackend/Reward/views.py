@@ -103,28 +103,18 @@ class RewardAPIView(APIView):   #otra forma de crear premio
             print("Error:", str(e))
 
     def get_rewards_by_company(request, company_id): #lista de premios Fielapp 113
-        print(company_id)
         # Query all rewards for the given company ID
-        #rewards = Reward.objects.filter(company__id_company=company_id)
-        '''rewards = Reward.objects.filter({'company.id_company': company_id})
-
-        # Serialize the rewards data
-        rewards_data = [
-            {
-                'id': reward.id
-            }
-            for reward in rewards
-        ]'''
-         # Consulta para obtener todos los países y sus estados
-        rewards = db.Reward_reward.find({}, {'company.id_company': company_id})
-        print(rewards)
+        rewards = db.Reward_reward.find({'company.id_company': company_id,
+                                         'activate': True}, {'_id': False})
 
         # Convertir el resultado a una lista y devolverla en la respuesta
         reward_list = []
         for rew in rewards:
-            reward_list.append(rew)
+            reward_list.append(rew['id'])
+        reward_list.sort(reverse=True)
 
-        return Response(reward_list, status=status.HTTP_200_OK)
+        return JsonResponse(reward_list, safe=False, status=status.HTTP_200_OK)
+        #return Response(reward_list, status=status.HTTP_200_OK)
 
         # Return the data as JSON
         #return JsonResponse({'rewards': rewards_data})
